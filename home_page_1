@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PsyHelp — Compassionate, Evidence‑Based Psychological Support</title>
+  <meta name="description" content="PsyHelp is a friendly, confidential service for counseling and mental well‑being. Book a free 15‑minute intro call and start feeling better, one step at a time." />
+  <meta name="theme-color" content="#6c7cff" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="PsyHelp — Compassionate, Evidence‑Based Psychological Support" />
+  <meta property="og:description" content="Book a free 15‑minute intro call. Confidential, kind, and practical help for your mind." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://example.com/" />
+  <meta property="og:image" content="https://dummyimage.com/1200x630/f3f4f6/111&text=PsyHelp" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --bg:#ffffff; --fg:#0f172a; --muted:#475569; --brand:#6c7cff; --brand-2:#93a0ff; --accent:#22c55e;
+      --card:#f8fafc; --line:#e5e7eb; --shadow:0 10px 30px rgba(2,6,23,.08);
+      --radius:16px; --radius-sm:10px; --w:1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+         color:var(--fg); background: var(--bg); line-height:1.6}
+    a{color:var(--brand); text-decoration:none}
+    img{max-width:100%; height:auto; display:block}
+
+    /* Layout */
+    .container{max-width:var(--w); margin:0 auto; padding:0 20px}
+    header{position:sticky; top:0; z-index:50; background:rgba(255,255,255,.8); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--line)}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .brand .logo{display:grid; place-items:center; width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff; box-shadow:var(--shadow)}
+    .navlinks{display:flex; gap:24px}
+    .navlinks a{color:var(--muted)}
+    .navactions{display:flex; gap:10px}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 18px; border-radius:999px; font-weight:600; border:1px solid var(--line); background:#fff}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#fff; border:none; box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent}
+
+    /* Hero */
+    .hero{padding:72px 0; background: radial-gradient(1000px 400px at 80% -10%, rgba(108,124,255,.15), transparent),
+                                      radial-gradient(800px 300px at -10% 10%, rgba(147,160,255,.18), transparent)}
+    .hero-grid{display:grid; gap:40px; grid-template-columns:1.1fr .9fr}
+    .headline{font-size: clamp(28px, 4vw, 44px); line-height:1.15; letter-spacing:-.02em; margin:0 0 10px}
+    .sub{font-size: clamp(16px, 2.2vw, 20px); color:var(--muted); margin:0 0 24px}
+    .pill{display:inline-flex; gap:8px; align-items:center; padding:8px 12px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600; font-size:14px; margin-bottom:14px}
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px; box-shadow:var(--shadow)}
+    .hero-card{display:grid; gap:14px}
+    .check{display:flex; gap:10px; align-items:flex-start; color:var(--muted)}
+
+    /* Sections */
+    section{padding:64px 0; border-top:1px solid var(--line)}
+    .section-title{font-size:28px; margin:0 0 12px}
+    .section-sub{color:var(--muted); margin:0 0 28px}
+
+    .grid-3{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
+    .feature{padding:18px; border:1px solid var(--line); border-radius:var(--radius); background:#fff}
+    .feature h3{margin:8px 0}
+
+    .cta{display:flex; gap:14px; flex-wrap:wrap}
+
+    /* Testimonials */
+    .testimonials{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
+    .quote{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:18px}
+    .quote p{margin:0 0 10px}
+    .who{color:var(--muted); font-size:.95rem}
+
+    /* Pricing */
+    .pricing{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
+    .plan{background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px; display:grid; gap:12px}
+    .price{font-size:32px; font-weight:800}
+    .plan ul{margin:0; padding-left:18px; color:var(--muted)}
+    .plan.highlight{border-color:var(--brand); box-shadow:var(--shadow)}
+
+    /* Contact */
+    .contact{display:grid; gap:24px; grid-template-columns:1fr 1fr}
+    form{display:grid; gap:12px}
+    label{font-weight:600}
+    input, textarea, select{width:100%; padding:12px 14px; border:1px solid var(--line); border-radius:12px; font:inherit}
+    .helptext{color:var(--muted); font-size:.95rem}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line); padding:32px 0; color:var(--muted)}
+
+    /* Mobile */
+    .menu-btn{display:none}
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid-3,.testimonials,.pricing{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex}
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Main">
+      <a class="brand" href="#home">
+        <span class="logo" aria-hidden="true">🧠</span>
+        <span>PsyHelp</span>
+      </a>
+      <nav class="navlinks" id="navlinks">
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="navactions">
+        <a class="btn ghost" href="#faq" aria-label="Read FAQs">FAQ</a>
+        <a class="btn primary" href="#contact" aria-label="Book intro call">Book intro call</a>
+        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="pill">Friendly • Confidential • Evidence‑based</div>
+        <h1 class="headline">Feel better, one kind step at a time.</h1>
+        <p class="sub">PsyHelp offers compassionate counseling for stress, anxiety, burnout, relationships, and life transitions. Start with a free 15‑minute intro call.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">Book free intro call</a>
+          <a class="btn" href="#services">See services</a>
+        </div>
+        <p class="helptext">No referral needed • Online or in‑person • English / Armenian / Russian</p>
+      </div>
+      <aside class="card hero-card" aria-label="Quick info">
+        <div class="check"><span>✅</span><div><strong>Confidential</strong><br/>Your privacy is our priority. Secure sessions and careful data handling.</div></div>
+        <div class="check"><span>🧭</span><div><strong>Clear plan</strong><br/>We set goals together and review progress regularly.</div></div>
+        <div class="check"><span>🧪</span><div><strong>Evidence‑based</strong><br/>Cognitive‑behavioral, solution‑focused, and mindfulness‑based tools.</div></div>
+        <div class="check"><span>🌱</span><div><strong>Gentle & human</strong><br/>We meet you where you are—no judgment, only support.</div></div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Services / Features -->
+  <section id="services" class="container">
+    <h2 class="section-title">How we can help</h2>
+    <p class="section-sub">Short‑term support or ongoing therapy—online or in‑person.</p>
+    <div class="grid-3">
+      <article class="feature">
+        <div class="pill" aria-hidden="true">CBT • SFBT</div>
+        <h3>Individual therapy</h3>
+        <p>Personalized sessions for anxiety, stress, depression, self‑esteem, and life changes, using CBT and solution‑focused methods.</p>
+      </article>
+      <article class="feature">
+        <div class="pill" aria-hidden="true">Couples</div>
+        <h3>Relationship counseling</h3>
+        <p>Improve communication, rebuild trust, and learn healthy conflict skills in a safe, collaborative space.</p>
+      </article>
+      <article class="feature">
+        <div class="pill" aria-hidden="true">Teens</div>
+        <h3>Student & teen support</h3>
+        <p>Study stress, exam anxiety, and identity challenges—practical strategies for balance and resilience.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section id="approach" class="container">
+    <h2 class="section-title">Our approach</h2>
+    <p class="section-sub">Kind, structured, and practical. We build a plan around your goals and pace.</p>
+    <div class="grid-3">
+      <article class="feature">
+        <h3>1) Listen & map</h3>
+        <p>We clarify what matters to you and agree on simple, realistic goals.</p>
+      </article>
+      <article class="feature">
+        <h3>2) Try & learn</h3>
+        <p>Weekly tools and reflections—what works stays, what doesn’t we adapt.</p>
+      </article>
+      <article class="feature">
+        <h3>3) Grow & maintain</h3>
+        <p>We consolidate progress and create a maintenance plan you can keep.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container" aria-label="Testimonials">
+    <h2 class="section-title">What clients say</h2>
+    <p class="section-sub">Anonymous quotes from recent feedback.</p>
+    <div class="testimonials">
+      <figure class="quote"><p>“I felt understood and finally had practical steps. The check‑ins kept me on track.”</p><figcaption class="who">— A., anxiety support</figcaption></figure>
+      <figure class="quote"><p>“Warm, clear, and very professional. Our sessions changed how we talk as a couple.”</p><figcaption class="who">— R. & D., relationship counseling</figcaption></figure>
+      <figure class="quote"><p>“Tools for exams and sleep helped right away. Wish I started earlier.”</p><figcaption class="who">— L., student</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="container">
+    <h2 class="section-title">Simple pricing</h2>
+    <p class="section-sub">Transparent fees. Sliding scale available. Ask during your intro call.</p>
+    <div class="pricing">
+      <div class="plan">
+        <h3>Intro call</h3>
+        <div class="price">Free</div>
+        <ul>
+          <li>15 minutes online</li>
+          <li>See if we’re a fit</li>
+          <li>No obligation</li>
+        </ul>
+        <a class="btn" href="#contact">Book now</a>
+      </div>
+      <div class="plan highlight">
+        <h3>Standard session</h3>
+        <div class="price">$55</div>
+        <ul>
+          <li>50 minutes</li>
+          <li>Online or in‑person</li>
+          <li>Exercises & notes</li>
+        </ul>
+        <a class="btn primary" href="#contact">Get started</a>
+      </div>
+      <div class="plan">
+        <h3>Student plan</h3>
+        <div class="price">$35</div>
+        <ul>
+          <li>50 minutes</li>
+          <li>Student ID required</li>
+          <li>Flexible schedule</li>
+        </ul>
+        <a class="btn" href="#contact">Ask about slots</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="container">
+    <h2 class="section-title">Book your free intro call</h2>
+    <p class="section-sub">Prefer email or phone? <a href="mailto:hello@psyhelp.example">hello@psyhelp.example</a> · <a href="tel:+1234567890">+1 (234) 567‑890</a></p>
+    <div class="contact">
+      <form id="contactForm" aria-label="Contact form">
+        <div>
+          <label for="name">Your name</label>
+          <input id="name" name="name" autocomplete="name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div>
+          <label for="service">Service</label>
+          <select id="service" name="service">
+            <option>Intro call</option>
+            <option>Individual therapy</option>
+            <option>Relationship counseling</option>
+            <option>Student support</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Message (optional)</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us what you’d like help with"></textarea>
+        </div>
+        <div class="helptext">By submitting, you agree to our <a href="#">Privacy Policy</a>.</div>
+        <button class="btn primary" type="submit">Send request</button>
+      </form>
+      <aside class="card">
+        <h3>Visit us</h3>
+        <p>123 Calm Street, Suite 5<br/>City X</p>
+        <h4>Hours</h4>
+        <p>Mon–Fri: 10:00–19:00<br/>Sat: 11:00–15:00</p>
+        <h4>Languages</h4>
+        <p>English • Armenian • Russian</p>
+        <h4>Online sessions</h4>
+        <p>Meet on Zoom, Meet, or your preference.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="container">
+    <h2 class="section-title">FAQ</h2>
+    <details class="feature"><summary><strong>Is therapy confidential?</strong></summary><p>Yes. We follow strict confidentiality rules and share information only with your consent or when required by law for safety.</p></details>
+    <details class="feature"><summary><strong>How many sessions will I need?</strong></summary><p>It varies—many clients notice improvements in 4–8 sessions. We review progress together and adjust the plan.</p></details>
+    <details class="feature"><summary><strong>Do you offer sliding scale?</strong></summary><p>Yes. Let us know during the intro call; we keep a limited number of reduced‑fee slots.</p></details>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap">
+      <div>© <span id="y"></span> PsyHelp. All rights reserved.</div>
+      <div>
+        <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const links = document.getElementById('navlinks');
+    menuBtn?.addEventListener('click', () => {
+      const open = links.style.display === 'flex';
+      links.style.display = open ? 'none' : 'flex';
+      links.style.gap = '24px';
+      links.style.flexDirection = 'column';
+      links.style.padding = '12px 0';
+      menuBtn.setAttribute('aria-expanded', String(!open));
+    });
+
+    // Simple client-side validation + demo submit
+    const form = document.getElementById('contactForm');
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      // In production, POST `data` to your backend or a form service (e.g., Formspree)
+      alert(`Thanks, ${data.name}! We'll email you at ${data.email} to schedule your ${data.service.toLowerCase()}.`);
+      form.reset();
+    });
+
+    // Footer year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Optional JSON-LD for local business (fill in real data when available) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "PsyHelp",
+    "description": "Compassionate, confidential counseling services.",
+    "url": "https://example.com/",
+    "logo": "https://dummyimage.com/512x512/f3f4f6/111&text=%F0%9F%A7%A0",
+    "address": {"@type":"PostalAddress","streetAddress":"123 Calm Street","addressLocality":"City X","addressCountry":"AM"},
+    "telephone": "+1234567890",
+    "areaServed": "AM",
+    "medicalSpecialty": ["Psychotherapy","MentalHealth"]
+  }
+  </script>
+</body>
+</html>
