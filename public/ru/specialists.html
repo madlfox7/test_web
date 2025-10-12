@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>PsyAid — Специалисты</title>
+  <meta name="description" content="Подберите психолога по специализации, городу и языку. Бесплатная вводная консультация."/>
+  <link rel="canonical" href="https://example.com/ru/specialists"/>
+
+  <link rel="alternate" href="https://example.com/en/specialists" hreflang="en">
+  <link rel="alternate" href="https://example.com/ru/specialists" hreflang="ru">
+  <link rel="alternate" href="https://example.com/hy/specialists" hreflang="hy">
+  <link rel="alternate" href="https://example.com/en/specialists" hreflang="x-default">
+
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#f8fafc;color:#0f172a}
+    .container{max-width:1000px;margin:auto;padding:24px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,.06)}
+    .muted{color:#475569}
+    input,select,button{padding:10px;border:1px solid #e5e7eb;border-radius:10px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+    .langswitch a{margin-right:8px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="langswitch" aria-label="Языки">
+      <a href="/en/specialists.html">EN</a>
+      <a href="/ru/specialists.html">RU</a>
+      <a href="/hy/specialists.html">HY</a>
+    </nav>
+
+    <h1 style="margin:0 0 8px">PsyAid — Специалисты</h1>
+    <p class="muted" style="margin:0 0 12px">Фильтруйте по городу, языку или ищите по имени/специализации.</p>
+
+    <div class="controls">
+      <input id="q" placeholder="Поиск имени или специализации…"/>
+      <select id="city">
+        <option value="">Любой город</option>
+        <option>Yerevan</option>
+        <option>Gyumri</option>
+      </select>
+      <select id="lang">
+        <option value="">Любой язык</option>
+        <option value="hy">Հայերեն</option>
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
+      <button id="apply">Применить</button>
+    </div>
+
+    <div id="list" class="grid" aria-live="polite"></div>
+  </div>
+
+<script>
+  const ui='ru';
+  const langMap={en:{hy:'Armenian',ru:'Russian',en:'English'},ru:{hy:'арм',ru:'рус',en:'анг'},hy:{hy:'հայ',ru:'ռուս',en:'անգ'}};
+  const L=langMap[ui];
+
+  async function load(){
+    const p=new URLSearchParams();
+    const q=document.getElementById('q').value.trim();
+    const city=document.getElementById('city').value;
+    const lang=document.getElementById('lang').value;
+    if(q) p.set('q',q);
+    if(city) p.set('city',city);
+    if(lang) p.set('lang',lang);
+    p.set('tlang',ui);
+
+    const res=await fetch('/api/specialists.php?'+p.toString());
+    const data=await res.json();
+    const list=document.getElementById('list');
+    if(!Array.isArray(data)||data.length===0){list.innerHTML='<p class="muted">Нет результатов.</p>';return;}
+
+    list.innerHTML=data.map(x=>{
+      const displayLangs=(x.languages||'').split(',').map(s=>s.trim()).filter(Boolean).map(c=>L[c]||c).join(', ');
+      return `
+        <article class="card">
+          ${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:8px">`:''}
+          <h3 style="margin:0 0 6px">${x.name}</h3>
+          ${x.specialty?`<p class="muted" style="margin:0 0 8px">${x.specialty}</p>`:''}
+          <p style="margin:0 0 6px"><strong>Город:</strong> ${x.city}</p>
+          <p style="margin:0 0 6px"><strong>Языки:</strong> ${displayLangs}</p>
+          <p class="muted" style="margin:0 0 6px">Стаж: ${x.experience||0} лет · Рейтинг: ${x.rating??'—'} · От: ${x.price_from?(x.price_from+' ֏'):'—'}</p>
+          ${x.contacts?`<p class="muted" style="margin:0">${x.contacts}</p>`:''}
+        </article>
+      `;
+    }).join('');
+  }
+  document.getElementById('apply').addEventListener('click',load);
+  load();
+</script>
+</body>
+</html>
