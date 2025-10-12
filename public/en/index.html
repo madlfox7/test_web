@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
   <title>PsyAid — Compassionate, Evidence-Based Psychological Support</title>
-  <meta name="description" content="PsyAid is a friendly, confidential counseling service in Armenia. Book a free 15-minute intro call and start feeling better, one kind step at a time." />
+  <meta name="description" content="PsyAid is a kind and confidential psychological support service in Armenia. Book a free 15-minute intro call and start feeling better — one caring step at a time." />
   <meta name="theme-color" content="#6c7cff" />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
 
@@ -19,99 +19,141 @@
   <!-- Icons & social -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
   <meta property="og:title" content="PsyAid — Compassionate, Evidence-Based Psychological Support" />
-  <meta property="og:description" content="Book a free 15-minute intro call. Confidential, kind, and practical help for your mind." />
+  <meta property="og:description" content="Free 15-minute intro call. Confidential, warm, and practical help for your mental health." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com/en/" />
   <meta property="og:image" content="https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid" />
   <meta property="og:locale" content="en_US" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="PsyAid — Compassionate, Evidence-Based Psychological Support" />
-  <meta name="twitter:description" content="Confidential, kind, and practical mental-health support. Free 15-minute intro call." />
+  <meta name="twitter:description" content="Book a free 15-minute intro call. Confidential, caring, and practical." />
   <meta name="twitter:image" content="https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid" />
 
   <style>
-    :root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--brand:#6c7cff;--brand-2:#93a0ff;--accent:#22c55e;--card:#f8fafc;--line:#e5e7eb;--shadow:0 10px 30px rgba(2,6,23,.08);--radius:16px;--radius-sm:10px;--w:1200px}
+    :root{
+      --bg:#ffffff;--fg:#0f172a;--muted:#475569;--brand:#6c7cff;--brand-2:#93a0ff;--accent:#22c55e;--card:#f8fafc;--line:#e5e7eb;--shadow:0 10px 30px rgba(2,6,23,.08);--radius:16px;--radius-sm:10px;
+      --w:min(1200px,92vw);
+    }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     html,body{margin:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";color:var(--fg);background:var(--bg);line-height:1.6}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);background:var(--bg);line-height:1.6;
+      font-size:clamp(15px,1.4vw,18px);
+      padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
     a{color:var(--brand);text-decoration:none}
     img{max-width:100%;height:auto;display:block}
     .visually-hidden{position:absolute!important;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}
+
     .container{max-width:var(--w);margin:0 auto;padding:0 20px}
-    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:var(--shadow)}
     .navlinks{display:flex;gap:24px}
     .navlinks a{color:var(--muted)}
     .navactions{display:flex;gap:10px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:clamp(10px,1.3vw,12px) clamp(14px,1.8vw,18px);border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff;font-size:clamp(14px,1.6vw,16px)}
     .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;box-shadow:var(--shadow)}
     .btn.ghost{background:transparent}
-    .hero{padding:72px 0;background:radial-gradient(1000px 400px at 80% -10%,rgba(108,124,255,.15),transparent),radial-gradient(800px 300px at -10% 10%,rgba(147,160,255,.18),transparent)}
-    .hero-grid{display:grid;gap:40px;grid-template-columns:1.1fr .9fr}
-    .headline{font-size:clamp(28px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
-    .sub{font-size:clamp(16px,2.2vw,20px);color:var(--muted);margin:0 0 24px}
+    .menu-btn{display:none}
+
+    .hero{padding:clamp(48px,8vw,96px) 0;background:radial-gradient(1000px 400px at 80% -10%,rgba(108,124,255,.15),transparent),radial-gradient(800px 300px at -10% 10%,rgba(147,160,255,.18),transparent)}
+    .hero-grid{display:grid;gap:40px;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);align-items:start}
+    .headline{font-size:clamp(26px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+    .sub{font-size:clamp(15px,2vw,20px);color:var(--muted);margin:0 0 24px}
     .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef2ff;color:#3730a3;font-weight:600;font-size:14px;margin-bottom:14px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
     .hero-card{display:grid;gap:14px}
     .check{display:flex;gap:10px;align-items:flex-start;color:var(--muted)}
-    section{padding:64px 0;border-top:1px solid var(--line)}
+
+    section{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--line)}
     .section-title{font-size:28px;margin:0 0 12px}
     .section-sub{color:var(--muted);margin:0 0 28px}
-    .grid-3{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+
+    .grid-3,.testimonials,.pricing{
+      display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
     .feature{padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
     .feature h3{margin:8px 0}
     .cta{display:flex;gap:14px;flex-wrap:wrap}
-    .testimonials{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
     .quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
     .quote p{margin:0 0 10px}
     .who{color:var(--muted);font-size:.95rem}
-    .pricing{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
     .plan{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:grid;gap:12px}
     .price{font-size:32px;font-weight:800}
     .plan ul{margin:0;padding-left:18px;color:var(--muted)}
     .plan.highlight{border-color:var(--brand);box-shadow:var(--shadow)}
-    .contact{display:grid;gap:24px;grid-template-columns:1fr 1fr}
+
+    .contact{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     form{display:grid;gap:12px}
     label{font-weight:600}
     input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit}
     .helptext{color:var(--muted);font-size:.95rem}
+
     footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted)}
-    .menu-btn{display:none}
-    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid-3,.testimonials,.pricing{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.navlinks{display:none}.menu-btn{display:inline-flex}}
-    @media (max-width: 600px) {
-      .container { padding: 0 8px; }
-      .btn, input, textarea, select { width: 100%; box-sizing: border-box; }
-      .nav { flex-direction: column; align-items: flex-start; }
-      .hero-grid, .grid-3, .testimonials, .pricing, .contact { grid-template-columns: 1fr !important; }
+
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex}
+      .navlinks.is-open{
+        display:flex !important;position:absolute;left:0;right:0;top:64px;background:#fff;
+        border-bottom:1px solid var(--line);padding:12px 16px 16px;flex-direction:column;gap:12px;z-index:60
+      }
+    }
+
+    @media (max-width:600px){
+      .container{padding:0 8px}
+      .btn, input, textarea, select { width:100%; box-sizing:border-box; }
+      .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
+    }
+    @media (max-width:360px){
+      .pill{font-size:13px;padding:6px 10px}
+      .price{font-size:28px}
+      .container{padding:0 10px}
+    }
+
+    @media (min-width:1440px){
+      :root{--w:1280px}
+      .hero{background:
+        radial-gradient(1200px 460px at 80% -10%, rgba(108,124,255,.12), transparent),
+        radial-gradient(900px 360px at -10% 10%, rgba(147,160,255,.14), transparent)
+      }
+    }
+
+    :focus-visible{
+      outline:3px solid color-mix(in srgb, var(--brand) 70%, white);
+      outline-offset:2px;border-radius:8px
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav" aria-label="Main">
+    <div class="container nav" aria-label="Main navigation">
       <a class="brand" href="#/">
         <span class="logo" aria-hidden="true">🧠</span>
         <span>PsyAid</span>
       </a>
       <nav class="navlinks" id="navlinks">
-  <a href="#/services">Services</a>
-  <a href="#/approach">Approach</a>
-  <a href="#/pricing">Pricing</a>
-  <a href="/en/specialists.html">Specialists</a>
-  <a href="#/contact">Contact</a>
+        <a href="#/services">Services</a>
+        <a href="#/approach">Approach</a>
+        <a href="#/pricing">Pricing</a>
+        <a href="/en/specialists.html">Specialists</a>
+        <a href="#/contact">Contact</a>
       </nav>
       <div class="navactions">
         <label class="visually-hidden" for="langSwitch">Language</label>
         <select id="langSwitch" aria-label="Language switcher" class="btn" style="padding:10px 14px;">
-          <option value="en" selected>EN</option>
           <option value="ru">RU</option>
+          <option value="en" selected>EN</option>
           <option value="hy">HY</option>
         </select>
-        <a class="btn ghost" href="#/faq" aria-label="Read FAQs">FAQ</a>
-        <a class="btn primary" href="#/contact" aria-label="Book intro call">Book intro call</a>
-        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">☰</button>
+        <a class="btn ghost" href="#/faq" aria-label="Frequently Asked Questions">FAQ</a>
+        <a class="btn primary" href="#/contact" aria-label="Book an intro call">Book</a>
+        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Open menu">☰</button>
       </div>
     </div>
   </header>
@@ -119,115 +161,115 @@
   <main id="home" class="hero" data-route="/">
     <div class="container hero-grid">
       <div>
-        <div class="pill">Friendly • Confidential • Evidence-based</div>
-        <h1 class="headline">Feel better, one kind step at a time.</h1>
-        <p class="sub">PsyAid offers compassionate counseling for stress, anxiety, burnout, relationships, and life transitions. Start with a free 15-minute intro call.</p>
+        <div class="pill">Kind • Confidential • Evidence-Based</div>
+        <h1 class="headline">Start feeling better — with one caring step.</h1>
+        <p class="sub">PsyAid offers warm counseling for stress, anxiety, burnout, relationships, and life changes. Begin with a free 15-minute intro call.</p>
         <div class="cta">
-          <a class="btn primary" href="#/contact">Book free intro call</a>
+          <a class="btn primary" href="#/contact">Free intro call</a>
           <a class="btn" href="#/services">See services</a>
         </div>
         <p class="helptext">No referral needed • Online or in-person • English / Armenian / Russian</p>
       </div>
 
       <aside class="card hero-card" aria-label="Quick info">
-        <div class="check"><span>✅</span><div><strong>Confidential</strong><br/>Your privacy is our priority. Secure sessions and careful data handling.</div></div>
+        <div class="check"><span>✅</span><div><strong>Privacy</strong><br/>Your data is protected. Secure sessions and careful handling of information.</div></div>
         <div class="check"><span>🧭</span><div><strong>Clear plan</strong><br/>We set goals together and review progress regularly.</div></div>
-        <div class="check"><span>🧪</span><div><strong>Evidence-based</strong><br/>Cognitive-behavioral, solution-focused, and mindfulness-based tools.</div></div>
-        <div class="check"><span>🌱</span><div><strong>Gentle & human</strong><br/>We meet you where you are—no judgment, only support.</div></div>
+        <div class="check"><span>🧪</span><div><strong>Evidence-based methods</strong><br/>CBT, solution-focused work (SFBT), and mindfulness practices.</div></div>
+        <div class="check"><span>🌱</span><div><strong>Warm & human</strong><br/>We meet you where you are — no judgment, just support.</div></div>
       </aside>
     </div>
   </main>
 
   <section id="services" class="container" data-route="/services">
-    <h2 class="section-title">How we can help</h2>
-    <p class="section-sub">Short-term support or ongoing therapy—online or in-person.</p>
+    <h2 class="section-title">How we help</h2>
+    <p class="section-sub">Short-term support or longer-term therapy — online or in person.</p>
     <div class="grid-3">
       <article class="feature">
         <div class="pill" aria-hidden="true">CBT • SFBT</div>
         <h3>Individual therapy</h3>
-        <p>Personalized sessions for anxiety, stress, depression, self-esteem, and life changes, using CBT and solution-focused methods.</p>
+        <p>Sessions for anxiety, stress, depression, low self-esteem, and life changes — using CBT and solution-focused approaches.</p>
       </article>
       <article class="feature">
         <div class="pill" aria-hidden="true">Couples</div>
         <h3>Relationship counseling</h3>
-        <p>Improve communication, rebuild trust, and learn healthy conflict skills in a safe, collaborative space.</p>
+        <p>Improve communication, rebuild trust, and develop healthy conflict skills in a safe shared space.</p>
       </article>
       <article class="feature">
-        <div class="pill" aria-hidden="true">Teens</div>
-        <h3>Student & teen support</h3>
-        <p>Study stress, exam anxiety, and identity challenges—practical strategies for balance and resilience.</p>
+        <div class="pill" aria-hidden="true">Students</div>
+        <h3>Support for teens & students</h3>
+        <p>Study stress, exam anxiety, identity questions — practical strategies for balance and resilience.</p>
       </article>
     </div>
   </section>
 
   <section id="approach" class="container" data-route="/approach">
     <h2 class="section-title">Our approach</h2>
-    <p class="section-sub">Kind, structured, and practical. We build a plan around your goals and pace.</p>
+    <p class="section-sub">Warm, structured, and practical. A plan for your goals and pace.</p>
     <div class="grid-3">
       <article class="feature">
         <h3>1) Listen & map</h3>
-        <p>We clarify what matters to you and agree on simple, realistic goals.</p>
+        <p>Clarify what matters to you and set achievable, realistic goals.</p>
       </article>
       <article class="feature">
         <h3>2) Try & learn</h3>
-        <p>Weekly tools and reflections—what works stays, what doesn’t we adapt.</p>
+        <p>Weekly tools and feedback: keep what works, adapt what doesn’t.</p>
       </article>
       <article class="feature">
-        <h3>3) Grow & maintain</h3>
-        <p>We consolidate progress and create a maintenance plan you can keep.</p>
+        <h3>3) Grow & sustain</h3>
+        <p>Lock in progress and create a maintenance plan you can continue yourself.</p>
       </article>
     </div>
   </section>
 
   <section class="container" aria-label="Testimonials" data-route="/testimonials">
-    <h2 class="section-title">What clients say</h2>
-    <p class="section-sub">Anonymous quotes from recent feedback.</p>
+    <h2 class="section-title">Client feedback</h2>
+    <p class="section-sub">Anonymous quotes from recent reviews.</p>
     <div class="testimonials">
-      <figure class="quote"><p>“I felt understood and finally had practical steps. The check-ins kept me on track.”</p><figcaption class="who">— A., anxiety support</figcaption></figure>
-      <figure class="quote"><p>“Warm, clear, and very professional. Our sessions changed how we talk as a couple.”</p><figcaption class="who">— R. & D., relationship counseling</figcaption></figure>
-      <figure class="quote"><p>“Tools for exams and sleep helped right away. Wish I started earlier.”</p><figcaption class="who">— L., student</figcaption></figure>
+      <figure class="quote"><p>“I felt heard and understood — finally some practical steps. Regular check-ins kept me on course.”</p><figcaption class="who">— A., support for anxiety</figcaption></figure>
+      <figure class="quote"><p>“Warm, clear, and very professional. Our meetings changed how we talk to each other.”</p><figcaption class="who">— R. & D., couples counseling</figcaption></figure>
+      <figure class="quote"><p>“Sleep tools and exam prep tips helped right away. I wish I’d started sooner.”</p><figcaption class="who">— L., student</figcaption></figure>
     </div>
   </section>
 
   <section id="pricing" class="container" data-route="/pricing">
     <h2 class="section-title">Simple pricing</h2>
-    <p class="section-sub">Transparent fees. Sliding scale available. Ask during your intro call.</p>
+    <p class="section-sub">Transparent terms. Reduced-fee options may be available — ask on the intro call.</p>
     <div class="pricing">
       <div class="plan">
         <h3>Intro call</h3>
         <div class="price">Free</div>
         <ul>
           <li>15 minutes online</li>
-          <li>See if we’re a fit</li>
-          <li>No obligation</li>
+          <li>Mutual fit check</li>
+          <li>No obligation to continue</li>
         </ul>
-        <a class="btn" href="#/contact">Book now</a>
+        <a class="btn" href="#/contact">Book</a>
       </div>
       <div class="plan highlight">
         <h3>Standard session</h3>
-        <div class="price">$55</div>
+        <div class="price">֏21,000</div>
         <ul>
           <li>50 minutes</li>
-          <li>Online or in-person</li>
+          <li>Online or in person</li>
           <li>Exercises & notes</li>
         </ul>
-        <a class="btn primary" href="#/contact">Get started</a>
+        <a class="btn primary" href="#/contact">Start</a>
       </div>
       <div class="plan">
         <h3>Student plan</h3>
-        <div class="price">$35</div>
+        <div class="price">֏13,000</div>
         <ul>
           <li>50 minutes</li>
           <li>Student ID required</li>
           <li>Flexible schedule</li>
         </ul>
-        <a class="btn" href="#/contact">Ask about slots</a>
+        <a class="btn" href="#/contact">Check availability</a>
       </div>
     </div>
   </section>
 
   <section id="contact" class="container" data-route="/contact">
-    <h2 class="section-title">Book your free intro call</h2>
+    <h2 class="section-title">Book a free intro call</h2>
     <p class="section-sub">Prefer email or phone? <a href="mailto:hello@PsyAid.example">hello@PsyAid.example</a> · <a href="tel:+1234567890">+1 (234) 567-890</a></p>
     <div class="contact">
       <form id="contactForm" aria-label="Contact form">
@@ -250,21 +292,21 @@
         </div>
         <div>
           <label for="message">Message (optional)</label>
-          <textarea id="message" name="message" rows="4" placeholder="Tell us what you’d like help with"></textarea>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us what you’d like to work on"></textarea>
         </div>
         <div class="helptext">By submitting, you agree to our <a href="#">Privacy Policy</a>.</div>
         <button class="btn primary" type="submit">Send request</button>
       </form>
 
       <aside class="card">
-        <h3>Visit us</h3>
+        <h3>How to find us</h3>
         <p>123 Calm Street, Suite 5<br/>City X</p>
         <h4>Hours</h4>
         <p>Mon–Fri: 10:00–19:00<br/>Sat: 11:00–15:00</p>
         <h4>Languages</h4>
         <p>English • Armenian • Russian</p>
         <h4>Online sessions</h4>
-        <p>Meet on Zoom, Meet, or your preference.</p>
+        <p>Zoom, Meet, or your preferred platform.</p>
       </aside>
     </div>
   </section>
@@ -273,15 +315,15 @@
     <h2 class="section-title">FAQ</h2>
     <details class="feature">
       <summary><strong>Is therapy confidential?</strong></summary>
-      <p>Yes. We follow strict confidentiality rules and share information only with your consent or when required by law for safety.</p>
+      <p>Yes. We follow strict confidentiality and share information only with your consent or when required by law for safety.</p>
     </details>
     <details class="feature">
       <summary><strong>How many sessions will I need?</strong></summary>
-      <p>It varies—many clients notice improvements in 4–8 sessions. We review progress together and adjust the plan.</p>
+      <p>It depends on your goals — many notice improvements after 4–8 sessions. We review progress regularly and adjust the plan.</p>
     </details>
     <details class="feature">
-      <summary><strong>Do you offer sliding scale?</strong></summary>
-      <p>Yes. Let us know during the intro call; we keep a limited number of reduced-fee slots.</p>
+      <summary><strong>Do you offer reduced fees?</strong></summary>
+      <p>Yes. Please mention this on the intro call — we have a limited number of reduced-fee spots.</p>
     </details>
   </section>
 
@@ -295,70 +337,87 @@
   </footer>
 
   <script>
-    // Mobile menu
-    const menuBtn=document.getElementById('menuBtn');
-    const links=document.getElementById('navlinks');
-    menuBtn&&menuBtn.addEventListener('click',()=>{
-      const opened=links.style.display==='flex';
-      links.style.display=opened?'none':'flex';
-      links.style.gap='24px';
-      links.style.flexDirection='column';
-      links.style.padding='12px 0';
-      menuBtn.setAttribute('aria-expanded',String(!opened));
+    // Mobile menu: toggle class + safe close
+    const menuBtn = document.getElementById('menuBtn');
+    const links = document.getElementById('navlinks');
+
+    function setMenu(open){
+      if(!links) return;
+      links.classList.toggle('is-open', open);
+      menuBtn && menuBtn.setAttribute('aria-expanded', String(open));
+    }
+    menuBtn && menuBtn.addEventListener('click', () => {
+      const open = !links.classList.contains('is-open');
+      setMenu(open);
     });
+    // Close on >980px and Escape
+    const mq = window.matchMedia('(min-width: 981px)');
+    if (mq.addEventListener) mq.addEventListener('change', e => { if (e.matches) setMenu(false); });
+    else mq.addListener && mq.addListener(e => { if (e.matches) setMenu(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
     // Form (localized alert)
-    const form=document.getElementById('contactForm');
-    form&&form.addEventListener('submit',e=>{
+    const form = document.getElementById('contactForm');
+    form && form.addEventListener('submit', e => {
       e.preventDefault();
-      const t=Object.fromEntries(new FormData(form).entries());
-      alert(`Thanks, ${t.name}! We'll email you at ${t.email} to schedule your ${t.service.toLowerCase()}.`);
+      const t = Object.fromEntries(new FormData(form).entries());
+      alert(`Thank you, ${t.name}! We’ll email ${t.email} to schedule “${t.service.toLowerCase()}”.`);
       form.reset();
     });
 
     // Current year
-    document.getElementById('y').textContent=new Date().getFullYear();
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Hash routing + UX title/description updates
-    const routes={
-      '/':{title:'PsyAid — Compassionate Psychological Support',desc:'Confidential, kind, evidence-based counseling. Book a free 15-minute intro call.'},
-      '/services':{title:'Services — PsyAid',desc:'CBT, solution-focused therapy, relationship counseling, and student support.'},
-      '/approach':{title:'Our Approach — PsyAid',desc:'Kind, structured, and practical: listen & map, try & learn, grow & maintain.'},
-      '/testimonials':{title:'Testimonials — PsyAid',desc:'Anonymous client quotes about results and experience with PsyAid.'},
-      '/pricing':{title:'Pricing — PsyAid',desc:'Simple, transparent pricing with sliding scale options.'},
-      '/contact':{title:'Contact — PsyAid',desc:'Book your free intro call. Email, phone, and visit information.'},
-      '/faq':{title:'FAQ — PsyAid',desc:'Common questions about confidentiality, session count, and fees.'}
+    // Hash router + meta + aria-current
+    const routes = {
+      '/':{title:'PsyAid — Compassionate Psychological Support',desc:'Free 15-minute intro call. Confidential, warm, and practical support.'},
+      '/services':{title:'Services — PsyAid',desc:'Individual therapy, relationship counseling, student support.'},
+      '/approach':{title:'Approach — PsyAid',desc:'Warm, structured, and practical: listen, try, grow.'},
+      '/testimonials':{title:'Testimonials — PsyAid',desc:'Anonymous client feedback on results and experience.'},
+      '/pricing':{title:'Pricing — PsyAid',desc:'Simple, transparent pricing with possible concessions.'},
+      '/contact':{title:'Contact — PsyAid',desc:'Book a free intro call. Email, phone, and address.'},
+      '/faq':{title:'FAQ — PsyAid',desc:'Answers about confidentiality, number of sessions, and fees.'}
     };
     function setMeta(path){
-      const m=document.querySelector('meta[name="description"]');
-      const r=routes[path]||routes['/'];
-      document.title=r.title;
-      if(m) m.setAttribute('content',r.desc);
+      const m = document.querySelector('meta[name="description"]');
+      const r = routes[path] || routes['/'];
+      document.title = r.title;
+      if(m) m.setAttribute('content', r.desc);
+    }
+    function markActive(path){
+      const nav = document.getElementById('navlinks');
+      if(!nav) return;
+      nav.querySelectorAll('a[href^="#/"]').forEach(a=>{
+        const is = a.getAttribute('href') === `#${path}`;
+        a.toggleAttribute('aria-current', is);
+      });
     }
     function showRoute(path){
-      const p=path||'/';
+      const p = path || '/';
       document.querySelectorAll('[data-route]').forEach(el=>{
-        el.style.display=(el.getAttribute('data-route')===p)?'block':'none';
+        el.style.display = (el.getAttribute('data-route')===p)?'block':'none';
       });
       setMeta(p);
-      const sec=document.querySelector(`[data-route="${p}"]`);
+      markActive(p);
+      const sec = document.querySelector(`[data-route="${p}"]`);
       if(sec){
-        const h=sec.querySelector('h1, h2');
-        h&&(h.setAttribute('tabindex','-1'),h.focus({preventScroll:true}),sec.scrollIntoView({behavior:'smooth',block:'start'}));
+        const h = sec.querySelector('h1, h2');
+        h && (h.setAttribute('tabindex','-1'), h.focus({preventScroll:true}), sec.scrollIntoView({behavior:'smooth',block:'start'}));
       }
+      setMenu(false);
     }
-    function currentPath(){const n=location.hash.replace(/^#/,'');return n||'/';}
+    function currentPath(){ const n = location.hash.replace(/^#/,''); return n || '/'; }
     window.addEventListener('hashchange',()=>showRoute(currentPath()));
     window.addEventListener('DOMContentLoaded',()=>showRoute(currentPath()));
 
-    // Language switch: /hy/ /ru/ /en/ + keep current section
-    const langSel=document.getElementById('langSwitch');
+    // Language switcher: /hy/ /ru/ /en/ + keep current section
+    const langSel = document.getElementById('langSwitch');
     function goLang(lang){
       const base = lang==='hy'?'/hy/':lang==='ru'?'/ru/':lang==='en'?'/en/':'/';
       const hash = location.hash || '#/';
       location.href = base + hash;
     }
-    langSel&&langSel.addEventListener('change',e=>goLang(e.target.value));
+    langSel && langSel.addEventListener('change', e => goLang(e.target.value));
   </script>
 
   <!-- Localized JSON-LD -->
@@ -367,7 +426,7 @@
     "@context":"https://schema.org",
     "@type":"MedicalClinic",
     "name":"PsyAid",
-    "description":"Compassionate and confidential counseling services for mental well-being.",
+    "description":"Kind and confidential counseling for mental well-being in Armenia.",
     "url":"https://example.com/en/",
     "logo":"https://dummyimage.com/512x512/f3f4f6/111&text=%F0%9F%A7%A0",
     "image":"https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid",
@@ -384,7 +443,7 @@
       {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"19:00"},
       {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"11:00","closes":"15:00"}
     ],
-    "priceRange":"$$",
+    "priceRange":"֏֏",
     "medicalSpecialty":["Psychotherapy","MentalHealth"]
   }
   </script>

@@ -2,10 +2,10 @@
 <html lang="hy">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>PsyAid — Հոգեկան առողջության հարցերում քո օգնականը</title>
-  <meta name="description" content="PsyAid-ը բարեհամբույր և գաղտնի խորհրդատվական ծառայություն է հոգեկան առողջության համար Հայաստանում։ Ամրագրեք անվճար 15 րոպեանոց զանգ և սկսեք ձեզ զգալ ավելի լավ՝ մեկ պարզ քայլով։" />
+  <title>PsyAid — Խնամքով, ապացույցների վրա հիմնված հոգեբանական աջակցություն</title>
+  <meta name="description" content="PsyAid-ը բարեհամբույր և գաղտնի հոգեբանական օգնություն է Հայաստանում։ Ամրագրեք անվճար 15-րոպեանոց նախնական զանգ և սկսեք ձեզ զգալ ավելի լավ՝ քայլ առ քայլ։" />
   <meta name="theme-color" content="#6c7cff" />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
 
@@ -18,94 +18,148 @@
 
   <!-- Icons & social -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
-  <meta property="og:title" content="PsyAid — Հոգեկան առողջության հարցերում քո օգնականը" />
-  <meta property="og:description" content="Ամրագրեք անվճար 15 րոպեանոց հանդիպում։ Գաղտնի, հոգատար և գործնական աջակցություն ձեր հոգեկան առողջության համար։" />
+  <meta property="og:title" content="PsyAid — Խնամքով, ապացույցների վրա հիմնված հոգեբանական աջակցություն" />
+  <meta property="og:description" content="Ամրագրեք անվճար 15-րոպեանոց նախնական զանգը։ Գաղտնի, հոգատար և գործնական աջակցություն ձեր հոգեկան առողջությանը." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com/hy/" />
   <meta property="og:image" content="https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid" />
   <meta property="og:locale" content="hy_AM" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PsyAid — Հոգեկան առողջության հարցերում քո օգնականը" />
-  <meta name="twitter:description" content="Գաղտնի, հոգատար և գործնական աջակցություն։ Անվճար 15 րոպեանոց ներածական զանգ։" />
+  <meta name="twitter:title" content="PsyAid — Խնամքով, ապացույցների վրա հիմնված հոգեբանական աջակցություն" />
+  <meta name="twitter:description" content="Ամրագրեք անվճար 15-րոպեանոց նախնական զանգ։ Գաղտնի, հոգատար և գործնական աջակցություն." />
   <meta name="twitter:image" content="https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid" />
 
   <style>
-    :root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--brand:#6c7cff;--brand-2:#93a0ff;--accent:#22c55e;--card:#f8fafc;--line:#e5e7eb;--shadow:0 10px 30px rgba(2,6,23,.08);--radius:16px;--radius-sm:10px;--w:1200px}
+    :root{
+      --bg:#ffffff;--fg:#0f172a;--muted:#475569;--brand:#6c7cff;--brand-2:#93a0ff;--accent:#22c55e;--card:#f8fafc;--line:#e5e7eb;--shadow:0 10px 30px rgba(2,6,23,.08);--radius:16px;--radius-sm:10px;
+      --w:min(1200px,92vw);
+    }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     html,body{margin:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";color:var(--fg);background:var(--bg);line-height:1.6}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+      color:var(--fg);background:var(--bg);line-height:1.6;
+      font-size:clamp(15px,1.4vw,18px);
+      padding-bottom: max(0px, env(safe-area-inset-bottom));
+    }
     a{color:var(--brand);text-decoration:none}
     img{max-width:100%;height:auto;display:block}
     .visually-hidden{position:absolute!important;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}
+
     .container{max-width:var(--w);margin:0 auto;padding:0 20px}
-    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:var(--shadow)}
     .navlinks{display:flex;gap:24px}
     .navlinks a{color:var(--muted)}
     .navactions{display:flex;gap:10px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:clamp(10px,1.3vw,12px) clamp(14px,1.8vw,18px);border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff;font-size:clamp(14px,1.6vw,16px)}
     .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;box-shadow:var(--shadow)}
     .btn.ghost{background:transparent}
-    .hero{padding:72px 0;background:radial-gradient(1000px 400px at 80% -10%,rgba(108,124,255,.15),transparent),radial-gradient(800px 300px at -10% 10%,rgba(147,160,255,.18),transparent)}
-    .hero-grid{display:grid;gap:40px;grid-template-columns:1.1fr .9fr}
-    .headline{font-size:clamp(28px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
-    .sub{font-size:clamp(16px,2.2vw,20px);color:var(--muted);margin:0 0 24px}
+    .menu-btn{display:none}
+
+    .hero{padding:clamp(48px,8vw,96px) 0;background:radial-gradient(1000px 400px at 80% -10%,rgba(108,124,255,.15),transparent),radial-gradient(800px 300px at -10% 10%,rgba(147,160,255,.18),transparent)}
+    .hero-grid{display:grid;gap:40px;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);align-items:start}
+    .headline{font-size:clamp(26px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+    .sub{font-size:clamp(15px,2vw,20px);color:var(--muted);margin:0 0 24px}
     .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef2ff;color:#3730a3;font-weight:600;font-size:14px;margin-bottom:14px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
     .hero-card{display:grid;gap:14px}
     .check{display:flex;gap:10px;align-items:flex-start;color:var(--muted)}
-    section{padding:64px 0;border-top:1px solid var(--line)}
+
+    section{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--line)}
     .section-title{font-size:28px;margin:0 0 12px}
     .section-sub{color:var(--muted);margin:0 0 28px}
-    .grid-3{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
+
+    /* Universal responsive grids */
+    .grid-3,.testimonials,.pricing{
+      display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
     .feature{padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
     .feature h3{margin:8px 0}
     .cta{display:flex;gap:14px;flex-wrap:wrap}
-    .testimonials{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
     .quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
     .quote p{margin:0 0 10px}
     .who{color:var(--muted);font-size:.95rem}
-    .pricing{display:grid;gap:18px;grid-template-columns:repeat(3,1fr)}
     .plan{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;display:grid;gap:12px}
     .price{font-size:32px;font-weight:800}
     .plan ul{margin:0;padding-left:18px;color:var(--muted)}
     .plan.highlight{border-color:var(--brand);box-shadow:var(--shadow)}
-    .contact{display:grid;gap:24px;grid-template-columns:1fr 1fr}
+
+    /* Contact grid */
+    .contact{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     form{display:grid;gap:12px}
     label{font-weight:600}
     input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit}
     .helptext{color:var(--muted);font-size:.95rem}
+
     footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted)}
-    .menu-btn{display:none}
-    @media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid-3,.testimonials,.pricing{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.navlinks{display:none}.menu-btn{display:inline-flex}}
+
+    /* Mobile/tablet nav */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex}
+      .navlinks.is-open{
+        display:flex !important;position:absolute;left:0;right:0;top:64px;background:#fff;
+        border-bottom:1px solid var(--line);padding:12px 16px 16px;flex-direction:column;gap:12px;z-index:60
+      }
+    }
+
+    /* Narrow phones */
+    @media (max-width:600px){
+      .container{padding:0 8px}
+      .btn, input, textarea, select { width:100%; box-sizing:border-box; }
+      .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
+    }
+    @media (max-width:360px){
+      .pill{font-size:13px;padding:6px 10px}
+      .price{font-size:28px}
+      .container{padding:0 10px}
+    }
+
+    /* XL screens */
+    @media (min-width:1440px){
+      :root{--w:1280px}
+      .hero{background:
+        radial-gradient(1200px 460px at 80% -10%, rgba(108,124,255,.12), transparent),
+        radial-gradient(900px 360px at -10% 10%, rgba(147,160,255,.14), transparent)
+      }
+    }
+
+    /* A11y focus */
+    :focus-visible{
+      outline:3px solid color-mix(in srgb, var(--brand) 70%, white);
+      outline-offset:2px;border-radius:8px
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav" aria-label="Main">
+    <div class="container nav" aria-label="Գլխավոր նավիգացիա">
       <a class="brand" href="#/">
         <span class="logo" aria-hidden="true">🧠</span>
         <span>PsyAid</span>
       </a>
       <nav class="navlinks" id="navlinks">
-  <a href="#/services">Ծառայություններ</a>
-  <a href="#/approach">Մոտեցում</a>
-  <a href="#/pricing">Գնացուցակ</a>
-  <a href="/hy/specialists.html">Մասնագետներ</a>
-  <a href="#/contact">Կապ</a>
+        <a href="#/services">Ծառայություններ</a>
+        <a href="#/approach">Մեր մոտեցումը</a>
+        <a href="#/pricing">Գնացուցակ</a>
+        <a href="/hy/specialists.html">Մասնագետներ</a>
+        <a href="#/contact">Կապ</a>
       </nav>
       <div class="navactions">
         <label class="visually-hidden" for="langSwitch">Լեզու</label>
-        <select id="langSwitch" aria-label="Լեզվի ընտրիչ" class="btn" style="padding:10px 14px;">
-          <option value="en">EN</option>
-          <option value="ru">RU</option>
+        <select id="langSwitch" aria-label="Լեզվի ընտրություն" class="btn" style="padding:10px 14px;">
           <option value="hy" selected>HY</option>
+          <option value="ru">RU</option>
+          <option value="en">EN</option>
         </select>
-        <a class="btn ghost" href="#/faq" aria-label="Հաճախ տրվող հարցեր">ՀՏՀ</a>
-        <a class="btn primary" href="#/contact" aria-label="Ամրագրել հանդիպում">Ամրագրել հանդիպում</a>
-        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">☰</button>
+        <a class="btn ghost" href="#/faq" aria-label="ՀՏՀ">ՀՏՀ</a>
+        <a class="btn primary" href="#/contact" aria-label="Ամրագրել նախնական զանգ">Ամրագրել</a>
+        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Բացել մենյուն">☰</button>
       </div>
     </div>
   </header>
@@ -113,96 +167,96 @@
   <main id="home" class="hero" data-route="/">
     <div class="container hero-grid">
       <div>
-        <div class="pill">Բարեհամբույր • Գաղտնի • Ապացույցների վրա հիմնված</div>
-        <h1 class="headline">Զգացեք ձեզ ավելի լավ՝ մեկ քնքուշ քայլով։</h1>
-        <p class="sub">PsyAid-ը առաջարկում է հոգատար խորհրդատվություն՝ սթրեսի, անհանգստության, հոգնածության, փոխհարաբերությունների և կյանքի փոփոխությունների համար։ Սկսեք անվճար 15 րոպեանոց ներածական զանգով։</p>
+        <div class="pill">Բարեհամբույր • Գաղտնի • Ապացույցային</div>
+        <h1 class="headline">Սկսեք ձեզ լավ զգալ՝ մեկ խնամքով քայլից։</h1>
+        <p class="sub">PsyAid-ը խնամքով խորհրդատվություն է առաջարկում սթրեսի, տագնապի, այրելիության, հարաբերությունների և կյանքի փոփոխությունների հարցերով։ Սկսեք անվճար 15-րոպեանոց նախնական զանգից։</p>
         <div class="cta">
-          <a class="btn primary" href="#/contact">Ամրագրել անվճար հանդիպում</a>
-          <a class="btn" href="#/services">Ծառայություններ</a>
+          <a class="btn primary" href="#/contact">Անվճար նախնական զանգ</a>
+          <a class="btn" href="#/services">Դիտել ծառայությունները</a>
         </div>
-        <p class="helptext">Ուղեգրի կարիք չկա • Առցանց կամ տեղում • Հայերեն / Անգլերեն / Ռուսերեն</p>
+        <p class="helptext">Ուղեգիր պետք չէ • Առցանց կամ առկա • Հայերեն / Ռուսերեն / Անգլերեն</p>
       </div>
 
-      <aside class="card hero-card" aria-label="Արագ տեղեկություն">
-        <div class="check"><span>✅</span><div><strong>Գաղտնիություն</strong><br/>Ձեր տվյալներն անվտանգ են․ հանդիպումները պաշտպանված են, տեղեկատվությունը՝ խնամքով կառավարվող։</div></div>
-        <div class="check"><span>🧭</span><div><strong>Պարզ պլան</strong><br/>Նպատակները ձևակերպում ենք միասին և պարբերաբար գնահատում առաջընթացը։</div></div>
-        <div class="check"><span>🧪</span><div><strong>Ապացույցների վրա հիմնված</strong><br/>Կոգնիտիվ-վարքային, լուծումներին ուղղված և գիտակցական գործիքներ։</div></div>
-        <div class="check"><span>🌱</span><div><strong>Քնքուշ ու մարդկային</strong><br/>Հանդիպում ենք ձեզ այնտեղ, որտեղ դուք եք՝ առանց դատողության, միայն աջակցություն։</div></div>
+      <aside class="card hero-card" aria-label="Արագ տեղեկատվություն">
+        <div class="check"><span>✅</span><div><strong>Գաղտնիություն</strong><br/>Ձեր տվյալները պաշտպանված են։ Ապահով հանդիպումներ և զգուշավոր վերաբերմունք անձնական տեղեկատվությանը։</div></div>
+        <div class="check"><span>🧭</span><div><strong>Պարզ ծրագիր</strong><br/>Ձևակերպում ենք նպատակները միասին և պարբերաբար հետևում առաջընթացին։</div></div>
+        <div class="check"><span>🧪</span><div><strong>Ապացույցային մեթոդներ</strong><br/>Կոգնիտիվ-վարքային թերապիա (ԿՎԹ), լուծումակենտրոն մոտեցում և մտազբաղվածության պրակտիկաներ։</div></div>
+        <div class="check"><span>🌱</span><div><strong>Ջերմ և մարդկային</strong><br/>Ձեզ հանդիպում ենք այնտեղ, որտեղ դուք եք՝ առանց գնահատականների, միայն աջակցությամբ։</div></div>
       </aside>
     </div>
   </main>
 
   <section id="services" class="container" data-route="/services">
-    <h2 class="section-title">Ինչպես կարող ենք օգնել</h2>
-    <p class="section-sub">Կարճաժամկետ աջակցություն կամ շարունակական թերապիա՝ առցանց կամ տեղում։</p>
+    <h2 class="section-title">Ինչպես ենք օգնում</h2>
+    <p class="section-sub">Կարճաժամկետ աջակցություն կամ երկարաժամկետ թերապիա՝ առցանց կամ առկա։</p>
     <div class="grid-3">
       <article class="feature">
-        <div class="pill" aria-hidden="true">ԿՎԹ • ԼՈՒԹ</div>
+        <div class="pill" aria-hidden="true">ԿՎԹ • ԼԿԹ</div>
         <h3>Անհատական թերապիա</h3>
-        <p>Հանդիպումներ անհանգստության, սթրեսի, դեպրեսիայի, ինքնագնահատականի և կյանքի փոփոխությունների համար՝ ԿՎԹ ու լուծումներին ուղղված մեթոդներով։</p>
+        <p>Սեանսներ տագնապի, սթրեսի, ընկճվածության, ինքնագնահատականի և կյանքի փոփոխությունների դեպքում՝ ԿՎԹ-ի և լուծումակենտրոն մեթոդներով։</p>
       </article>
       <article class="feature">
-        <div class="pill" aria-hidden="true">Զույգեր</div>
-        <h3>Հարաբերությունների խորհրդատվություն</h3>
-        <p>Կոմունիկացիայի բարելավում, վստահության վերականգնում և առողջ վեճերի հմտություններ՝ ապահով, համագործակցային միջավայրում։</p>
+        <div class="pill" aria-hidden="true">Զուգեր</div>
+        <h3>Հարաբերութենական խորհրդատվություն</h3>
+        <p>Բարելավում ենք հաղորդակցությունը, վերականգնում վստահությունը և զարգացնում առողջ վեճերի հմտություններն անվտանգ միջավայրում։</p>
       </article>
       <article class="feature">
-        <div class="pill" aria-hidden="true">Պատանիներ</div>
-        <h3>Ուսանողների և պատանիների աջակցություն</h3>
-        <p>Ուսման սթրես, քննությունների անհանգստություն, ինքնության հարցեր՝ գործնական ռազմավարություններով հավասարակշռության և դիմացկունության համար։</p>
+        <div class="pill" aria-hidden="true">Ուսանողներ</div>
+        <h3>Աջակցություն աշակերտներին և ուսանողներին</h3>
+        <p>Ուսումնական սթրես, քննային տագնապ, ինքնության հարցեր — գործնական ռազմավարություններ հավասարակշռության և կայունության համար։</p>
       </article>
     </div>
   </section>
 
   <section id="approach" class="container" data-route="/approach">
     <h2 class="section-title">Մեր մոտեցումը</h2>
-    <p class="section-sub">Քնքուշ, կառուցվածքային և գործնական։ Պլանը՝ ձեր նպատակներին ու տեմպին համապատասխան։</p>
+    <p class="section-sub">Ջերմ, կառուցվածքային և գործնական։ Ծրագիր՝ ձեր նպատակներին ու տեմպին համապատասխան։</p>
     <div class="grid-3">
       <article class="feature">
-        <h3>1) Լսել և քարտեզագրել</h3>
-        <p>Պարզում ենք՝ ինչն է կարևոր և ձևակերպում հասանելի, իրատեսական նպատակներ։</p>
+        <h3>1) Լսել և քարտեզել</h3>
+        <p>Պարզում ենք՝ ինչն է կարևոր ձեզ համար, և ձևակերպում հասանելի, իրատեսական նպատակներ։</p>
       </article>
       <article class="feature">
-        <h3>2) Փորձել և սովորել</h3>
-        <p>Շաբաթական գործիքներ ու անդրադարձներ․ ինչն աշխատում է՝ պահպանում ենք, ինչն՝ όχι՝ հարմարեցնում։</p>
+        <h3>2) Փորձել և սովորենալ</h3>
+        <p>Շաբաթական գործիքներ և արձագանք. ինչը գործում է՝ պահպանում ենք, ինչը ոչ՝ հարմարեցնում։</p>
       </article>
       <article class="feature">
-        <h3>3) Աճել և պահպանել</h3>
-        <p>Ամրագրում ենք առաջընթացը և կազմում պահպանման պլան ինքնուրույն շարունակելու համար։</p>
+        <h3>3) Աճել և ամրապնդել</h3>
+        <p>Ֆիքսում ենք առաջընթացը և կազմում պահպանման ծրագիր, որը կարելի է ինքնուրույն շարունակել։</p>
       </article>
     </div>
   </section>
 
-  <section class="container" aria-label="Testimonials" data-route="/testimonials">
-    <h2 class="section-title">Հաճախորդների կարծիքները</h2>
-    <p class="section-sub">Անանուն մեջբերումներ վերջին արձագանքներից։</p>
+  <section class="container" aria-label="Կարծիքներ" data-route="/testimonials">
+    <h2 class="section-title">Կարծիքներ</h2>
+    <p class="section-sub">Անանուն մեջբերումներ վերջերս ստացված արձագանքներից։</p>
     <div class="testimonials">
-      <figure class="quote"><p>«Լսեցին ու հասկացան, և վերջապես գործնական քայլեր ունեցա։ Պարբերական քննարկումները օգնեցին չշեղվել»։</p><figcaption class="who">— Ա., անհանգստության աջակցություն</figcaption></figure>
-      <figure class="quote"><p>«Ջերմ, հստակ ու պրոֆեսիոնալ։ Մեր զույգի հանդիպումները փոխեցին մեր շփումը»։</p><figcaption class="who">— Ռ. և Դ., հարաբերությունների խորհրդատվություն</figcaption></figure>
-      <figure class="quote"><p>«Քնի ու քննությունների գործիքները անմիջապես օգնեցին։ Կցանկանայի ավելի շուտ սկսել»։</p><figcaption class="who">— Լ., ուսանող</figcaption></figure>
+      <figure class="quote"><p>«Լսեցին ու հասկացան, վերջապես առաջացան գործնական քայլեր։ Կանոնավոր ստուգումներն օգնում էին պահել կուրսը»։</p><figcaption class="who">— Ա., աջակցություն տագնապի դեպքում</figcaption></figure>
+      <figure class="quote"><p>«Ջերմ, պարզ և շատ պրոֆեսիոնալ։ Մեր հանդիպումները փոխեցին մեր հաղորդակցման ոճը»։</p><figcaption class="who">— Ռ. և Դ., զույգերի խորհրդատվություն</figcaption></figure>
+      <figure class="quote"><p>«Քնի ու քննություններին պատրաստվելու գործիքները անմիջապես օգնեցին։ Պաղում եմ, որ շուտ չսկսեցի»։</p><figcaption class="who">— Լ., ուսանող(ուհի)</figcaption></figure>
     </div>
   </section>
 
   <section id="pricing" class="container" data-route="/pricing">
-    <h2 class="section-title">Պարզ գնացուցակ</h2>
-    <p class="section-sub">Թափանցիկ վճարներ։ Կա զեղչված տարբերակ․ հարցրեք ներածական զանգի ժամանակ։</p>
+    <h2 class="section-title">Պարզ գներ</h2>
+    <p class="section-sub">Թափանցիկ պայմաններ։ Հնարավոր է նվազեցված արժեք — հարցրեք նախնական զանգի ընթացքում։</p>
     <div class="pricing">
       <div class="plan">
-        <h3>Ներածական զանգ</h3>
+        <h3>Նախնական զանգ</h3>
         <div class="price">Անվճար</div>
         <ul>
           <li>15 րոպե առցանց</li>
-          <li>Ստուգում՝ արդյոք համապատասխանում ենք</li>
-          <li>Պարտադիր չէ շարունակել</li>
+          <li>Փոխադարձ համապատասխանության ըմբռնում</li>
+          <li>Շարունակելը պարտադիր չէ</li>
         </ul>
         <a class="btn" href="#/contact">Ամրագրել</a>
       </div>
       <div class="plan highlight">
-        <h3>Ստանդարտ հանդիպում</h3>
+        <h3>Ստանդարտ սեանս</h3>
         <div class="price">֏21,000</div>
         <ul>
           <li>50 րոպե</li>
-          <li>Առցանց կամ տեղում</li>
+          <li>Առցանց կամ առկա</li>
           <li>Վարժություններ և գրառումներ</li>
         </ul>
         <a class="btn primary" href="#/contact">Սկսել</a>
@@ -212,21 +266,21 @@
         <div class="price">֏13,000</div>
         <ul>
           <li>50 րոպե</li>
-          <li>Պահանջվում է ուսանողական քարտ</li>
-          <li>Ճկուն ժամանակացույց</li>
+          <li>Պահանջվում է ուսանողական տոմս</li>
+          <li>Ճկուն գրաֆիկ</li>
         </ul>
-        <a class="btn" href="#/contact">Հարցնել ազատ տեղերի մասին</a>
+        <a class="btn" href="#/contact">Ստուգել առկայությունը</a>
       </div>
     </div>
   </section>
 
   <section id="contact" class="container" data-route="/contact">
-    <h2 class="section-title">Ամրագրեք անվճար ներածական զանգ</h2>
-    <p class="section-sub">Նախընտրու՞մ եք էլ. փոստ կամ հեռախոս. <a href="mailto:hello@PsyAid.example">hello@PsyAid.example</a> · <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    <h2 class="section-title">Ամրագրեք անվճար նախնական զանգ</h2>
+    <p class="section-sub">Ավելի հարմար է՝ էլ. փոստով կամ հեռախոսով՞ <a href="mailto:hello@PsyAid.example">hello@PsyAid.example</a> · <a href="tel:+1234567890">+1 (234) 567-890</a></p>
     <div class="contact">
       <form id="contactForm" aria-label="Կապի ձև">
         <div>
-          <label for="name">Ձեր անունը</label>
+          <label for="name">Անուն</label>
           <input id="name" name="name" autocomplete="name" required />
         </div>
         <div>
@@ -236,29 +290,29 @@
         <div>
           <label for="service">Ծառայություն</label>
           <select id="service" name="service">
-            <option>Ներածական զանգ</option>
+            <option>Նախնական զանգ</option>
             <option>Անհատական թերապիա</option>
-            <option>Հարաբերությունների խորհրդատվություն</option>
-            <option>Ուսանողների աջակցություն</option>
+            <option>Հարաբերութենական խորհրդատվություն</option>
+            <option>Աջակցություն ուսանողներին</option>
           </select>
         </div>
         <div>
-          <label for="message">Հաղորդագրություն (ըստ ցանկության)</label>
-          <textarea id="message" name="message" rows="4" placeholder="Նշեք, թե ինչ հարցում եք ցանկանում աջակցություն"></textarea>
+          <label for="message">Հաղորդագրություն (ոչ պարտադիր)</label>
+          <textarea id="message" name="message" rows="4" placeholder="Պատմեք, ինչի հետ կցանկանայիք աշխատել"></textarea>
         </div>
-        <div class="helptext">Ուղարկելով՝ համաձայնում եք մեր <a href="#">Գաղտնիության քաղաքականությանը</a>։</div>
-        <button class="btn primary" type="submit">Ուղարկել հարցումը</button>
+        <div class="helptext">Ձևը ուղարկելով՝ համաձայնում եք մեր <a href="#">Գաղտնիության քաղաքականություն</a>ին։</div>
+        <button class="btn primary" type="submit">Ուղարկել դիմումը</button>
       </form>
 
       <aside class="card">
-        <h3>Այցելեք մեզ</h3>
+        <h3>Ինչպես մեզ գտնել</h3>
         <p>123 Calm Street, Suite 5<br/>City X</p>
-        <h4>Ժամեր</h4>
+        <h4>Աշխատանքային ժամեր</h4>
         <p>Երկ–Ուրբ: 10:00–19:00<br/>Շբթ: 11:00–15:00</p>
         <h4>Լեզուներ</h4>
-        <p>Հայերեն • Անգլերեն • Ռուսերեն</p>
+        <p>Հայերեն • Ռուսերեն • Անգլերեն</p>
         <h4>Առցանց հանդիպումներ</h4>
-        <p>Zoom, Meet կամ ձեր նախընտրած հարթակում։</p>
+        <p>Zoom, Meet կամ ձեր նախընտրած հարթակը։</p>
       </aside>
     </div>
   </section>
@@ -266,16 +320,16 @@
   <section id="faq" class="container" data-route="/faq">
     <h2 class="section-title">ՀՏՀ</h2>
     <details class="feature">
-      <summary><strong>Թերապիան գաղտնի՞ է։</strong></summary>
-      <p>Այո։ Պահպանում ենք խիստ գաղտնիություն և տվյալներ կիսում ենք միայն ձեր համաձայնությամբ կամ օրենքով պահանջվող դեպքերում՝ անվտանգության նպատակով։</p>
+      <summary><strong>Թերապիան գաղտնի՞ է</strong></summary>
+      <p>Այո։ Մենք խստորեն պահպանում ենք գաղտնիությունը և տեղեկատվություն ենք կիսում միայն ձեր համաձայնությամբ կամ օրենքով պահանջվող անվտանգության դեպքերում։</p>
     </details>
     <details class="feature">
-      <summary><strong>Քանի՞ հանդիպում է անհրաժեշտ։</strong></summary>
-      <p>Տարբեր է․ հաճախորդների մի մասը փոփոխություն է նկատում 4–8 հանդիպումից հետո։ Առաջընթացը պարբերաբար քննարկում ենք և հարմարեցնում պլանը։</p>
+      <summary><strong>Քանի՞ սեանս է անհրաժեշտ</strong></summary>
+      <p>Կախված է հարցից՝ շատերը նկատում են բարելավումներ 4–8 հանդիպումից հետո։ Պարբերաբար քննարկում ենք առաջընթացը և հարմարեցնում ծրագիրը։</p>
     </details>
     <details class="feature">
-      <summary><strong>Կա՞ զեղչված տարբերակ։</strong></summary>
-      <p>Այո։ Նշեք այդ մասին ներածական զանգի ընթացքում․ ունենք սահմանափակ քանակությամբ զեղչված տեղեր։</p>
+      <summary><strong>Կա՞ նվազեցված արժեք</strong></summary>
+      <p>Այո։ Խոսեք դրա մասին նախնական զանգի ընթացքում՝ ունենք սահմանափակ թվով արտոնյալ տեղեր։</p>
     </details>
   </section>
 
@@ -283,85 +337,102 @@
     <div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
       <div>© <span id="y"></span> PsyAid. <span id="rightsText">Բոլոր իրավունքները պաշտպանված են։</span></div>
       <div>
-        <a href="#">Գաղտնիություն</a> · <a href="#">Պայմաններ</a> · <a href="#">Քուքիզ</a>
+        <a href="#">Գաղտնիություն</a> · <a href="#">Պայմաններ</a> · <a href="#">Քուքեր</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Мобильное меню
-    const menuBtn=document.getElementById('menuBtn');
-    const links=document.getElementById('navlinks');
-    menuBtn&&menuBtn.addEventListener('click',()=>{
-      const opened=links.style.display==='flex';
-      links.style.display=opened?'none':'flex';
-      links.style.gap='24px';
-      links.style.flexDirection='column';
-      links.style.padding='12px 0';
-      menuBtn.setAttribute('aria-expanded',String(!opened));
-    });
+    // Բջջային մենյու
+    const menuBtn = document.getElementById('menuBtn');
+    const links = document.getElementById('navlinks');
 
-    // Форма (локализованный алерт)
-    const form=document.getElementById('contactForm');
-    form&&form.addEventListener('submit',e=>{
+    function setMenu(open){
+      if(!links) return;
+      links.classList.toggle('is-open', open);
+      menuBtn && menuBtn.setAttribute('aria-expanded', String(open));
+    }
+    menuBtn && menuBtn.addEventListener('click', () => {
+      const open = !links.classList.contains('is-open');
+      setMenu(open);
+    });
+    // Փակել >980px / Escape
+    const mq = window.matchMedia('(min-width: 981px)');
+    if (mq.addEventListener) mq.addEventListener('change', e => { if (e.matches) setMenu(false); });
+    else mq.addListener && mq.addListener(e => { if (e.matches) setMenu(false); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+    // Ֆորմա (տեղայնացված alert)
+    const form = document.getElementById('contactForm');
+    form && form.addEventListener('submit', e => {
       e.preventDefault();
-      const t=Object.fromEntries(new FormData(form).entries());
-      alert(`Շնորհակալություն, ${t.name}! ${t.service} ամրագրելու համար կգրենք ${t.email} հասցեին։`);
+      const t = Object.fromEntries(new FormData(form).entries());
+      alert(`Շնորհակալություն, ${t.name}! Մենք կգրենք ${t.email} փոստին՝ համաձայնեցնելու «${t.service.toLowerCase()}»։`);
       form.reset();
     });
 
-    // Текущий год
-    document.getElementById('y').textContent=new Date().getFullYear();
+    // Ընթացիկ տարի
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Маршрутизация по хэшу + обновление title/description для UX
-    const routes={
-      '/':{title:'PsyAid — Հոգեկան առողջության հարցերում քո օգնականը',desc:'Ամրագրեք անվճար 15 րոպեանոց զանգ։ Գաղտնի, հոգատար և գործնական աջակցություն։'},
-      '/services':{title:'Ծառայություններ — PsyAid',desc:'Անհատական թերապիա, հարաբերությունների խորհրդատվություն, ուսանողական աջակցություն։'},
-      '/approach':{title:'Մեր մոտեցումը — PsyAid',desc:'Քնքուշ, կառուցվածքային, գործնական․ լսել, փորձել, աճել։'},
-      '/testimonials':{title:'Կարծիքներ — PsyAid',desc:'Անանուն մեջբերումներ հաճախորդներից։'},
-      '/pricing':{title:'Գնացուցակ — PsyAid',desc:'Պարզ, թափանցիկ վճարներ, հնարավոր է զեղչ։'},
-      '/contact':{title:'Կապ — PsyAid',desc:'Ամրագրեք անվճար ներածական զանգ։ Էլ. փոստ, հեռախոս, հասցե։'},
-      '/faq':{title:'ՀՏՀ — PsyAid',desc:'Գաղտնիություն, հանդիպումների քանակ, զեղչված տարբերակ։'}
+    // Հեշ-ռոուտեր + մետա + aria-current
+    const routes = {
+      '/':{title:'PsyAid — Խնամքով հոգեբանական աջակցություն',desc:'Անվճար 15-րոպեանոց նախնական զանգ։ Գաղտնի, ջերմ և գործնական աջակցություն։'},
+      '/services':{title:'Ծառայություններ — PsyAid',desc:'Անհատական թերապիա, հարաբերութենական խորհրդատվություն, աջակցություն ուսանողներին։'},
+      '/approach':{title:'Մեր մոտեցումը — PsyAid',desc:'Ջերմ, կառուցվածքային և գործնական. լսել, փորձել, աճել։'},
+      '/testimonials':{title:'Կարծիքներ — PsyAid',desc:'Հաճախորդների անանուն կարծիքներ արդյունքների և փորձի մասին։'},
+      '/pricing':{title:'Գնացուցակ — PsyAid',desc:'Պարզ և թափանցիկ գներ, հնարավոր արտոնություններ։'},
+      '/contact':{title:'Կապ — PsyAid',desc:'Ամրագրեք անվճար նախնական զանգ։ Էլ. փոստ, հեռախոս և հասցե։'},
+      '/faq':{title:'ՀՏՀ — PsyAid',desc:'Պատասխانات գաղտնիության, սեանսների քանակի և արժեքի մասին։'}
     };
     function setMeta(path){
-      const m=document.querySelector('meta[name="description"]');
-      const r=routes[path]||routes['/'];
-      document.title=r.title;
-      if(m) m.setAttribute('content',r.desc);
+      const m = document.querySelector('meta[name="description"]');
+      const r = routes[path] || routes['/'];
+      document.title = r.title;
+      if(m) m.setAttribute('content', r.desc);
+    }
+    function markActive(path){
+      const nav = document.getElementById('navlinks');
+      if(!nav) return;
+      nav.querySelectorAll('a[href^="#/"]').forEach(a=>{
+        const is = a.getAttribute('href') === `#${path}`;
+        a.toggleAttribute('aria-current', is);
+      });
     }
     function showRoute(path){
-      const p=path||'/';
+      const p = path || '/';
       document.querySelectorAll('[data-route]').forEach(el=>{
         el.style.display = (el.getAttribute('data-route')===p)?'block':'none';
       });
       setMeta(p);
-      const sec=document.querySelector(`[data-route="${p}"]`);
+      markActive(p);
+      const sec = document.querySelector(`[data-route="${p}"]`);
       if(sec){
-        const h=sec.querySelector('h1, h2');
-        h&&(h.setAttribute('tabindex','-1'),h.focus({preventScroll:true}),sec.scrollIntoView({behavior:'smooth',block:'start'}));
+        const h = sec.querySelector('h1, h2');
+        h && (h.setAttribute('tabindex','-1'), h.focus({preventScroll:true}), sec.scrollIntoView({behavior:'smooth',block:'start'}));
       }
+      setMenu(false);
     }
-    function currentPath(){const n=location.hash.replace(/^#/,'');return n||'/';}
+    function currentPath(){ const n = location.hash.replace(/^#/,''); return n || '/'; }
     window.addEventListener('hashchange',()=>showRoute(currentPath()));
     window.addEventListener('DOMContentLoaded',()=>showRoute(currentPath()));
 
-    // Переключатель языка: ведет на /hy/ /ru/ /en/ и сохраняет текущий раздел
-    const langSel=document.getElementById('langSwitch');
+    // Լեզվի փոխանակիչ՝ /hy/ /ru/ /en/ + պահել ընթացիկ բաժինը
+    const langSel = document.getElementById('langSwitch');
     function goLang(lang){
       const base = lang==='hy'?'/hy/':lang==='ru'?'/ru/':lang==='en'?'/en/':'/';
       const hash = location.hash || '#/';
       location.href = base + hash;
     }
-    langSel&&langSel.addEventListener('change',e=>goLang(e.target.value));
+    langSel && langSel.addEventListener('change', e => goLang(e.target.value));
   </script>
 
-  <!-- Լոկալիզացված JSON-LD -->
+  <!-- Տեղայնացված JSON-LD -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"MedicalClinic",
     "name":"PsyAid",
-    "description":"Հոգատար և գաղտնի խորհրդատվական ծառայություններ հոգեկան առողջության համար։",
+    "description":"Ջերմ և գաղտնի խորհրդատվություն հոգեկան առողջության հարցերով Հայաստանում։",
     "url":"https://example.com/hy/",
     "logo":"https://dummyimage.com/512x512/f3f4f6/111&text=%F0%9F%A7%A0",
     "image":"https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid",
@@ -373,7 +444,7 @@
     },
     "telephone":"+1234567890",
     "areaServed":"AM",
-    "availableLanguage":["HY","EN","RU"],
+    "availableLanguage":["HY","RU","EN"],
     "openingHoursSpecification":[
       {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"10:00","closes":"19:00"},
       {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"11:00","closes":"15:00"}
