@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>PsyAid — Specialists Catalog</title>
+  <meta name="description" content="Browse psychologists by specialty, city, and language. Book a free intro call."/>
+  <link rel="canonical" href="https://example.com/en/specialists"/>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#f8fafc;color:#0f172a}
+    .container{max-width:1000px;margin:auto;padding:24px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,.06)}
+    .muted{color:#475569}
+    input,select{padding:10px;border:1px solid #e5e7eb;border-radius:10px}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="margin:0 0 8px">PsyAid — Specialists</h1>
+    <p class="muted" style="margin:0 0 12px">Filter by city, language or search by name/specialty.</p>
+
+    <div class="controls">
+      <input id="q" placeholder="Search name or specialty…"/>
+      <select id="city">
+        <option value="">Any city</option>
+        <option>Yerevan</option>
+        <option>Gyumri</option>
+      </select>
+      <select id="lang">
+        <option value="">Any language</option>
+        <option value="hy">Հայերեն</option>
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
+      <button id="apply">Apply</button>
+    </div>
+
+    <div id="list" class="grid" aria-live="polite"></div>
+  </div>
+
+  <script>
+    async function load() {
+      const params = new URLSearchParams();
+      const q = document.getElementById('q').value.trim();
+      const city = document.getElementById('city').value;
+      const lang = document.getElementById('lang').value;
+      if (q) params.set('q', q);
+      if (city) params.set('city', city);
+      if (lang) params.set('lang', lang);
+
+      const res = await fetch('/api/specialists.php?' + params.toString());
+      const data = await res.json();
+      const list = document.getElementById('list');
+      list.innerHTML = data.map(x => `
+        <article class="card">
+          <h3 style="margin:0 0 6px">${x.name}</h3>
+          <p class="muted" style="margin:0 0 8px">${x.specialty}</p>
+          <p style="margin:0 0 6px"><strong>City:</strong> ${x.city}</p>
+          <p style="margin:0 0 6px"><strong>Languages:</strong> ${x.languages}</p>
+          <p class="muted" style="margin:0">Experience: ${x.experience || 0}y · Rating: ${x.rating ?? '—'} · From: ${x.price_from ? (x.price_from + ' ֏') : '—'}</p>
+        </article>
+      `).join('');
+    }
+    document.getElementById('apply').addEventListener('click', load);
+    load();
+  </script>
+</body>
+</html>
