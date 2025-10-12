@@ -40,31 +40,34 @@
     <div id="list" class="grid" aria-live="polite"></div>
   </div>
 
-  <script>
-    async function load() {
-      const params = new URLSearchParams();
-      const q = document.getElementById('q').value.trim();
-      const city = document.getElementById('city').value;
-      const lang = document.getElementById('lang').value;
-      if (q) params.set('q', q);
-      if (city) params.set('city', city);
-      if (lang) params.set('lang', lang);
+ <script>
+async function load() {
+  const params = new URLSearchParams();
+  const q = document.getElementById('q').value.trim();
+  const city = document.getElementById('city').value;
+  const lang = document.getElementById('lang').value;
+  if (q) params.set('q', q);
+  if (city) params.set('city', city);
+  if (lang) params.set('lang', lang);
 
-      const res = await fetch('/api/specialists.php?' + params.toString());
-      const data = await res.json();
-      const list = document.getElementById('list');
-      list.innerHTML = data.map(x => `
-        <article class="card">
-          <h3 style="margin:0 0 6px">${x.name}</h3>
-          <p class="muted" style="margin:0 0 8px">${x.specialty}</p>
-          <p style="margin:0 0 6px"><strong>City:</strong> ${x.city}</p>
-          <p style="margin:0 0 6px"><strong>Languages:</strong> ${x.languages}</p>
-          <p class="muted" style="margin:0">Experience: ${x.experience || 0}y · Rating: ${x.rating ?? '—'} · From: ${x.price_from ? (x.price_from + ' ֏') : '—'}</p>
-        </article>
-      `).join('');
-    }
-    document.getElementById('apply').addEventListener('click', load);
-    load();
-  </script>
+  const res = await fetch('/api/specialists.php?' + params.toString());
+  const data = await res.json();
+  const list = document.getElementById('list');
+  list.innerHTML = data.map(x => `
+    <article class="card">
+      ${x.picture ? `<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:8px">` : ''}
+      <h3 style="margin:0 0 6px">${x.name}</h3>
+      <p class="muted" style="margin:0 0 8px">${x.specialty}</p>
+      <p style="margin:0 0 6px"><strong>City:</strong> ${x.city}</p>
+      <p style="margin:0 0 6px"><strong>Languages:</strong> ${x.languages}</p>
+      <p class="muted" style="margin:0 0 6px">Experience: ${x.experience || 0}y · Rating: ${x.rating ?? '—'} · From: ${x.price_from ? (x.price_from + ' ֏') : '—'}</p>
+      ${x.contacts ? `<p class="muted" style="margin:0">${x.contacts}</p>` : ''}
+    </article>
+  `).join('');
+}
+document.getElementById('apply').addEventListener('click', load);
+load();
+</script>
+
 </body>
 </html>

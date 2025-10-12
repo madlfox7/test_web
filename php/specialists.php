@@ -2,32 +2,27 @@
 header('Content-Type: application/json; charset=utf-8');
 require __DIR__ . '/db.php';
 
-$q       = isset($_GET['q']) ? trim($_GET['q']) : '';
-$city    = isset($_GET['city']) ? trim($_GET['city']) : '';
-$lang    = isset($_GET['lang']) ? trim($_GET['lang']) : '';
-$active  = 1;
+$q      = isset($_GET['q'])    ? trim($_GET['q'])    : '';
+$city   = isset($_GET['city']) ? trim($_GET['city']) : '';
+$lang   = isset($_GET['lang']) ? trim($_GET['lang']) : '';
+$active = 1;
 
-$sql = "SELECT id, name, specialty, city, languages, experience, price_from, rating
+$sql = "SELECT id, name, specialty, city, languages, experience, price_from, rating, picture, contacts
         FROM specialists
         WHERE is_active = ?";
-
 $params = [$active];
 $types  = "i";
 
 if ($q !== '') {
   $sql .= " AND (name LIKE CONCAT('%', ?, '%') OR specialty LIKE CONCAT('%', ?, '%'))";
-  $params[] = $q; $params[] = $q;
-  $types   .= "ss";
+  $params[] = $q; $params[] = $q; $types .= "ss";
 }
 if ($city !== '') {
-  $sql .= " AND city = ?";
-  $params[] = $city;
-  $types   .= "s";
+  $sql .= " AND city = ?";     $params[] = $city; $types .= "s";
 }
 if ($lang !== '') {
   $sql .= " AND FIND_IN_SET(?, REPLACE(languages, ' ', '')) > 0";
-  $params[] = $lang;
-  $types   .= "s";
+  $params[] = $lang; $types .= "s";
 }
 
 $sql .= " ORDER BY rating DESC, experience DESC, name ASC";
