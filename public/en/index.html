@@ -80,6 +80,12 @@
     footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted)}
     .menu-btn{display:none}
     @media (max-width:980px){.hero-grid{grid-template-columns:1fr}.grid-3,.testimonials,.pricing{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.navlinks{display:none}.menu-btn{display:inline-flex}}
+    @media (max-width: 600px) {
+      .container { padding: 0 8px; }
+      .btn, input, textarea, select { width: 100%; box-sizing: border-box; }
+      .nav { flex-direction: column; align-items: flex-start; }
+      .hero-grid, .grid-3, .testimonials, .pricing, .contact { grid-template-columns: 1fr !important; }
+    }
   </style>
 </head>
 <body>
