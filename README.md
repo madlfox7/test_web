@@ -93,3 +93,21 @@ curl -s "http://localhost/api/specialists.php?tlang=hy&q=թեր" | head
 
 localStorage.removeItem('PsyAid_lang')
 sessionStorage.removeItem('lang_auto_once')
+
+
+
+------------------
+# 1) Stop and remove containers + volumes (wipes DB)
+docker compose down -v
+
+# 2) (optional) cleanup dangling images/cache
+docker system prune -f
+
+# 3) Rebuild and start
+docker compose up -d --build
+
+# 4) Wait for DB to become healthy (should print 'healthy')
+docker inspect --format='{{.State.Health.Status}}' $(docker compose ps -q db)
+
+# 5) Quick sanity checks
+docker compose exec db mariadb -upsyaid -ppsyaidpass -e "USE psyaid; SHOW TABLES; SELECT COUNT(*) AS specialists FROM specialists; SELECT COUNT(*) AS t_ru FROM specialist_translations WHERE lang='ru'; SELECT COUNT(*) AS t_hy FROM specialist_translations WHERE lang='hy';"
