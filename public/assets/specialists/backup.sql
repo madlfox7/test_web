@@ -108,12 +108,12 @@ LOCK TABLES `specialists` WRITE;
 /*!40000 ALTER TABLE `specialists` DISABLE KEYS */;
 set autocommit=0;
 INSERT INTO `specialists` VALUES
-(1,'Anna Sargsyan','anna.jpg','Yerevan','☎️ +374 77 123456 · @anna_psy','Cognitive Behavioral Therapist','CBT; ACT','hy,ru,en',7,12000,4.90,'Anxiety, panic attacks, perfectionism',1,'2025-10-12 15:51:39'),
-(2,'David Petrosyan','david.jpg','Yerevan','☎️ +374 55 223344','Family Psychologist','Systemic therapy','hy,ru',10,15000,4.80,'Couples, conflicts, divorce, children',1,'2025-10-12 15:51:39'),
-(3,'Mariam Hakobyan','mariam.jpg','Gyumri','✉️ mariam@psy.am','Child Psychologist','Play therapy','hy,ru',6,9000,4.70,'School issues, ADHD, self-esteem',1,'2025-10-12 15:51:39'),
-(4,'Arman Harutyunyan','arman.jpg','Yerevan','tg: @arman_help','Psychotherapist','EMDR; PTSD','hy,en',9,20000,4.90,'Trauma, PTSD, grief',1,'2025-10-12 15:51:39'),
-(5,'Elena Grigoryan','elena.jpg','Gyumri','☎️ +374 93 445566','Clinical Psychologist','Schema therapy','ru,hy',8,14000,4.60,'Depression, eating disorders',1,'2025-10-12 15:51:39'),
-(6,'Artur Manukyan','artur.jpg','Yerevan','✉️ artur@mind.am','Counseling Psychologist','Motivational interview','hy,ru,en',5,10000,4.50,'Stress, burnout, career',1,'2025-10-12 15:51:39');
+(1,'Anna Sargsyan','anna.jpg','Yerevan','☎️ +374 77 123456 · @anna_psy','Cognitive Behavioral Therapist','CBT; ACT','hy,ru,en',7,12000,4.90,'Anxiety, panic attacks, perfectionism',1,'2025-10-12 16:05:06'),
+(2,'David Petrosyan','david.jpg','Yerevan','☎️ +374 55 223344','Family Psychologist','Systemic therapy','hy,ru',10,15000,4.80,'Couples, conflicts, divorce, children',1,'2025-10-12 16:05:06'),
+(3,'Mariam Hakobyan','mariam.jpg','Gyumri','✉️ mariam@psy.am','Child Psychologist','Play therapy','hy,ru',6,9000,4.70,'School issues, ADHD, self-esteem',1,'2025-10-12 16:05:06'),
+(4,'Arman Harutyunyan','arman.jpg','Yerevan','tg: @arman_help','Psychotherapist','EMDR; PTSD','hy,en',9,20000,4.90,'Trauma, PTSD, grief',1,'2025-10-12 16:05:06'),
+(5,'Elena Grigoryan','elena.jpg','Gyumri','☎️ +374 93 445566','Clinical Psychologist','Schema therapy','ru,hy',8,14000,4.60,'Depression, eating disorders',1,'2025-10-12 16:05:06'),
+(6,'Artur Manukyan','artur.jpg','Yerevan','✉️ artur@mind.am','Counseling Psychologist','Motivational interview','hy,ru,en',5,10000,4.50,'Stress, burnout, career',1,'2025-10-12 16:05:06');
 /*!40000 ALTER TABLE `specialists` ENABLE KEYS */;
 UNLOCK TABLES;
 commit;
@@ -127,4 +127,4 @@ commit;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*M!100616 SET NOTE_VERBOSITY=@OLD_NOTE_VERBOSITY */;
 
--- Dump completed on 2025-10-12 16:01:07
+-- Dump completed on 2025-10-12 16:09:38

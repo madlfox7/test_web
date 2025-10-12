@@ -78,7 +78,7 @@
       const displayLangs=(x.languages||'').split(',').map(s=>s.trim()).filter(Boolean).map(c=>L[c]||c).join(', ');
       return `
         <article class="card">
-          ${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:8px">`:''}
+          ${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:contain;border-radius:12px;margin-bottom:8px;background:#f3f4f6" onerror="this.onerror=null;this.src='/assets/specialists/placeholder.svg'">`:''}
           <h3 style="margin:0 0 6px">${x.name}</h3>
           ${x.specialty?`<p class="muted" style="margin:0 0 8px">${x.specialty}</p>`:''}
           <p style="margin:0 0 6px"><strong>Քաղաք՝</strong> ${x.city}</p>

@@ -5,7 +5,10 @@ docker compose down -v
 docker compose up -d --build
 
 
+------------------------
+convert
 
+convert input.png -background white -alpha remove -alpha off -quality 85 output.jpg
 
 
 ------------------------------
