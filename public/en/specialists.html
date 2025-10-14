@@ -101,9 +101,23 @@
       </select>
       <select id="lang">
         <option value="">Any language</option>
-        <option value="hy">Հայերեն</option>
-        <option value="ru">Русский</option>
+        <option value="hy">Armenian</option>
+        <option value="ru">Russian</option>
         <option value="en">English</option>
+      </select>
+      <select id="experience" aria-label="Experience">
+        <option value="">Any experience</option>
+        <option value="0-2">0-2 years</option>
+        <option value="3-5">3-5 years</option>
+        <option value="6-10">6-10 years</option>
+        <option value="10+">10+ years</option>
+      </select>
+      <select id="priceRange">
+        <option value="">Any price</option>
+        <option value="0-15000">0-15,000 ֏</option>
+        <option value="15000-25000">15,000-25,000 ֏</option>
+        <option value="25000-40000">25,000-40,000 ֏</option>
+        <option value="40000+">40,000+ ֏</option>
       </select>
       <button id="apply">Apply</button>
     </div>
@@ -137,17 +151,66 @@
     const q=document.getElementById('q').value.trim();
     const city=document.getElementById('city').value;
     const lang=document.getElementById('lang').value;
-    if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); p.set('tlang',ui);
+  const priceRange=document.getElementById('priceRange').value;
+  const experience=document.getElementById('experience').value;
+  if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); if(priceRange) p.set('priceRange',priceRange); if(experience) p.set('experienceRange',experience); p.set('tlang',ui);
     const res=await fetch('/api/specialists.php?'+p.toString());
     const data=await res.json();
     const list=document.getElementById('list');
-    if(!Array.isArray(data)||data.length===0){list.innerHTML='<p class="muted">No results.</p>';return;}
-    list.innerHTML=data.map(x=>{
+    // Client-side fallback: filter by price range if backend does not apply it
+    let arr = Array.isArray(data) ? data : [];
+    const pr = document.getElementById('priceRange')?.value || '';
+    if (pr) {
+      let min = 0, max = Infinity;
+      if (pr.includes('-')) {
+        const [a,b] = pr.split('-');
+        min = parseInt(a,10) || 0;
+        const parsedMax = parseInt(b,10);
+        max = Number.isFinite(parsedMax) ? parsedMax : Infinity;
+      } else if (pr.endsWith('+')) {
+        min = parseInt(pr,10) || 0;
+        max = Infinity;
+      }
+      arr = arr.filter(x => {
+        const p = parseInt(x.price_from,10);
+        if (Number.isNaN(p)) return false;
+        return p >= min && p <= max;
+      });
+    }
+    // Client-side fallback: filter by experience range if backend does not apply it
+    const er = document.getElementById('experience')?.value || '';
+    if (er) {
+      let emin = 0, emax = Infinity;
+      if (er.includes('-')) {
+        const [a,b] = er.split('-');
+        emin = parseInt(a,10) || 0;
+        const parsedMax = parseInt(b,10);
+        emax = Number.isFinite(parsedMax) ? parsedMax : Infinity;
+      } else if (er.endsWith('+')) {
+        emin = parseInt(er,10) || 0;
+        emax = Infinity;
+      }
+      arr = arr.filter(x => {
+        const e = parseInt(x.experience,10);
+        if (Number.isNaN(e)) return false;
+        return e >= emin && e <= emax;
+      });
+    }
+    if(arr.length===0){list.innerHTML='<p class="muted">No results.</p>';return;}
+    list.innerHTML=arr.map(x=>{
       const displayLangs=(x.languages||'').split(',').map(s=>s.trim()).filter(Boolean).map(c=>L[c]||c).join(', ');
       return `<article class="card">${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:contain;border-radius:12px;margin-bottom:8px;background:#f3f4f6" onerror="this.onerror=null;this.src='/assets/specialists/placeholder.svg'">`:''}<h3 style="margin:0 0 6px">${x.name}</h3>${x.specialty?`<p class=\"muted\" style=\"margin:0 0 8px\">${x.specialty}</p>`:''}<p style="margin:0 0 6px"><strong>City:</strong> ${x.city}</p><p style="margin:0 0 6px"><strong>Languages:</strong> ${displayLangs}</p><p class="muted" style="margin:0 0 6px">Experience: ${x.experience||0}y · Rating: ${x.rating??'—'} · From: ${x.price_from?(x.price_from+' ֏'):'—'}</p>${x.contacts?`<p class=\"muted\" style=\"margin:0\">${x.contacts}</p>`:''}</article>`;
     }).join('');
   }
   document.getElementById('apply').addEventListener('click',load);
+  
+  // Auto-search when filters change
+  document.getElementById('q').addEventListener('input', load);
+  document.getElementById('city').addEventListener('change', load);
+  document.getElementById('lang').addEventListener('change', load);
+  document.getElementById('experience').addEventListener('change', load);
+  document.getElementById('priceRange').addEventListener('change', load);
+  
   load();
 </script>
 </body>
