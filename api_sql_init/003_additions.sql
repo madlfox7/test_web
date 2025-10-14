@@ -97,7 +97,7 @@ INSERT INTO specialist_translations (specialist_id, lang, name, specialty, bio, 
 SELECT s.id, t.lang, t.name, t.specialty, t.bio, t.city_label, t.slug
 FROM specialists s
 JOIN (
-  SELECT 'ru' AS lang, 'Anahit Mkrtchyan' AS en_name, 'Анахит Мкртчян' AS name, 'Детский психолог' AS specialty, 'Эмоциональное развитие, тревожность у детей' AS bio, 'Горис' AS city_label, 'anahit-mkrtchyan' AS slug UNION ALL
+  SELECT 'ru' AS lang, 'Anahit Mkrtchyan' AS en_name, 'Анаит Мкртчян' AS name, 'Детский психолог' AS specialty, 'Эмоциональное развитие, тревожность у детей' AS bio, 'Горис' AS city_label, 'anahit-mkrtchyan' AS slug UNION ALL
   SELECT 'hy','Anahit Mkrtchyan','Անահիտ Մկրտչյան','Մանկական հոգեբան','Էմոցիոնալ զարգացում, երեխաների տագնապ','Գորիս','anahit-mkrtchyan' UNION ALL
 
   SELECT 'ru','Levon Hovsepyan','Левон Овсепян','Психотерапевт','Смысл, утрата, кризис середины жизни','Севан','levon-hovsepyan' UNION ALL
@@ -112,7 +112,7 @@ JOIN (
   SELECT 'ru','Lusine Sargsyan','Лусине Саргсян','Детский и подростковый психолог','Поведение, эмоции, адаптация подростков','Иджеван','lusine-sargsyan' UNION ALL
   SELECT 'hy','Lusine Sargsyan','Լուսինե Սարգսյան','Երեխաների և պատանիների հոգեբան','Վարք, հույզեր, պատանեկան ադապտացիա','Իջևան','lusine-sargsyan' UNION ALL
 
-  SELECT 'ru','Hrant Danielyan','Хрант Данелян','Клинический психолог','Тревога, паника, навязчивые мысли','Гюмри','hrant-danielyan' UNION ALL
+  SELECT 'ru','Hrant Danielyan','Грант Даниелян','Клинический психолог','Тревога, паника, навязчивые мысли','Գյումրի','hrant-danielyan' UNION ALL
   SELECT 'hy','Hrant Danielyan','Հրանդ Դանիելյան','Կլինիկական հոգեբան','Տագնապ, խուճապ, պարտադրող մտքեր','Գյումրի','hrant-danielyan' UNION ALL
 
   SELECT 'ru','Diana Hakobyan','Диана Акопян','Психотерапевт','Травма, идентичность, самоценность','Ереван','diana-hakobyan' UNION ALL
@@ -121,10 +121,10 @@ JOIN (
   SELECT 'ru','Gevorg Grigoryan','Геворг Григорян','Терапевт по зависимостям','Злоупотребление веществами, зависимость, семейные проблемы','Капан','gevorg-grigoryan' UNION ALL
   SELECT 'hy','Gevorg Grigoryan','Գևորգ Գրիգորյան','Կախվածությունների թերապևտ','Նյութերի չարաշահում, կախվածություն, ընտանեկան հարցեր','Կապան','gevorg-grigoryan' UNION ALL
 
-  SELECT 'ru','Nune Avetisyan','Нунэ Аветисян','Психолог-консультант','Уверенность в себе, жизненные переходы','Дилижан','nune-avetisyan' UNION ALL
+  SELECT 'ru','Nune Avetisyan','Нуне Аветисян','Психолог-консультант','Уверенность в себе, жизненные переходы','Դիլիջան','nune-avetisyan' UNION ALL
   SELECT 'hy','Nune Avetisyan','Նունե Ավետիսյան','Խորհրդատու հոգեբան','Ինքնավստահություն, կյանքի անցումներ','Դիլիջան','nune-avetisyan' UNION ALL
 
-  SELECT 'ru','Artashes Hambardzumyan','Арташес Амбарцумян','Организационный психолог','Командная динамика, лидерство, стресс','Ереван','artashes-hambardzumyan' UNION ALL
+  SELECT 'ru','Artashes Hambardzumyan','Арташес Амбардзумян','Организационный психолог','Командная динамика, лидерство, стресс','Ереван','artashes-hambardzumyan' UNION ALL
   SELECT 'hy','Artashes Hambardzumyan','Արտաշես Համբարձումյան','Կազմակերպական հոգեբան','Թիմային դինամիկա, առաջնորդություն, սթրես','Երևան','artashes-hambardzumyan'
 ) AS t
   ON s.name = t.en_name
