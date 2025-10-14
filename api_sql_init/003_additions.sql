@@ -7,7 +7,7 @@ SET NAMES utf8mb4 COLLATE utf8mb4_unicode_520_ci;
 INSERT INTO specialists (name, picture, city, contacts, specialty, methods, languages, experience, price_from, rating, bio, is_active)
 SELECT * FROM (
   SELECT 'Ani Petrosyan','ani.jpg','Vanadzor','☎️ +374 98 334455','Clinical Psychologist','CBT; Schema therapy','hy,ru',7,13000,4.8,'Depression, anxiety, emotional regulation',1 UNION ALL
-  SELECT 'Suren Mkrtchyan','suren.jpg','Yerevan','tg: @suren_mind','Psychotherapist','Gestalt; Existential','hy,en,ru',12,22000,4.9,'Identity, self-acceptance, life transitions',1 UNION ALL
+    SELECT 'Suren Mkrtchyan','suren.jpg','Yerevan','tg: @suren_psy','Psychotherapist','Existential; Integrative','hy,ru,en',10,20000,4.8,'Identity, self-acceptance, life transitions',1 UNION ALL
   SELECT 'Lilit Hovhannisyan','lilit.jpg','Gyumri','✉️ lilit@care.am','Counseling Psychologist','Person-centered','hy,ru',5,9500,4.6,'Self-esteem, relationships, motivation',1 UNION ALL
   SELECT 'Hayk Avetisyan','hayk.jpg','Yerevan','☎️ +374 44 667788','Addiction Counselor','Motivational Interviewing','hy,ru',11,16000,4.7,'Addictions, codependency, recovery support',1 UNION ALL
   SELECT 'Tatevik Karapetyan','tatevik.jpg','Yerevan','tg: @tate_psych','Art Therapist','Art therapy; Gestalt','hy,ru,en',6,11000,4.8,'Children, creativity, trauma healing',1 UNION ALL
@@ -103,7 +103,7 @@ JOIN (
   SELECT 'ru','Levon Hovsepyan','Левон Овсепян','Психотерапевт','Смысл, утрата, кризис середины жизни','Севан','levon-hovsepyan' UNION ALL
   SELECT 'hy','Levon Hovsepyan','Լևոն Հովսեփյան','Հոգեթերապևտ','Իմաստ, կորուստ, միջին տարիքի ճգնաժամ','Սևան','levon-hovsepyan' UNION ALL
 
-  SELECT 'ru','Armine Babayan','Армине Бабаян','Клинический психолог','Тревога, депрессия, эмоциональное равновесие','Արտաշատ','armine-babayan' UNION ALL
+  SELECT 'ru','Armine Babayan','Армине Бабаян','Клинический психолог','Тревога, депрессия, эмоциональное равновесие','Арташат','armine-babayan' UNION ALL
   SELECT 'hy','Armine Babayan','Արմինե Բաբայան','Կլինիկական հոգեբան','Տագնապ, դեպրեսիա, հուզական հավասարակշռություն','Արտաշատ','armine-babayan' UNION ALL
 
   SELECT 'ru','Karen Petrosyan','Карен Петросян','Семейный консультант','Пары, семейные конфликты, коммуникация','Абовян','karen-petrosyan' UNION ALL
@@ -112,7 +112,7 @@ JOIN (
   SELECT 'ru','Lusine Sargsyan','Лусине Саргсян','Детский и подростковый психолог','Поведение, эмоции, адаптация подростков','Иджеван','lusine-sargsyan' UNION ALL
   SELECT 'hy','Lusine Sargsyan','Լուսինե Սարգսյան','Երեխաների և պատանիների հոգեբան','Վարք, հույզեր, պատանեկան ադապտացիա','Իջևան','lusine-sargsyan' UNION ALL
 
-  SELECT 'ru','Hrant Danielyan','Хрант Данелян','Клинический психолог','Тревога, паника, навязчивые мысли','Գյումրի','hrant-danielyan' UNION ALL
+  SELECT 'ru','Hrant Danielyan','Хрант Данелян','Клинический психолог','Тревога, паника, навязчивые мысли','Гюмри','hrant-danielyan' UNION ALL
   SELECT 'hy','Hrant Danielyan','Հրանդ Դանիելյան','Կլինիկական հոգեբան','Տագնապ, խուճապ, պարտադրող մտքեր','Գյումրի','hrant-danielyan' UNION ALL
 
   SELECT 'ru','Diana Hakobyan','Диана Акопян','Психотерапевт','Травма, идентичность, самоценность','Ереван','diana-hakobyan' UNION ALL
@@ -121,10 +121,10 @@ JOIN (
   SELECT 'ru','Gevorg Grigoryan','Геворг Григорян','Терапевт по зависимостям','Злоупотребление веществами, зависимость, семейные проблемы','Капан','gevorg-grigoryan' UNION ALL
   SELECT 'hy','Gevorg Grigoryan','Գևորգ Գրիգորյան','Կախվածությունների թերապևտ','Նյութերի չարաշահում, կախվածություն, ընտանեկան հարցեր','Կապան','gevorg-grigoryan' UNION ALL
 
-  SELECT 'ru','Nune Avetisyan','Нунэ Ավետիսյան','Психолог-консультант','Уверенность в себе, жизненные переходы','Դիլիջան','nune-avetisyan' UNION ALL
+  SELECT 'ru','Nune Avetisyan','Нунэ Аветисян','Психолог-консультант','Уверенность в себе, жизненные переходы','Дилижан','nune-avetisyan' UNION ALL
   SELECT 'hy','Nune Avetisyan','Նունե Ավետիսյան','Խորհրդատու հոգեբան','Ինքնավստահություն, կյանքի անցումներ','Դիլիջան','nune-avetisyan' UNION ALL
 
-  SELECT 'ru','Artashes Hambardzumyan','Арташес Համբարձումян','Организационный психолог','Командная динамика, лидерство, стресс','Ереван','artashes-hambardzumyan' UNION ALL
+  SELECT 'ru','Artashes Hambardzumyan','Арташес Амбарцумян','Организационный психолог','Командная динамика, лидерство, стресс','Ереван','artashes-hambardzumyan' UNION ALL
   SELECT 'hy','Artashes Hambardzumyan','Արտաշես Համբարձումյան','Կազմակերպական հոգեբան','Թիմային դինամիկա, առաջնորդություն, սթրես','Երևան','artashes-hambardzumyan'
 ) AS t
   ON s.name = t.en_name
