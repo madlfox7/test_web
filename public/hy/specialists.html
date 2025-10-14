@@ -5,56 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>PsyAid — Մասնագետներ</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
-  <meta name="description" content="Գտեք հոգեբան ըստ մասնագիտացման, քաղաքի և լեզվի։ Անիցեք անվճար նախնական զրույց։"/>
+  <meta name="description" content="Դիտարկեք հոգեբաններին ըստ մասնագիտության, քաղաքի և լեզվի։ Ամրագրեք անվճար նախնական զանգ։"/>
   <link rel="canonical" href="https://example.com/hy/specialists"/>
 
+  <!-- hreflang -->
   <link rel="alternate" href="https://example.com/en/specialists" hreflang="en">
   <link rel="alternate" href="https://example.com/ru/specialists" hreflang="ru">
   <link rel="alternate" href="https://example.com/hy/specialists" hreflang="hy">
   <link rel="alternate" href="https://example.com/en/specialists" hreflang="x-default">
 
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#f8fafc;color:#0f172a}
+    :root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--brand:#6c7cff;--brand-2:#93a0ff;--line:#e5e7eb;--card:#fff;--shadow:0 10px 30px rgba(2,6,23,.08);--radius:16px;--radius-sm:10px;--w:min(1200px,92vw)}
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";background:#f8fafc;color:var(--fg);line-height:1.55;font-size:clamp(15px,1.4vw,18px)}
+    a{text-decoration:none;color:var(--brand)}
+    header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:var(--w);margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#111}
+    .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:var(--shadow)}
+    .navlinks{display:flex;gap:24px}
+    .navlinks a{color:var(--muted)}
+    .navactions{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff;font-size:clamp(14px,1.6vw,16px);cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent}
+    .menu-btn{display:none}
     .container{max-width:1000px;margin:auto;padding:24px}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
     .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,.06)}
     .muted{color:#475569}
-    input,select,button{padding:10px;border:1px solid #e5e7eb;border-radius:10px}
+    input,select,button{padding:10px;border:1px solid #e5e7eb;border-radius:10px;font:inherit}
     .controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
     .langswitch a{margin-right:8px;text-decoration:none}
+    .top-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+    @media (max-width:980px){
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex}
+      .navlinks.is-open{display:flex!important;position:absolute;left:0;right:0;top:64px;background:#fff;border-bottom:1px solid var(--line);padding:12px 16px 16px;flex-direction:column;gap:12px}
+    }
+    @media (max-width:600px){
+      .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
+      .container{padding:20px 12px}
+      .btn, input, select { width:100% }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <nav class="langswitch" aria-label="Լեզուներ">
-      <a href="/en/specialists.html">EN</a>
-      <a href="/ru/specialists.html">RU</a>
+  <header>
+    <div class="nav" aria-label="Գլխավոր մենյու">
+      <a class="brand" href="/hy/#/">
+        <span class="logo" aria-hidden="true">🧠</span>
+        <span>PsyAid</span>
+      </a>
+      <nav class="navlinks" id="navlinks">
+        <a href="/hy/#/services">Ծառայություններ</a>
+        <a href="/hy/#/approach">Մոտեցում</a>
+        <a href="/hy/#/pricing">Գներ</a>
+        <a href="/hy/specialists.html" aria-current="page">Մասնագետներ</a>
+        <a href="/hy/#/contact">Կապ</a>
+      </nav>
+      <div class="navactions">
+        <select id="langSwitch" aria-label="Լեզու" class="btn" style="padding:10px 14px;">
+          <option value="ru">Ռուսերեն</option>
+          <option value="en">Անգլերեն</option>
+          <option value="hy" selected>Հայերեն</option>
+        </select>
+        <a class="btn ghost" href="/hy/#/faq">ՀՏՀ</a>
+        <a class="btn primary" href="/hy/#/contact">Ամրագրել</a>
+        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Բացել մենյուն">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top:32px">
+    <div class="top-actions">
+      <h1 style="margin:0">PsyAid — Մասնագետներ</h1>
+    </div>
+    <p class="muted" style="margin:4px 0 12px">Ֆիլտրեք ըստ քաղաքի, լեզվի կամ որոնեք անունով/մասնագիտացմամբ։</p>
+    <nav class="langswitch visually-hidden" aria-label="Լեզուներ">
       <a href="/hy/specialists.html">HY</a>
+      <a href="/ru/specialists.html">RU</a>
+      <a href="/en/specialists.html">EN</a>
     </nav>
 
-    <h1 style="margin:0 0 8px">PsyAid — Մասնագետներ</h1>
-    <p class="muted" style="margin:0 0 12px">Զտեք ըստ քաղաքի, լեզվի կամ որոնեք անունով/մասնագիտությամբ։</p>
-
     <div class="controls">
-      <input id="q" placeholder="Որոնել անունով կամ մասնագիտությամբ…"/>
+      <input id="q" placeholder="Որոնել անուն կամ մասնագիտացում…"/>
       <select id="city">
         <option value="">Ցանկացած քաղաք</option>
-        <option>Yerevan</option>
-        <option>Gyumri</option>
-        <option>Vanadzor</option>
-        <option>Goris</option>
-        <option>Sevan</option>
-        <option>Artashat</option>
-        <option>Abovyan</option>
-        <option>Ijevan</option>
-        <option>Kapan</option>
-        <option>Dilijan</option>
+        <option>Երևան</option>
+        <option>Գյումրի</option>
+        <option>Վանաձոր</option>
+        <option>Գորիս</option>
+        <option>Սևան</option>
+        <option>Արտաշատ</option>
+        <option>Աբովյան</option>
+        <option>Իջևան</option>
+        <option>Կապան</option>
+        <option>Դիլիջան</option>
       </select>
       <select id="lang">
         <option value="">Ցանկացած լեզու</option>
         <option value="hy">Հայերեն</option>
-        <option value="ru">Русский</option>
-        <option value="en">English</option>
+        <option value="ru">Ռուսերեն</option>
+        <option value="en">Անգլերեն</option>
       </select>
       <button id="apply">Կիրառել</button>
     </div>
@@ -63,8 +117,29 @@
   </div>
 
 <script>
+  // Մենյուի բացում/փակում
+  const menuBtn=document.getElementById('menuBtn');
+  const links=document.getElementById('navlinks');
+  function setMenu(open){if(!links)return;links.classList.toggle('is-open',open);menuBtn&&menuBtn.setAttribute('aria-expanded',String(open));}
+  menuBtn&&menuBtn.addEventListener('click',()=>{const open=!links.classList.contains('is-open');setMenu(open)});
+  const mq=window.matchMedia('(min-width:981px)');
+  if(mq.addEventListener) mq.addEventListener('change',e=>{if(e.matches) setMenu(false)});
+  else mq.addListener&&mq.addListener(e=>{if(e.matches) setMenu(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape') setMenu(false)});
+
+  // Լեզվի փոխարկիչը թողնում է «մասնագետներ» էջում
+  const langSel=document.getElementById('langSwitch');
+  langSel&&langSel.addEventListener('change',e=>{
+    const v=e.target.value;const base=v==='hy'?'/hy/':v==='ru'?'/ru/':'/en/';
+    window.location.href=base+'specialists.html';
+  });
+
   const ui='hy';
-  const langMap={en:{hy:'Armenian',ru:'Russian',en:'English'},ru:{hy:'арм',ru:'рус',en:'анг'},hy:{hy:'հայ',ru:'ռուս',en:'անգ'}};
+  const langMap={
+    en:{hy:'Armenian',ru:'Russian',en:'English'},
+    ru:{hy:'арм',ru:'рус',en:'анг'},
+    hy:{hy:'հայերեն',ru:'ռուսերեն',en:'անգլերեն'}
+  };
   const L=langMap[ui];
 
   async function load(){
@@ -72,29 +147,22 @@
     const q=document.getElementById('q').value.trim();
     const city=document.getElementById('city').value;
     const lang=document.getElementById('lang').value;
-    if(q) p.set('q',q);
-    if(city) p.set('city',city);
-    if(lang) p.set('lang',lang);
-    p.set('tlang',ui);
-
+    if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); p.set('tlang',ui);
     const res=await fetch('/api/specialists.php?'+p.toString());
     const data=await res.json();
     const list=document.getElementById('list');
     if(!Array.isArray(data)||data.length===0){list.innerHTML='<p class="muted">Արդյունքներ չկան։</p>';return;}
-
     list.innerHTML=data.map(x=>{
       const displayLangs=(x.languages||'').split(',').map(s=>s.trim()).filter(Boolean).map(c=>L[c]||c).join(', ');
-      return `
-        <article class="card">
-          ${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:contain;border-radius:12px;margin-bottom:8px;background:#f3f4f6" onerror="this.onerror=null;this.src='/assets/specialists/placeholder.svg'">`:''}
-          <h3 style="margin:0 0 6px">${x.name}</h3>
-          ${x.specialty?`<p class="muted" style="margin:0 0 8px">${x.specialty}</p>`:''}
-          <p style="margin:0 0 6px"><strong>Քաղաք՝</strong> ${x.city}</p>
-          <p style="margin:0 0 6px"><strong>Լեզուներ՝</strong> ${displayLangs}</p>
-          <p class="muted" style="margin:0 0 6px">Փորձ՝ ${x.experience||0} տ. · Գնահատական՝ ${x.rating??'—'} · Սկսած՝ ${x.price_from?(x.price_from+' ֏'):'—'}</p>
-          ${x.contacts?`<p class="muted" style="margin:0">${x.contacts}</p>`:''}
-        </article>
-      `;
+      return `<article class="card">
+        ${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:contain;border-radius:12px;margin-bottom:8px;background:#f3f4f6" onerror="this.onerror=null;this.src='/assets/specialists/placeholder.svg'">`:''}
+        <h3 style="margin:0 0 6px">${x.name}</h3>
+        ${x.specialty?`<p class="muted" style="margin:0 0 8px">${x.specialty}</p>`:''}
+        <p style="margin:0 0 6px"><strong>Քաղաք՝</strong> ${x.city}</p>
+        <p style="margin:0 0 6px"><strong>Լեզուներ՝</strong> ${displayLangs}</p>
+        <p class="muted" style="margin:0 0 6px">Փորձ՝ ${x.experience||0} տ. · Վարկանիշ՝ ${x.rating??'—'} · Սկսած՝ ${x.price_from?(x.price_from+' ֏'):'—'}</p>
+        ${x.contacts?`<p class="muted" style="margin:0">${x.contacts}</p>`:''}
+      </article>`;
     }).join('');
   }
   document.getElementById('apply').addEventListener('click',load);

@@ -14,26 +14,79 @@
   <link rel="alternate" href="https://example.com/en/specialists" hreflang="x-default">
 
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#f8fafc;color:#0f172a}
+    :root{--bg:#ffffff;--fg:#0f172a;--muted:#475569;--brand:#6c7cff;--brand-2:#93a0ff;--line:#e5e7eb;--card:#fff;--shadow:0 10px 30px rgba(2,6,23,.08);--radius:16px;--w:min(1200px,92vw)}
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans";background:#f8fafc;color:var(--fg);line-height:1.55;font-size:clamp(15px,1.4vw,18px)}
+    a{text-decoration:none;color:var(--brand)}
+    header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:var(--w);margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;color:#111}
+    .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:var(--shadow)}
+    .navlinks{display:flex;gap:24px}
+    .navlinks a{color:var(--muted)}
+    .navactions{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff;font-size:clamp(14px,1.6vw,16px);cursor:pointer}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent}
+    .menu-btn{display:none}
     .container{max-width:1000px;margin:auto;padding:24px}
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
     .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:16px;box-shadow:0 6px 18px rgba(2,6,23,.06)}
     .muted{color:#475569}
-    input,select,button{padding:10px;border:1px solid #e5e7eb;border-radius:10px}
+    input,select,button{padding:10px;border:1px solid #e5e7eb;border-radius:10px;font:inherit}
     .controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
     .langswitch a{margin-right:8px;text-decoration:none}
+    .top-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+    @media (max-width:980px){
+      .navlinks{display:none}
+      .menu-btn{display:inline-flex}
+      .navlinks.is-open{display:flex!important;position:absolute;left:0;right:0;top:64px;background:#fff;border-bottom:1px solid var(--line);padding:12px 16px 16px;flex-direction:column;gap:12px}
+    }
+    @media (max-width:600px){
+      .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
+      .container{padding:20px 12px}
+      .btn, input, select { width:100% }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <nav class="langswitch" aria-label="Языки">
+  <header>
+    <div class="nav" aria-label="Главная навигация">
+      <a class="brand" href="/ru/#/">
+        <span class="logo" aria-hidden="true">🧠</span>
+        <span>PsyAid</span>
+      </a>
+      <nav class="navlinks" id="navlinks">
+        <a href="/ru/#/services">Услуги</a>
+        <a href="/ru/#/approach">Подход</a>
+        <a href="/ru/#/pricing">Цены</a>
+        <a href="/ru/specialists.html" aria-current="page">Специалисты</a>
+        <a href="/ru/#/contact">Контакты</a>
+      </nav>
+      <div class="navactions">
+        <select id="langSwitch" aria-label="Язык" class="btn" style="padding:10px 14px;">
+          <option value="ru" selected>RU</option>
+          <option value="en">EN</option>
+          <option value="hy">HY</option>
+        </select>
+        <a class="btn ghost" href="/ru/#/faq">FAQ</a>
+        <a class="btn primary" href="/ru/#/contact">Записаться</a>
+        <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Меню">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding-top:32px">
+    <div class="top-actions">
+      <h1 style="margin:0">PsyAid — Специалисты</h1>
+    </div>
+    <p class="muted" style="margin:4px 0 12px">Фильтруйте по городу, языку или ищите по имени/специализации.</p>
+    <nav class="langswitch visually-hidden" aria-label="Языки">
       <a href="/en/specialists.html">EN</a>
       <a href="/ru/specialists.html">RU</a>
       <a href="/hy/specialists.html">HY</a>
     </nav>
-
-    <h1 style="margin:0 0 8px">PsyAid — Специалисты</h1>
-    <p class="muted" style="margin:0 0 12px">Фильтруйте по городу, языку или ищите по имени/специализации.</p>
 
     <div class="controls">
       <input id="q" placeholder="Поиск имени или специализации…"/>
@@ -63,42 +116,24 @@
   </div>
 
 <script>
+  const menuBtn=document.getElementById('menuBtn');
+  const links=document.getElementById('navlinks');
+  function setMenu(open){if(!links)return;links.classList.toggle('is-open',open);menuBtn&&menuBtn.setAttribute('aria-expanded',String(open));}
+  menuBtn&&menuBtn.addEventListener('click',()=>{const open=!links.classList.contains('is-open');setMenu(open)});
+  const mq=window.matchMedia('(min-width:981px)'); if(mq.addEventListener) mq.addEventListener('change',e=>{if(e.matches) setMenu(false)}); else mq.addListener&&mq.addListener(e=>{if(e.matches) setMenu(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape') setMenu(false)});
+
+  const langSel=document.getElementById('langSwitch');
+  langSel&&langSel.addEventListener('change',e=>{const v=e.target.value;const base=v==='hy'?'/hy/':v==='ru'?'/ru/':'/en/';window.location.href=base+'specialists.html';});
+
   const ui='ru';
-  const langMap={en:{hy:'Armenian',ru:'Russian',en:'English'},ru:{hy:'арм',ru:'рус',en:'анг'},hy:{hy:'հայ',ru:'ռուս',en:'անգ'}};
-  const L=langMap[ui];
-
+  const langMap={en:{hy:'Armenian',ru:'Russian',en:'English'},ru:{hy:'арм',ru:'рус',en:'анг'},hy:{hy:'հայ',ru:'ռուս',en:'անգ'}}; const L=langMap[ui];
   async function load(){
-    const p=new URLSearchParams();
-    const q=document.getElementById('q').value.trim();
-    const city=document.getElementById('city').value;
-    const lang=document.getElementById('lang').value;
-    if(q) p.set('q',q);
-    if(city) p.set('city',city);
-    if(lang) p.set('lang',lang);
-    p.set('tlang',ui);
-
-    const res=await fetch('/api/specialists.php?'+p.toString());
-    const data=await res.json();
-    const list=document.getElementById('list');
-    if(!Array.isArray(data)||data.length===0){list.innerHTML='<p class="muted">Нет результатов.</p>';return;}
-
-    list.innerHTML=data.map(x=>{
-      const displayLangs=(x.languages||'').split(',').map(s=>s.trim()).filter(Boolean).map(c=>L[c]||c).join(', ');
-      return `
-        <article class="card">
-          ${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:contain;border-radius:12px;margin-bottom:8px;background:#f3f4f6" onerror="this.onerror=null;this.src='/assets/specialists/placeholder.svg'">`:''}
-          <h3 style="margin:0 0 6px">${x.name}</h3>
-          ${x.specialty?`<p class="muted" style="margin:0 0 8px">${x.specialty}</p>`:''}
-          <p style="margin:0 0 6px"><strong>Город:</strong> ${x.city}</p>
-          <p style="margin:0 0 6px"><strong>Языки:</strong> ${displayLangs}</p>
-          <p class="muted" style="margin:0 0 6px">Стаж: ${x.experience||0} лет · Рейтинг: ${x.rating??'—'} · От: ${x.price_from?(x.price_from+' ֏'):'—'}</p>
-          ${x.contacts?`<p class="muted" style="margin:0">${x.contacts}</p>`:''}
-        </article>
-      `;
-    }).join('');
+    const p=new URLSearchParams(); const q=document.getElementById('q').value.trim(); const city=document.getElementById('city').value; const lang=document.getElementById('lang').value; if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); p.set('tlang',ui);
+    const res=await fetch('/api/specialists.php?'+p.toString()); const data=await res.json(); const list=document.getElementById('list'); if(!Array.isArray(data)||data.length===0){list.innerHTML='<p class="muted">Нет результатов.</p>';return;}
+    list.innerHTML=data.map(x=>{ const displayLangs=(x.languages||'').split(',').map(s=>s.trim()).filter(Boolean).map(c=>L[c]||c).join(', '); return `<article class="card">${x.picture?`<img src="/assets/specialists/${x.picture}" alt="${x.name}" style="width:100%;height:160px;object-fit:contain;border-radius:12px;margin-bottom:8px;background:#f3f4f6" onerror="this.onerror=null;this.src='/assets/specialists/placeholder.svg'">`:''}<h3 style="margin:0 0 6px">${x.name}</h3>${x.specialty?`<p class=\"muted\" style=\"margin:0 0 8px\">${x.specialty}</p>`:''}<p style="margin:0 0 6px"><strong>Город:</strong> ${x.city}</p><p style="margin:0 0 6px"><strong>Языки:</strong> ${displayLangs}</p><p class="muted" style="margin:0 0 6px">Стаж: ${x.experience||0}г · Рейтинг: ${x.rating??'—'} · От: ${x.price_from?(x.price_from+' ֏'):'—'}</p>${x.contacts?`<p class=\"muted\" style=\"margin:0\">${x.contacts}</p>`:''}</article>`; }).join('');
   }
-  document.getElementById('apply').addEventListener('click',load);
-  load();
+  document.getElementById('apply').addEventListener('click',load); load();
 </script>
 </body>
 </html>
