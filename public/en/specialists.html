@@ -105,6 +105,11 @@
         <option value="ru">Russian</option>
         <option value="en">English</option>
       </select>
+      <select id="gender" aria-label="Gender">
+        <option value="">Any gender</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+      </select>
       <select id="experience" aria-label="Experience">
         <option value="">Any experience</option>
         <option value="0-2">0-2 years</option>
@@ -151,9 +156,10 @@
     const q=document.getElementById('q').value.trim();
     const city=document.getElementById('city').value;
     const lang=document.getElementById('lang').value;
+    const gender=document.getElementById('gender').value;
   const priceRange=document.getElementById('priceRange').value;
   const experience=document.getElementById('experience').value;
-  if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); if(priceRange) p.set('priceRange',priceRange); if(experience) p.set('experienceRange',experience); p.set('tlang',ui);
+  if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); if(gender) p.set('gender',gender); if(priceRange) p.set('priceRange',priceRange); if(experience) p.set('experienceRange',experience); p.set('tlang',ui);
     const res=await fetch('/api/specialists.php?'+p.toString());
     const data=await res.json();
     const list=document.getElementById('list');
@@ -208,6 +214,7 @@
   document.getElementById('q').addEventListener('input', load);
   document.getElementById('city').addEventListener('change', load);
   document.getElementById('lang').addEventListener('change', load);
+  document.getElementById('gender').addEventListener('change', load);
   document.getElementById('experience').addEventListener('change', load);
   document.getElementById('priceRange').addEventListener('change', load);
   

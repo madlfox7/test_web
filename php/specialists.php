@@ -5,6 +5,7 @@ require __DIR__ . '/db.php';
 $q      = isset($_GET['q'])    ? trim($_GET['q'])    : '';
 $city   = isset($_GET['city']) ? trim($_GET['city']) : '';
 $lang   = isset($_GET['lang']) ? trim($_GET['lang']) : '';   // фильтр рабочих языков спеца: hy|ru|en (из поля languages)
+$gender = isset($_GET['gender']) ? trim($_GET['gender']) : ''; // 'female'|'male'|'nb'
 $tlang  = isset($_GET['tlang'])? trim($_GET['tlang']): 'en'; // язык вывода/поиска: ru|en|hy
 $active = 1;
 
@@ -37,6 +38,12 @@ if ($lang !== '') {
   // фильтр по рабочему языку специалиста (CSV в поле s.languages)
   $sql .= " AND FIND_IN_SET(?, REPLACE(s.languages, ' ', '')) > 0";
   $params[] = $lang; $types .= "s";
+}
+
+if ($gender !== '') {
+  // безопасный фильтр по полу
+  $sql .= " AND s.gender = ?";
+  $params[] = $gender; $types .= "s";
 }
 
 if ($q !== '') {

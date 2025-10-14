@@ -104,6 +104,11 @@
         <option value="ru">Русский</option>
         <option value="en">Английский</option>
       </select>
+      <select id="gender" aria-label="Пол">
+        <option value="">Любой пол</option>
+        <option value="female">Женщина</option>
+        <option value="male">Мужчина</option>
+      </select>
       <select id="experience" aria-label="Стаж">
         <option value="">Любой стаж</option>
         <option value="0-2">0-2 года</option>
@@ -138,7 +143,7 @@
   const ui='ru';
   const langMap={en:{hy:'Armenian',ru:'Russian',en:'English'},ru:{hy:'арм',ru:'рус',en:'анг'},hy:{hy:'հայ',ru:'ռուս',en:'անգ'}}; const L=langMap[ui];
   async function load(){
-    const p=new URLSearchParams(); const q=document.getElementById('q').value.trim(); const city=document.getElementById('city').value; const lang=document.getElementById('lang').value; const priceRange=document.getElementById('priceRange').value; const experience=document.getElementById('experience').value; if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); if(priceRange) p.set('priceRange',priceRange); if(experience) p.set('experienceRange',experience); p.set('tlang',ui);
+    const p=new URLSearchParams(); const q=document.getElementById('q').value.trim(); const city=document.getElementById('city').value; const lang=document.getElementById('lang').value; const gender=document.getElementById('gender').value; const priceRange=document.getElementById('priceRange').value; const experience=document.getElementById('experience').value; if(q) p.set('q',q); if(city) p.set('city',city); if(lang) p.set('lang',lang); if(gender) p.set('gender',gender); if(priceRange) p.set('priceRange',priceRange); if(experience) p.set('experienceRange',experience); p.set('tlang',ui);
     const res=await fetch('/api/specialists.php?'+p.toString()); const data=await res.json(); const list=document.getElementById('list');
     // Client-side fallback: фильтр по цене, если бэкенд его игнорирует
     let arr = Array.isArray(data) ? data : [];
@@ -177,6 +182,7 @@
   document.getElementById('q').addEventListener('input', load);
   document.getElementById('city').addEventListener('change', load);
   document.getElementById('lang').addEventListener('change', load);
+  document.getElementById('gender').addEventListener('change', load);
   document.getElementById('experience').addEventListener('change', load);
   document.getElementById('priceRange').addEventListener('change', load);
   
