@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Демо Cookie: персонализация, тема и имя</title>
+<title>Cookie Demo: personalization, theme and name</title>
 <style>
   :root {
     --bg-dark:#0f172a; --card-dark:#111827; --text-dark:#e5e7eb;
@@ -56,60 +56,60 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>🍪 Демо cookie: персонализация, тема и имя</h1>
-  <p class="lead">Cookie — долгосрочно; без cookie — в рамках вкладки/сеанса. Имя видно сразу, но сохраняется только с согласия.</p>
+  <h1>🍪 Cookie demo: personalization, theme and name</h1>
+  <p class="lead">Cookies are long‑lived; without cookies it’s per tab/session. The name shows immediately but is saved only with consent.</p>
 
   <div class="grid">
     <!-- Управление -->
     <section class="card">
       <div class="row" style="justify-content:space-between">
-        <div class="badge">Согласие: <b id="consentState">не задано</b></div>
+  <div class="badge">Consent: <b id="consentState">not set</b></div>
         <div class="row">
-          <button class="btn primary" id="btnAllow">Разрешить cookie</button>
-          <button class="btn ghost" id="btnDeny">Запретить</button>
-          <button class="btn danger" id="btnReset">Сбросить демо</button>
+          <button class="btn primary" id="btnAllow">Allow cookies</button>
+          <button class="btn ghost" id="btnDeny">Deny</button>
+          <button class="btn danger" id="btnReset">Reset demo</button>
         </div>
       </div>
 
       <div class="hr"></div>
 
       <div class="row">
-        <label for="name">Имя для приветствия:</label>
-        <input id="name" type="text" placeholder="Введите имя"/>
+  <label for="name">Name for greeting:</label>
+  <input id="name" type="text" placeholder="Enter a name"/>
       </div>
 
       <div class="hr"></div>
 
       <div class="row">
-        <label for="category">Интересы (реклама):</label>
+  <label for="category">Interests (ads):</label>
         <select id="category">
-          <option value="travel">Путешествия</option>
-          <option value="sport">Спорт</option>
-          <option value="tech">Технологии</option>
-          <option value="mind">Осознанность</option>
+          <option value="travel">Travel</option>
+          <option value="sport">Sport</option>
+          <option value="tech">Technology</option>
+          <option value="mind">Mindfulness</option>
         </select>
       </div>
 
       <div class="hr"></div>
 
       <div class="row">
-        <label for="theme">Тема сайта:</label>
+  <label for="theme">Site theme:</label>
         <select id="theme">
-          <option value="dark">Тёмная</option>
-          <option value="light">Светлая</option>
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
         </select>
       </div>
 
       <p class="kvs">
-        Cookie: <code>consent</code>, <code>ad_cat</code>, <code>theme</code>, <code>name</code> (при согласии).<br/>
-        Без cookie: реклама хранится в <code>sessionStorage.ad_cat_ss</code>, имя не сохраняется.
+        Cookies: <code>consent</code>, <code>ad_cat</code>, <code>theme</code>, <code>name</code> (with consent).<br/>
+        Without cookies: ads preference is stored in <code>sessionStorage.ad_cat_ss</code>, name isn’t saved.
       </p>
     </section>
 
     <!-- Витрина рекламы -->
     <section class="card">
-      <div class="badge">🪧 Рекламный слот</div>
-      <div class="hello" id="hello" aria-live="polite">Привет!</div>
+      <div class="badge">🪧 Ad slot</div>
+      <div class="hello" id="hello" aria-live="polite">Hello!</div>
       <div class="ad" id="adSlot"></div>
       <p class="kvs" id="debug"></p>
     </section>
@@ -140,10 +140,10 @@ function delCookie(name){
 
 /* ---------- каталог рекламы ---------- */
 const ads = {
-  travel:{emoji:"🏝️",title:"Туры −20%",text:"Стамбул, Тбилиси, Дубай — мечты рядом."},
-  sport:{emoji:"🏃",title:"Кроссовки ProRun",text:"Легче на 30% — быстрее каждый км."},
-  tech:{emoji:"💻",title:"Nova 14",text:"Тонкий, тихий, 18 часов автономности."},
-  mind:{emoji:"🧘",title:"CalmYou",text:"Медитации и дыхание 4–7–8."}
+  travel:{emoji:"🏝️",title:"Tours −20%",text:"Istanbul, Tbilisi, Dubai — closer than you think."},
+  sport:{emoji:"🏃",title:"ProRun Sneakers",text:"30% lighter — faster every km."},
+  tech:{emoji:"💻",title:"Nova 14",text:"Slim, quiet, up to 18 hours of battery."},
+  mind:{emoji:"🧘",title:"CalmYou",text:"Meditations and 4–7–8 breathing."}
 };
 
 const el = {
@@ -173,7 +173,7 @@ function clearAdCat(){
 /* ----- имя: отображаем всегда, сохраняем только с consent=1 ----- */
 function updateHelloDisplay(srcVal){
   const name = (srcVal ?? el.name.value ?? '').trim();
-  el.hello.textContent = name ? `Привет, ${name}!` : 'Привет!';
+  el.hello.textContent = name ? `Hello, ${name}!` : 'Hello!';
 }
 function loadName(){
   const saved = getConsent()==='1' ? getCookie('name') : null;
@@ -212,16 +212,16 @@ function render(){
   el.theme.value = effectiveTheme;
 
   // Состояние согласия
-  el.consent.textContent = consent==='1' ? 'разрешено' : (consent==='0' ? 'запрещено' : 'не задано');
+  el.consent.textContent = consent==='1' ? 'allowed' : (consent==='0' ? 'denied' : 'not set');
 
   // Реклама
   if (cat && ads[cat]){
     const a = ads[cat];
     el.ad.innerHTML = `<div><div style="font-size:42px">${a.emoji}</div><h3>${a.title}</h3><p class="muted">${a.text}</p>
-      <p class="kvs">Источник предпочтения: <code>${consent==='1' ? 'cookie: ad_cat' : 'sessionStorage: ad_cat_ss'}</code></p></div>`;
+      <p class="kvs">Preference source: <code>${consent==='1' ? 'cookie: ad_cat' : 'sessionStorage: ad_cat_ss'}</code></p></div>`;
     el.cat.value = cat;
   } else {
-    el.ad.innerHTML = `<div><div class="muted">Нет персонализации</div><h3>Вы здесь впервые?</h3><p class="muted">Общий баннер без выбранной категории.</p></div>`;
+  el.ad.innerHTML = `<div><div class="muted">No personalization</div><h3>First time here?</h3><p class="muted">Generic banner without a chosen category.</p></div>`;
     // сброс селекта к первому пункту, если ничего не выбрано
     el.cat.value = el.cat.querySelector('option')?.value || 'travel';
   }
