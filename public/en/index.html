@@ -41,7 +41,7 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
       color:var(--fg);background:var(--bg);line-height:1.6;
       font-size:clamp(15px,1.4vw,18px);
-      padding-bottom: max(0px, env(safe-area-inset-bottom));
+      padding-bottom: calc(max(0px, env(safe-area-inset-bottom)) + 52px);
     }
     a{color:var(--brand);text-decoration:none}
     img{max-width:100%;height:auto;display:block}
@@ -296,6 +296,7 @@
         </div>
         <div class="helptext">By submitting, you agree to our <a href="#">Privacy Policy</a>.</div>
         <button class="btn primary" type="submit">Send request</button>
+        <p style="margin:6px 0 0; font-size:12px; color:#6b7280;">Not for emergencies. For urgent situations, call 112 or 911.</p>
       </form>
 
       <aside class="card">
@@ -328,6 +329,9 @@
   </section>
 
   <footer>
+    <p class="container" style="margin:0 auto; max-width:var(--w); padding:12px 20px 0; color:#6b7280; font-size:13px;">
+      ⚠️ This service is not for emergencies. If you are in danger or need urgent help, call <strong>112</strong> or local emergency services.
+    </p>
     <div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
       <div>© <span id="y"></span> PsyAid. <span id="rightsText">All rights reserved.</span></div>
       <div>
@@ -419,6 +423,12 @@
     }
     langSel && langSel.addEventListener('change', e => goLang(e.target.value));
   </script>
+
+  <!-- Global safety disclaimer (fixed bottom banner) -->
+  <div role="note" aria-label="Safety disclaimer"
+       style="position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 12px;border-top:1px solid #fecaca;z-index:1000">
+    ⚠️ This service is <strong>not for emergencies</strong>. In case of emergency, call <strong>112</strong> (or 911) or contact local services (police: 102, ambulance: 103).
+  </div>
 
   <!-- Localized JSON-LD -->
   <script type="application/ld+json">

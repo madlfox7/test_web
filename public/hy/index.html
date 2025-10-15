@@ -41,7 +41,7 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
       color:var(--fg);background:var(--bg);line-height:1.6;
       font-size:clamp(15px,1.4vw,18px);
-      padding-bottom: max(0px, env(safe-area-inset-bottom));
+      padding-bottom: calc(max(0px, env(safe-area-inset-bottom)) + 52px);
     }
     a{color:var(--brand);text-decoration:none}
     img{max-width:100%;height:auto;display:block}
@@ -302,6 +302,7 @@
         </div>
         <div class="helptext">Ձևը ուղարկելով՝ համաձայնում եք մեր <a href="#">Գաղտնիության քաղաքականություն</a>ին։</div>
         <button class="btn primary" type="submit">Ուղարկել դիմումը</button>
+        <p style="margin:6px 0 0; font-size:12px; color:#6b7280;">Չի նախատեսվում արտակարգ իրավիճակների համար։ Շտապ դեպքերում զանգահարեք 112 կամ 911։</p>
       </form>
 
       <aside class="card">
@@ -334,6 +335,9 @@
   </section>
 
   <footer>
+    <p class="container" style="margin:0 auto; max-width:var(--w); padding:12px 20px 0; color:#6b7280; font-size:13px;">
+      ⚠️ Այս ծառայությունը նախատեսված չէ արտակարգ իրավիճակների համար։ Արտակարգ դեպքերի դեպքում զանգահարեք <strong>112</strong> (կամ 911) կամ դիմեք տեղական ծառայություններին՝ ոստիկանություն՝ 102, շտապօգնություն՝ 103։
+    </p>
     <div class="container" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
       <div>© <span id="y"></span> PsyAid. <span id="rightsText">Բոլոր իրավունքները պաշտպանված են։</span></div>
       <div>
@@ -425,6 +429,12 @@
     }
     langSel && langSel.addEventListener('change', e => goLang(e.target.value));
   </script>
+
+  <!-- Գլոբալ անվտանգության հիշեցում (ֆիքսված պանել ներքևում) -->
+  <div role="note" aria-label="Անվտանգության հայտարարություն"
+       style="position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 12px;border-top:1px solid #fecaca;z-index:1000">
+    ⚠️ Այս ծառայությունը <strong>նախատեսված չէ արտակարգ իրավիճակների համար</strong>։ Արտակարգ դեպքերում զանգահարեք <strong>112</strong> (կամ 911) կամ դիմեք տեղական ծառայություններին (ոստիկանություն՝ 102, շտապօգնություն՝ 103)։
+  </div>
 
   <!-- Տեղայնացված JSON-LD -->
   <script type="application/ld+json">
