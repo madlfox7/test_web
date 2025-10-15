@@ -11,43 +11,37 @@
   <link rel="alternate" hreflang="en"    href="https://example.com/en/" />
   <link rel="alternate" hreflang="x-default" href="https://example.com/" />
 
-  <!-- Скрываем до решения, чтобы не было «мигания» -->
-  <style>
-    html[data-hide]{visibility:hidden}
-  body {font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; display:grid; min-height:100vh; place-items:center; background:#f8fafc; color:#0f172a; padding-bottom:52px}
-    .card {background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:24px 28px; box-shadow:0 10px 30px rgba(2,6,23,.06); max-width:520px}
-    .btn {display:inline-block; padding:12px 18px; margin:6px; border-radius:999px; border:1px solid #e5e7eb; text-decoration:none}
-    .btn.primary {background:linear-gradient(135deg,#6c7cff,#93a0ff); color:#fff; border:none}
-    .muted{color:#475569;font-size:.9rem}
-  </style>
+  <style>html[data-hide]{visibility:hidden}</style>
+  <link rel="stylesheet" href="index.css" />
 
-  <!-- Решаем мгновенно в <head>: редирект только при сохранённом выборе -->
+  <!-- lang is choosen => instant redirect-->
   <script>
-    (function () {
-      try {
+    (function () 
+    {
+      try 
+      {
         var hash = location.hash || '#/';
         var saved = localStorage.getItem('PsyAid_lang'); // 'en' | 'ru' | 'hy'
         var isLangPath = /^\/(en|ru|hy)(\/|$)/.test(location.pathname);
 
-        // Если пользователь уже выбирал язык и мы не на языковом пути — сразу редиректим без отрисовки страницы
-        if (saved && !isLangPath) {
+        // lang saved && !url/ => autoredirect
+        if (saved && !isLangPath) 
+        {
           location.replace('/' + saved + '/' + hash);
-          return; // keep html hidden; браузер уйдёт на язык
+          return; // force lang choice (url/)
         }
-        // одноразовый мягкий автопереход без задержки (только если не выбирали ранее)
-if (!isLangPath && !sessionStorage.getItem('lang_auto_once')) {
+        //based on session lang (auto)
+if (!isLangPath && !sessionStorage.getItem('lang_auto_once')) 
+{
   var l=(navigator.language||'').toLowerCase();
   var guess = l.startsWith('ru') ? 'ru' : (l.startsWith('hy') || l.includes('hye') || l.includes('arm')) ? 'hy' : 'en';
   sessionStorage.setItem('lang_auto_once','1');
   location.replace('/' + guess + '/' + hash);
   return;
 }
-
-
-        // Иначе показываем селектор — без авторедиректа
         document.documentElement.removeAttribute('data-hide');
-      } catch (e) {
-        // на всякий случай показываем контент
+      } catch (e) 
+      {
         document.documentElement.removeAttribute('data-hide');
       }
     })();
@@ -55,8 +49,8 @@ if (!isLangPath && !sessionStorage.getItem('lang_auto_once')) {
 </head>
 <body>
   <main class="card" aria-label="Language selector">
-    <h1 style="margin:0 0 8px">PsyAid</h1>
-    <p style="margin:0 0 16px">Choose your language:</p>
+    <h1>PsyAid</h1>
+    <p class="lead">Choose your language:</p>
     <p>
       <a class="btn primary" href="/en/#/" data-lang="en">English</a>
       <a class="btn" href="/ru/#/" data-lang="ru">Русский</a>
@@ -66,20 +60,11 @@ if (!isLangPath && !sessionStorage.getItem('lang_auto_once')) {
     <noscript><p class="muted">JavaScript is off. Open: <a href="/en/">/en/</a>, <a href="/ru/">/ru/</a>, <a href="/hy/">/hy/</a>.</p></noscript>
   </main>
 
-  <!-- Запоминаем выбор при клике -->
-  <script>
-    (function(){
-      document.querySelectorAll('a[data-lang]').forEach(function(a){
-        a.addEventListener('click', function(){
-          try { localStorage.setItem('PsyAid_lang', a.getAttribute('data-lang')); } catch(_) {}
-        });
-      });
-    })();
-  </script>
+ 
+  <script src="./index.js"></script>
 
-  <!-- Global safety disclaimer (fixed bottom banner) -->
-  <div role="note" aria-label="Safety disclaimer"
-       style="position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 12px;border-top:1px solid #fecaca;z-index:1000">
+
+  <div role="note" aria-label="Safety disclaimer" class="disclaimer">
     ⚠️ This service is <strong>not for emergencies</strong>. In case of emergency, call <strong>112</strong> (or 911) or contact local services (police: 102, ambulance: 103).
   </div>
 </body>
