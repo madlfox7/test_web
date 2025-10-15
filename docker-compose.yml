@@ -9,7 +9,7 @@ services:
     command: ["--skip-host-cache", "--skip-name-resolve"]
     volumes:
       - db_data:/var/lib/mysql
-      - ./api_sql_init:/docker-entrypoint-initdb.d:ro
+      - ./backend/api_sql_init:/docker-entrypoint-initdb.d:ro
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "mariadb -h 127.0.0.1 -upsyaid -ppsyaidpass -e 'SELECT 1' >/dev/null 2>&1"]
@@ -34,10 +34,10 @@ services:
 
   php:
     build:
-      context: ./php
+      context: ./backend/php
       dockerfile: Dockerfile
     volumes:
-      - ./php:/var/www/html
+      - ./backend/php:/var/www/html
     expose:
       - "9000"
     restart: unless-stopped
@@ -53,9 +53,9 @@ services:
       php:
         condition: service_started
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./public:/var/www/public:ro
-      - ./php:/var/www/html:ro
+      - ./backend/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./frontend/public:/var/www/public:ro
+      - ./backend/php:/var/www/html:ro
     restart: unless-stopped
 
 volumes:

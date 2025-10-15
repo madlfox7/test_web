@@ -10,6 +10,6 @@ README.md
 .env
 
 **/*.sql
-!api_sql_init/*.sql
+!backend/api_sql_init/*.sql
 
-public/**/*.sql
+frontend/public/**/*.sql

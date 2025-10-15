@@ -2,7 +2,7 @@ SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
 PORT ?= 3000
-NODE_DIR := tools/node-static
+NODE_DIR := frontend/tools/node-static
 
 .PHONY: help node-install node-start node-dev node-clean up down restart restart-soft logs
 
