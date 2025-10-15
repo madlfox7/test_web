@@ -4,55 +4,7 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Cookie Demo: personalization, theme and name</title>
-<style>
-  :root {
-    --bg-dark:#0f172a; --card-dark:#111827; --text-dark:#e5e7eb;
-    --bg-light:#f9fafb; --card-light:#ffffff; --text-light:#111827;
-    --muted-dark:#9ca3af; --muted-light:#6b7280;
-  }
-  * { box-sizing:border-box; transition:background .25s,color .25s; }
-  body { margin:0; font:16px/1.5 system-ui,Segoe UI,Roboto; background:var(--bg-dark); color:var(--text-dark) }
-  body.light { background:var(--bg-light); color:var(--text-light) }
-  .wrap { max-width:920px; margin:auto; padding:32px 16px }
-  h1 { font-size:clamp(22px,2.6vw,32px); margin:0 0 8px }
-  .lead { color:var(--muted-dark); margin:0 0 20px }
-  body.light .lead { color:var(--muted-light) }
-  .grid { display:grid; gap:16px; grid-template-columns:1.3fr 1fr }
-  .card { background:rgba(17,24,39,.8); border:1px solid rgba(148,163,184,.18); border-radius:16px; padding:18px; backdrop-filter:blur(6px) }
-  body.light .card { background:var(--card-light); border-color:rgba(0,0,0,.1) }
-  .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap }
-  .badge { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#111827; border:1px solid rgba(148,163,184,.2); color:#cbd5e1 }
-  body.light .badge { background:#f3f4f6; border-color:rgba(0,0,0,.1); color:#111827 }
-  .btn { border:1px solid rgba(148,163,184,.35); background:#0b1224; color:#e5e7eb; padding:10px 14px; border-radius:10px; cursor:pointer }
-  .btn.primary { background:linear-gradient(180deg,#2563eb,#1d4ed8); border-color:#1d4ed8 }
-  .btn.ghost { background:transparent }
-  .btn.danger { border-color:#ef4444; color:#fecaca }
-  select, input[type=text] {
-    padding:10px 12px; border-radius:10px; border:1px solid rgba(148,163,184,.35); background:#0b1224; color:#e5e7eb
-  }
-  body.light select, body.light input[type=text] { background:#f9fafb; color:#111827 }
-  .ad { display:grid; place-items:center; min-height:220px; border-radius:14px; border:1px dashed rgba(148,163,184,.35); text-align:center; padding:14px }
-  .muted { color:var(--muted-dark) }
-  body.light .muted { color:var(--muted-light) }
-  .kvs { font-size:14px; color:#94a3b8 }
-  body.light .kvs { color:#6b7280 }
-  .hr { height:1px; background:linear-gradient(90deg,transparent,rgba(148,163,184,.35),transparent); margin:14px 0 }
-  .hello { margin:8px 0 12px; font-weight:600 }
-  @media (max-width:900px){ .grid{ grid-template-columns:1fr } }
-  /* Mobile-friendly tweaks */
-  #debug{ overflow-wrap:anywhere; word-break:break-word }
-  img,canvas,iframe,video{ max-width:100%; height:auto }
-  @media (max-width:600px){
-    .wrap{ padding:24px 12px }
-    .card{ padding:14px }
-    .row{ gap:8px }
-    .ad{ min-height:180px }
-    .row > select,
-    .row > input[type=text],
-    .row > button{ width:100% }
-  }
-  
-</style>
+<link rel="stylesheet" href="./cookies.css"/>
 </head>
 <body>
 <div class="wrap">
@@ -60,10 +12,9 @@
   <p class="lead">Cookies are long‑lived; without cookies it’s per tab/session. The name shows immediately but is saved only with consent.</p>
 
   <div class="grid">
-    <!-- Управление -->
     <section class="card">
       <div class="row" style="justify-content:space-between">
-  <div class="badge">Consent: <b id="consentState">not set</b></div>
+    <div class="badge">Consent: <b id="consentState">not set</b></div>
         <div class="row">
           <button class="btn primary" id="btnAllow">Allow cookies</button>
           <button class="btn ghost" id="btnDeny">Deny</button>
@@ -74,8 +25,8 @@
       <div class="hr"></div>
 
       <div class="row">
-  <label for="name">Name for greeting:</label>
-  <input id="name" type="text" placeholder="Enter a name"/>
+      <label for="name">Name for greeting:</label>
+      <input id="name" type="text" placeholder="Enter a name"/>
       </div>
 
       <div class="hr"></div>
@@ -83,6 +34,7 @@
       <div class="row">
   <label for="category">Interests (ads):</label>
         <select id="category">
+          <option value="" disabled selected>Select a category…</option>
           <option value="travel">Travel</option>
           <option value="sport">Sport</option>
           <option value="tech">Technology</option>
@@ -93,7 +45,7 @@
       <div class="hr"></div>
 
       <div class="row">
-  <label for="theme">Site theme:</label>
+      <label for="theme">Site theme:</label>
         <select id="theme">
           <option value="dark">Dark</option>
           <option value="light">Light</option>
@@ -106,7 +58,7 @@
       </p>
     </section>
 
-    <!-- Витрина рекламы -->
+    <!--Ad card-->
     <section class="card">
       <div class="badge">🪧 Ad slot</div>
       <div class="hello" id="hello" aria-live="polite">Hello!</div>
@@ -118,10 +70,7 @@
   <div class="hr"></div>
   
   
-
-
 <script>
-/* ---------- cookie helpers ---------- */
 function escapeName(n){ return n.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,'\\$&'); }
 function setCookie(name, value, days){
   const d = new Date(); d.setTime(d.getTime() + (days*24*60*60*1000));
@@ -138,9 +87,8 @@ function delCookie(name){
   document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax${secure}`;
 }
 
-/* ---------- каталог рекламы ---------- */
 const ads = {
-  travel:{emoji:"🏝️",title:"Tours −20%",text:"Istanbul, Tbilisi, Dubai — closer than you think."},
+  travel:{emoji:"🏝️",title:"Tours −20%",text:"Greece, Tbilisi, Dubai — closer than you think."},
   sport:{emoji:"🏃",title:"ProRun Sneakers",text:"30% lighter — faster every km."},
   tech:{emoji:"💻",title:"Nova 14",text:"Slim, quiet, up to 18 hours of battery."},
   mind:{emoji:"🧘",title:"CalmYou",text:"Meditations and 4–7–8 breathing."}
@@ -158,7 +106,7 @@ const el = {
 
 function getConsent(){ return getCookie('consent'); }
 
-/* ----- реклама: cookie или sessionStorage ----- */
+/* cookie || sessionStorage ----- */
 function getAdCat(){
   return getConsent()==='1' ? getCookie('ad_cat') : sessionStorage.getItem('ad_cat_ss');
 }
@@ -170,7 +118,7 @@ function clearAdCat(){
   delCookie('ad_cat'); sessionStorage.removeItem('ad_cat_ss');
 }
 
-/* ----- имя: отображаем всегда, сохраняем только с consent=1 ----- */
+/* ----- name: always shows, saves if consent=1 ----- */
 function updateHelloDisplay(srcVal){
   const name = (srcVal ?? el.name.value ?? '').trim();
   el.hello.textContent = name ? `Hello, ${name}!` : 'Hello!';
@@ -183,50 +131,45 @@ function loadName(){
 function maybePersistName(){
   const v = (el.name.value || '').trim();
   if (getConsent()==='1') { v ? setCookie('name', v, 365) : delCookie('name'); }
-  updateHelloDisplay(v); // всегда обновляем UI
+  updateHelloDisplay(v); //always
 }
 
-/* ----- миграция при выдаче согласия ----- */
+
 function migrateSessionToCookiesOnConsent(){
   if (getConsent()!=='1') return;
-  // ad category: переносим, если cookie ещё нет
   const ssCat = sessionStorage.getItem('ad_cat_ss');
   if (ssCat && !getCookie('ad_cat')) setCookie('ad_cat', ssCat, 365);
-  // theme: сохранить текущий выбор из селекта
   const t = el.theme.value;
   if (t) setCookie('theme', t, 365);
-  // name: если поле заполнено — сохранить
   const n = (el.name.value || '').trim();
   if (n) setCookie('name', n, 365);
 }
 
-/* ----- основной рендер ----- */
 function render(){
   const consent = getConsent();
   const cat = getAdCat();
   const theme = getCookie('theme');
 
-  // Тема: сохраняется только при consent=1
   const effectiveTheme = (consent==='1' && theme==='light') ? 'light' : 'dark';
   document.body.classList.toggle('light', effectiveTheme==='light');
   el.theme.value = effectiveTheme;
 
-  // Состояние согласия
   el.consent.textContent = consent==='1' ? 'allowed' : (consent==='0' ? 'denied' : 'not set');
 
-  // Реклама
+
   if (cat && ads[cat]){
     const a = ads[cat];
     el.ad.innerHTML = `<div><div style="font-size:42px">${a.emoji}</div><h3>${a.title}</h3><p class="muted">${a.text}</p>
       <p class="kvs">Preference source: <code>${consent==='1' ? 'cookie: ad_cat' : 'sessionStorage: ad_cat_ss'}</code></p></div>`;
+    el.ad.style.display = '';
     el.cat.value = cat;
   } else {
-  el.ad.innerHTML = `<div><div class="muted">No personalization</div><h3>First time here?</h3><p class="muted">Generic banner without a chosen category.</p></div>`;
-    // сброс селекта к первому пункту, если ничего не выбрано
-    el.cat.value = el.cat.querySelector('option')?.value || 'travel';
+    // ads hidden card, until category is choosen
+    el.ad.innerHTML = '';
+    el.ad.style.display = 'none';
+    el.cat.selectedIndex = 0;
   }
 
-  // Имя
   loadName();
 
   // Debug
@@ -234,10 +177,10 @@ function render(){
     " | sessionStorage.ad_cat_ss: " + (sessionStorage.getItem('ad_cat_ss') ?? "(пусто)");
 }
 
-/* ----- обработчики ----- */
+/*handlers*/
 document.getElementById('btnAllow').onclick = ()=>{
   setCookie('consent','1',365);
-  migrateSessionToCookiesOnConsent(); // перенесём выборы из сессии
+  migrateSessionToCookiesOnConsent(); // cookie migration
   render();
 };
 document.getElementById('btnDeny').onclick  = ()=>{
@@ -245,15 +188,14 @@ document.getElementById('btnDeny').onclick  = ()=>{
   clearAdCat(); delCookie('theme'); delCookie('name');
   render();
 };
-// Применяем изменения сразу по выбору категории
+
+// instant change based on selector
 el.cat.addEventListener('change', ()=>{ setAdCat(el.cat.value); render(); });
 
-// Изменение темы сразу по выбору
 el.theme.addEventListener('change', ()=>{
   const v = el.theme.value;
   if (getConsent()==='1') setCookie('theme', v, 365);
-  document.body.classList.toggle('light', v==='light'); // мгновенно
-  // На следующем render состояние закрепится с учётом consent
+  document.body.classList.toggle('light', v==='light'); // instant
 });
 el.name.addEventListener('input', maybePersistName);
 
