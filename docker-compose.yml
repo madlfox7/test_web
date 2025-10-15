@@ -45,26 +45,12 @@ services:
       db:
         condition: service_healthy
 
-  node:
-    build: .
-    environment:
-      - PORT=3000
-    expose:
-      - "3000"
-    volumes:
-      - .:/app
-    working_dir: /app
-    command: node server.js
-    restart: unless-stopped
-
   nginx:
     image: nginx:1.27-alpine
     ports:
       - "80:80"
     depends_on:
       php:
-        condition: service_started
-      node:
         condition: service_started
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
