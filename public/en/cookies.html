@@ -39,6 +39,7 @@
   .hr { height:1px; background:linear-gradient(90deg,transparent,rgba(148,163,184,.35),transparent); margin:14px 0 }
   .hello { margin:8px 0 12px; font-weight:600 }
   @media (max-width:900px){ .grid{ grid-template-columns:1fr } }
+  
 </style>
 </head>
 <body>
@@ -103,7 +104,13 @@
       <p class="kvs" id="debug"></p>
     </section>
   </div>
-</div>
+
+  <div class="hr"></div>
+  
+  <!-- Мини‑игра Breakout: открывать только в новой вкладке -->
+  <div class="row" style="justify-content:flex-start; gap:8px; margin-bottom:8px">
+    <a class="btn ghost" href="mini_game.html" target="_blank" rel="noopener">Открыть мини‑игру в новой вкладке</a>
+  </div>
 
 <script>
 /* ---------- cookie helpers ---------- */
