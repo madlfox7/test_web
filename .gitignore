@@ -1,0 +1,10 @@
+*.sql
+!api_sql_init/*.sql
+
+public/**/*.sql
+
+npm-debug.log*
+
+
+.DS_Store
+.vscode/
