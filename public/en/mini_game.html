@@ -131,6 +131,18 @@ function drawLives() {
   ctx.fillText("Lives: " + lives, canvas.width - 80, 18);
 }
 
+/* ===== Export state to parent (API bridge) ===== */
+window.__breakout__ = {
+  getState() { return { score, lives }; }
+};
+function notifyParent() {
+  try {
+    if (window.parent) {
+      window.parent.postMessage({ type: 'breakout-state', score, lives }, '*');
+    }
+  } catch {}
+}
+
 /* ===== Collision detection (your structure) ===== */
 function collisionDetection() {
   for (let c = 0; c < brickColumnCount; c++) {
@@ -142,6 +154,8 @@ function collisionDetection() {
           dy = -dy;
           b.status = 0;
           score++;
+          // notify parent about score change
+          notifyParent();
           if (score === brickRowCount * brickColumnCount) {
             setTimeout(() => {
               alert("YOU WIN, CONGRATULATIONS!");
@@ -180,6 +194,8 @@ function draw() {
       dy = -Math.abs(dy);  // always go up
     } else {
       lives--;
+      // notify parent about life change
+      notifyParent();
       if (!lives) {
         setTimeout(() => {
           alert("GAME OVER");
@@ -203,6 +219,9 @@ function draw() {
   // advance ball
   x += dx;
   y += dy;
+
+  // Optional: continuous progress updates for parent listeners
+  notifyParent();
 
   requestAnimationFrame(draw);
 }

@@ -76,7 +76,6 @@
           <option value="tech">Технологии</option>
           <option value="mind">Осознанность</option>
         </select>
-        <button class="btn" id="btnSave">Сохранить выбор</button>
       </div>
 
       <div class="hr"></div>
@@ -87,7 +86,6 @@
           <option value="dark">Тёмная</option>
           <option value="light">Светлая</option>
         </select>
-        <button class="btn" id="btnTheme">Применить</button>
       </div>
 
       <p class="kvs">
@@ -107,10 +105,8 @@
 
   <div class="hr"></div>
   
-  <!-- Мини‑игра Breakout: открывать только в новой вкладке -->
-  <div class="row" style="justify-content:flex-start; gap:8px; margin-bottom:8px">
-    <a class="btn ghost" href="mini_game.html" target="_blank" rel="noopener">Открыть мини‑игру в новой вкладке</a>
-  </div>
+  
+
 
 <script>
 /* ---------- cookie helpers ---------- */
@@ -237,13 +233,16 @@ document.getElementById('btnDeny').onclick  = ()=>{
   clearAdCat(); delCookie('theme'); delCookie('name');
   render();
 };
-document.getElementById('btnSave').onclick  = ()=>{ setAdCat(el.cat.value); render(); };
-document.getElementById('btnTheme').onclick = ()=>{
+// Применяем изменения сразу по выбору категории
+el.cat.addEventListener('change', ()=>{ setAdCat(el.cat.value); render(); });
+
+// Изменение темы сразу по выбору
+el.theme.addEventListener('change', ()=>{
   const v = el.theme.value;
   if (getConsent()==='1') setCookie('theme', v, 365);
   document.body.classList.toggle('light', v==='light'); // мгновенно
-  // синхронизация: на следующий render состояние зафиксируется
-};
+  // На следующем render состояние закрепится с учётом consent
+});
 el.name.addEventListener('input', maybePersistName);
 
 document.getElementById('btnReset').onclick = ()=>{
@@ -255,5 +254,6 @@ document.getElementById('btnReset').onclick = ()=>{
 
 render();
 </script>
+ 
 </body>
 </html>
