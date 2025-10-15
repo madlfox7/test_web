@@ -188,10 +188,20 @@
   
   load();
 </script>
-  <!-- Глобальный дисклеймер безопасности (фиксированная плашка снизу) -->
-  <div role="note" aria-label="Дисклеймер безопасности"
-       style="position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 12px;border-top:1px solid #fecaca;z-index:1000">
-    ⚠️ Этот сервис <strong>не предназначен для экстренных случаев</strong>. В экстренной ситуации звоните <strong>112</strong> (или 911) либо в местные службы: полиция — 102, скорая — 103.
-  </div>
+  <script>
+    (function(){
+      try{
+        if(sessionStorage.getItem('psyaid_disclaimer_dismissed')==='1') return;
+        const bar=document.createElement('div');
+        bar.setAttribute('role','note');
+        bar.setAttribute('aria-label','Дисклеймер безопасности');
+        bar.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 36px 8px 12px;border-top:1px solid #fecaca;z-index:1000';
+        bar.innerHTML='⚠️ Этот сервис <strong>не предназначен для экстренных случаев</strong>. В экстренной ситуации звоните <strong>112</strong> (или 911) либо в местные службы: полиция — 102, скорая — 103.'+
+                     '<button type="button" aria-label="Закрыть" style="position:absolute;right:8px;top:6px;background:transparent;border:none;color:#b91c1c;font-size:18px;line-height:1;cursor:pointer">×</button>';
+        bar.querySelector('button').addEventListener('click',function(){sessionStorage.setItem('psyaid_disclaimer_dismissed','1');bar.remove();});
+        document.body.appendChild(bar);
+      }catch(e){}
+    })();
+  </script>
 </body>
 </html>

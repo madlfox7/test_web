@@ -427,11 +427,27 @@
     langSel && langSel.addEventListener('change', e => goLang(e.target.value));
   </script>
 
-  <!-- Գլոբալ անվտանգության հիշեցում (ֆիքսված պանել ներքևում) -->
-  <div role="note" aria-label="Անվտանգության հայտարարություն"
-       style="position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 12px;border-top:1px solid #fecaca;z-index:1000">
-    ⚠️ Այս ծառայությունը <strong>նախատեսված չէ արտակարգ իրավիճակների համար</strong>։ Արտակարգ դեպքերում զանգահարեք <strong>112</strong> (կամ 911) կամ դիմեք տեղական ծառայություններին (ոստիկանություն՝ 102, շտապօգնություն՝ 103)։
-  </div>
+  <!-- Գլոբալ անվտանգության հիշեցում (ֆիքսված, փակվող «×») -->
+  <script>
+    (function(){
+      try{
+        if(sessionStorage.getItem('psyaid_disclaimer_dismissed')==='1') return;
+        const bar=document.createElement('div');
+        bar.setAttribute('role','note');
+        bar.setAttribute('aria-label','Անվտանգության հայտարարություն');
+        bar.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 36px 8px 12px;border-top:1px solid #fecaca;z-index:1000';
+        bar.innerHTML='⚠️ Այս ծառայությունը <strong>նախատեսված չէ արտակարգ իրավիճակների համար</strong>։ Արտակարգ դեպքերում զանգահարեք <strong>112</strong> (կամ 911) կամ դիմեք տեղական ծառայություններին (ոստիկանություն՝ 102, շտապօգնություն՝ 103)։'+
+                     '<button type="button" aria-label="Փակել" style="position:absolute;right:8px;top:6px;background:transparent;border:none;color:#b91c1c;font-size:18px;line-height:1;cursor:pointer">×</button>';
+        const btn=bar.querySelector('button');
+        btn.addEventListener('click',function(){
+          sessionStorage.setItem('psyaid_disclaimer_dismissed','1');
+          bar.remove();
+          try{ document.body.style.paddingBottom='max(0px, env(safe-area-inset-bottom))'; }catch(_){ }
+        });
+        document.body.appendChild(bar);
+      }catch(e){}
+    })();
+  </script>
 
   <!-- Տեղայնացված JSON-LD -->
   <script type="application/ld+json">
