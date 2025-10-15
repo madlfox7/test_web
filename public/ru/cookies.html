@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>PsyAid — Демо-опрос по cookie</title>
+<meta name="description" content="Демо-страница, показывающая, как используются cookie после согласия."/>
+<style>
+  body{font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;background:#fafafa;color:#111}
+  .wrap{max-width:800px;margin:40px auto;padding:0 16px}
+  .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 6px 24px rgba(0,0,0,.05)}
+  .p{padding:20px}
+  .row{display:grid;gap:12px}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .btn{border:1px solid #111;border-radius:10px;padding:10px 14px;background:#111;color:#fff;cursor:pointer}
+  .btn.out{background:#fff;color:#111}
+  .hint{font-size:12px;color:#666}
+  .ok{color:#0a7d2b}
+  .warn{color:#a15a00}
+  .err{color:#b00020}
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid #e5e7eb;background:#f3f4f6}
+  .grid{display:grid;gap:10px}
+  label{font-weight:600}
+  .q{margin:14px 0}
+  .muted{color:#6b7280}
+  .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;font-size:12px;white-space:pre-wrap;word-break:break-word;background:#f6f8fa;border-radius:8px;padding:10px;border:1px solid #e5e7eb}
+  .langbar{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+  .pill{border:1px solid #e5e7eb;border-radius:999px;padding:4px 10px;background:#fff;cursor:pointer}
+  .pill.active{background:#111;color:#fff;border-color:#111}
+  .consent-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .small{font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar">
+    <span id="t-lang-label" class="muted">Язык:</span>
+    <button class="pill" data-set-lang="en">EN</button>
+    <button class="pill" data-set-lang="ru">RU</button>
+    <button class="pill" data-set-lang="hy">HY</button>
+  </div>
+
+  <h1 id="t-h1">Демо-опрос по cookie</h1>
+  <p id="t-intro" class="muted">
+    Эта страница показывает, как данные сохраняются <span class="badge">после согласия</span>.
+    Если пользователь отклоняет необязательные cookie, ответы хранятся только в <strong>sessionStorage</strong>.
+  </p>
+
+  <div class="card p" id="consentBox">
+    <div><strong id="t-consent-status">Статус согласия:</strong> <span id="consentState" class="badge">проверяем…</span></div>
+    <div id="t-consent-hint" class="hint">
+      Ищем cookie <code>cookie_consent</code>. Если <em>analytics: true</em>, разрешим запись ответов в cookie.
+    </div>
+    <div class="consent-actions">
+      <button id="allowBtn" class="btn out"><span id="t-allow">Разрешить аналитику (демо)</span></button>
+      <button id="rejectBtn" class="btn out"><span id="t-reject">Отклонить аналитику</span></button>
+      <span class="hint" id="consentNote"></span>
+    </div>
+  </div>
+
+  <form class="card p" id="surveyForm">
+    <h2 id="t-form-title">Короткий опрос (демо)</h2>
+
+    <div class="q">
+      <label id="t-q-lang" for="lang">Предпочитаемый язык</label>
+      <div class="row2">
+        <label><input type="radio" name="lang" value="en" checked> English</label>
+        <label><input type="radio" name="lang" value="ru"> Русский</label>
+        <label><input type="radio" name="lang" value="hy"> Հայերեն</label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label id="t-q-mode">Как вы предпочитаете сессии?</label>
+      <div class="row2">
+        <label><input type="radio" name="mode" value="online" checked> <span id="t-mode-online">Онлайн</span></label>
+        <label><input type="radio" name="mode" value="in-person"> <span id="t-mode-inperson">Очные</span></label>
+      </div>
+    </div>
+
+    <div class="q">
+      <label id="t-q-price" for="price">Комфортная цена за сессию (AMD)</label>
+      <input id="price" name="price" type="number" min="5000" step="500" value="20000" style="width:220px;padding:8px;border-radius:10px;border:1px solid #e5e7eb"/>
+    </div>
+
+    <div class="q">
+      <label id="t-q-topic" for="topic">Основная тема</label>
+      <select id="topic" name="topic" style="padding:8px;border-radius:10px;border:1px solid #e5e7eb">
+        <option value="anxiety"      id="t-opt-anxiety">Тревожность</option>
+        <option value="relationships" id="t-opt-relationships">Отношения</option>
+        <option value="burnout"      id="t-opt-burnout">Профессиональное выгорание</option>
+        <option value="self-esteem"  id="t-opt-selfesteem">Самооценка</option>
+      </select>
+    </div>
+
+    <div class="q">
+      <label id="t-q-note" for="msg">Дополнительная заметка</label>
+      <textarea id="msg" name="msg" rows="3" placeholder="" style="width:100%;padding:8px;border-radius:10px;border:1px solid #e5e7eb"></textarea>
+    </div>
+
+    <div class="row2" style="margin-top:10px">
+      <button type="submit" class="btn" id="t-btn-save">Сохранить ответы</button>
+      <button type="button" id="loadBtn" class="btn out"><span id="t-btn-load">Загрузить сохранённое</span></button>
+    </div>
+    <div id="saveNote" class="hint" style="margin-top:8px"></div>
+  </form>
+
+  <div class="card p">
+    <h3 id="t-whatstored">Что сохранено</h3>
+    <div class="grid">
+      <div>
+        <strong><span id="t-cookie-label">Cookie</span> <code>demo_survey</code></strong>
+        <div id="cookieVal" class="mono">(none)</div>
+      </div>
+      <div>
+        <strong>sessionStorage <code>demo_survey</code></strong>
+        <div id="ssVal" class="mono">(none)</div>
+      </div>
+      <div>
+        <strong><code>cookie_consent</code></strong>
+        <div id="consentVal" class="mono">(none)</div>
+      </div>
+      <div class="row2">
+        <button id="clearCookie" class="btn out" type="button"><span id="t-btn-clear-cookie">Очистить cookie</span></button>
+        <button id="clearSS" class="btn out" type="button"><span id="t-btn-clear-ss">Очистить sessionStorage</span></button>
+      </div>
+      <p id="t-demo-hint" class="hint">
+        Для демонстрации используем необязательную cookie <code>demo_survey</code>. Записываем её только если в <code>cookie_consent</code> указано <code>analytics: true</code>; иначе используем <code>sessionStorage</code>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+// The script is identical to EN version, only localized via I18N and default detected language set to ru
+// To avoid duplication complexity, we inline the same logic as EN with the same keys
+// (copied and kept in sync intentionally)
+// BEGIN: same as EN
+(function(){
+  const I18N = {
+    en: {langLabel:"Language:",h1:"Cookie Demo Survey",intro:"This page demonstrates how data is stored <span class=\"badge\">after consent</span>. If the user rejects non-essential cookies, answers are kept in <strong>sessionStorage</strong> only.",consentStatus:"Consent status:",consentHint:"Looking for the <code>cookie_consent</code> cookie. If <em>analytics: true</em>, we’ll allow writing demo answers to a cookie.",allow:"Allow analytics (demo)",reject:"Reject analytics",stateNone:"no choice yet",stateAllow:"analytics: allowed",stateReject:"analytics: rejected",formTitle:"Quick survey (demo)",qLang:"Preferred language",qMode:"How do you prefer sessions?",modeOnline:"Online",modeInPerson:"In-person",qPrice:"Comfortable price per session (AMD)",qTopic:"Primary topic",optAnxiety:"Anxiety",optRelationships:"Relationships",optBurnout:"Burnout",optSelfEsteem:"Self-esteem",qNote:"Optional note",notePH:"Anything else…",btnSave:"Save answers",btnLoad:"Load saved",whatsStored:"What’s stored",cookieLabel:"Cookie",btnClearCookie:"Clear cookie",btnClearSS:"Clear sessionStorage",demoHint:"For demonstration we use a non-essential cookie <code>demo_survey</code>. We write it only if <code>cookie_consent</code> has <code>analytics: true</code>; otherwise we fall back to <code>sessionStorage</code>.",savedCookie:"✅ Saved to <strong>cookie</strong> (30 days).",savedSession:"ℹ️ Consent for analytics is missing → saved to <strong>sessionStorage</strong> only.",loaded:"Loaded previous answers.",autosavedCookie:"Autosaved to cookie.",autosavedSession:"Autosaved to sessionStorage.",nothing:"Nothing saved yet.",consentUpdated:"Consent updated."},
+    ru: {langLabel:"Язык:",h1:"Демо-опрос по cookie",intro:"Эта страница показывает, как данные сохраняются <span class=\"badge\">после согласия</span>. Если пользователь отклоняет необязательные cookie, ответы хранятся только в <strong>sessionStorage</strong>.",consentStatus:"Статус согласия:",consentHint:"Ищем cookie <code>cookie_consent</code>. Если <em>analytics: true</em>, разрешим запись ответов в cookie.",allow:"Разрешить аналитику (демо)",reject:"Отклонить аналитику",stateNone:"согласие не выбрано",stateAllow:"analytics: разрешено",stateReject:"analytics: отклонено",formTitle:"Короткий опрос (демо)",qLang:"Предпочитаемый язык",qMode:"Как вы предпочитаете сессии?",modeOnline:"Онлайн",modeInPerson:"Очные",qPrice:"Комфортная цена за сессию (AMD)",qTopic:"Основная тема",optAnxiety:"Тревожность",optRelationships:"Отношения",optBurnout:"Профессиональное выгорание",optSelfEsteem:"Самооценка",qNote:"Дополнительная заметка",notePH:"Что-нибудь ещё…",btnSave:"Сохранить ответы",btnLoad:"Загрузить сохранённое",whatsStored:"Что сохранено",cookieLabel:"Cookie",btnClearCookie:"Очистить cookie",btnClearSS:"Очистить sessionStorage",demoHint:"Для демонстрации используем необязательную cookie <code>demo_survey</code>. Записываем её только если в <code>cookie_consent</code> указано <code>analytics: true</code>; иначе используем <code>sessionStorage</code>.",savedCookie:"✅ Сохранено в <strong>cookie</strong> (30 дней).",savedSession:"ℹ️ Нет согласия на аналитику → сохранено только в <strong>sessionStorage</strong>.",loaded:"Загружены предыдущие ответы.",autosavedCookie:"Автосохранено в cookie.",autosavedSession:"Автосохранено в sessionStorage.",nothing:"Пока ничего не сохранено.",consentUpdated:"Согласие обновлено."},
+    hy: {langLabel:"Լեզու՝",h1:"Cookie ցուցադրական հարցաթերթիկ",intro:"Այս էջը ցույց է տալիս՝ ինչպես են տվյալները պահվում <span class=\"badge\">համաձայնությունից հետո</span>։ Եթե օգտվողը մերժում է ոչ-հիմնական cookie-ները, պատասխանները պահվում են միայն <strong>sessionStorage</strong>-ում։",consentStatus:"Համաձայնության վիճակ՝",consentHint:"Փնտրում ենք <code>cookie_consent</code> cookie-ն։ Եթե <em>analytics: true</em>, թույլ կտանք գրանցել պատասխանները cookie-ում։",allow:"Թույլատրել անալիտիկան (դեմո)",reject:"Մերժել անալիտիկան",stateNone:"ընտրություն դեռ չկա",stateAllow:"analytics՝ թույլատրված է",stateReject:"analytics՝ մերժված է",formTitle:"Կարճ հարցաթերթիկ (դեմո)",qLang:"Նախընտրելի լեզու",qMode:"Ինչպե՞ս եք նախընտրում հանդիպումները",modeOnline:"Առցանց",modeInPerson:"Անձամբ",qPrice:"Հարմար գին մեկ սեսիայի համար (AMD)",qTopic:"Հիմնական թեմա",optAnxiety:"ԱՆՀԱՆԳՍՏԱԾՈՒԹՅՈՒՆ",optRelationships:"ՀԱՐԱԲԵՐՈՒԹՅՈՒՆՆԵՐ",optBurnout:"ԱՅՐՄԱՆ ՍԻՆԴՐՈՄ",optSelfEsteem:"ԻՆՔՆԱԳՆԱՀԱՏՄԱՆ ԽՆԴԻՐՆԵՐ",qNote:"Լրացուցիչ նշում",notePH:"Այլ բաներ…",btnSave:"Պահպանել պատասխանները",btnLoad:"Բեռնել պահպանվածը",whatsStored:"Ինչ է պահված",cookieLabel:"Cookie",btnClearCookie:"Մաքրել cookie-ը",btnClearSS:"Մաքրել sessionStorage-ը",demoHint:"Ցուցադրության համար օգտագործում ենք ոչ-հիմնական <code>demo_survey</code> cookie։ Այն գրում ենք միայն երբ <code>cookie_consent</code>-ում կա <code>analytics: true</code>, հակառակ դեպքում՝ օգտագործում ենք <code>sessionStorage</code>։",savedCookie:"✅ Պահպանվեց <strong>cookie</strong>-ում (30 օր)։",savedSession:"ℹ️ Վերլուծության համաձայնությունը բացակայում է → պահպանվեց միայն <strong>sessionStorage</strong>-ում։",loaded:"Բեռնվեցին նախորդ պատասխանները։",autosavedCookie:"Ավտոպահպանվեց cookie-ում։",autosavedSession:"Ավտոպահպանվեց sessionStorage-ում։",nothing:"Դեռ ոչինչ պահպանված չէ։",consentUpdated:"Համաձայնությունը թարմացվեց։"}
+  };
+  const $ = (id)=>document.getElementById(id);
+  const DAYS = 30, LANG_COOKIE_DAYS = 180;
+  function getCookie(n){ const m=document.cookie.match(new RegExp('(?:^|; )'+n+'=([^;]+)')); return m?decodeURIComponent(m[1]):null; }
+  function setCookie(n,v,d){ const exp=new Date(Date.now()+d*864e5).toUTCString(); const same="SameSite=Lax; Path=/"+(location.protocol==='https:'?'; Secure':''); document.cookie=`${n}=${encodeURIComponent(v)}; Expires=${exp}; ${same}`; }
+  function delCookie(n){ const same="SameSite=Lax; Path=/"+(location.protocol==='https:'?'; Secure':''); document.cookie=`${n}=; Expires=Thu, 01 Jan 1970 00:00:00 GMT; ${same}`; }
+  function readConsent(){ try{return JSON.parse(getCookie('cookie_consent')||'null')}catch{return null} }
+  function writeConsent(a){ setCookie('cookie_consent', JSON.stringify({analytics:!!a, ts:new Date().toISOString()}), 365); }
+  function detectLang(){ const p1=(location.pathname.split('/')[1]||'').toLowerCase(); const viaPath=(['en','ru','hy'].includes(p1)?p1:null); const viaCookie=getCookie('lang'); return viaPath||viaCookie||'ru'; }
+  function applyLang(lang){ const L=I18N[lang]||I18N.ru; document.documentElement.lang=lang; document.querySelectorAll('[data-set-lang]').forEach(b=>b.classList.toggle('active', b.getAttribute('data-set-lang')===lang));
+    $('t-lang-label').textContent=L.langLabel; $('t-h1').textContent=L.h1; $('t-intro').innerHTML=L.intro; $('t-consent-status').textContent=L.consentStatus; $('t-consent-hint').innerHTML=L.consentHint; $('t-allow').textContent=L.allow; $('t-reject').textContent=L.reject;
+    $('t-form-title').textContent=L.formTitle; $('t-q-lang').textContent=L.qLang; $('t-q-mode').textContent=L.qMode; $('t-mode-online').textContent=L.modeOnline; $('t-mode-inperson').textContent=L.modeInPerson; $('t-q-price').textContent=L.qPrice; $('t-q-topic').textContent=L.qTopic; $('t-opt-anxiety').textContent=L.optAnxiety; $('t-opt-relationships').textContent=L.optRelationships; $('t-opt-burnout').textContent=L.optBurnout; $('t-opt-selfesteem').textContent=L.optSelfEsteem; $('t-q-note').textContent=L.qNote; $('msg').placeholder=L.notePH; $('t-btn-save').textContent=L.btnSave; $('t-btn-load').textContent=L.btnLoad; $('t-whatstored').textContent=L.whatsStored; $('t-cookie-label').textContent=L.cookieLabel; $('t-btn-clear-cookie').textContent=L.btnClearCookie; $('t-btn-clear-ss').textContent=L.btnClearSS; $('t-demo-hint').innerHTML=L.demoHint; stateText.none=L.stateNone; stateText.allow=L.stateAllow; stateText.reject=L.stateReject; noteText.savedCookie=L.savedCookie; noteText.savedSession=L.savedSession; noteText.autosavedCookie=L.autosavedCookie; noteText.autosavedSession=L.autosavedSession; noteText.loaded=L.loaded; noteText.nothing=L.nothing; noteText.consentUpdated=L.consentUpdated; setCookie('lang', lang, LANG_COOKIE_DAYS); }
+  const stateText={none:'',allow:'',reject:''}, noteText={savedCookie:'',savedSession:'',autosavedCookie:'',autosavedSession:'',loaded:'',nothing:'',consentUpdated:''};
+  let currentLang=detectLang(); applyLang(currentLang); document.querySelectorAll('[data-set-lang]').forEach(btn=>btn.addEventListener('click', ()=>{currentLang=btn.getAttribute('data-set-lang'); applyLang(currentLang);}));
+  function updateDebug(){ $('cookieVal').textContent=getCookie('demo_survey')||'(none)'; $('ssVal').textContent=sessionStorage.getItem('demo_survey')||'(none)'; $('consentVal').textContent=getCookie('cookie_consent')||'(none)'; }
+  function renderConsentState(){ const c=readConsent(); if(!c) $('consentState').innerHTML=`<span class="warn">${stateText.none}</span>`; else if(c.analytics) $('consentState').innerHTML=`<span class="ok">${stateText.allow}</span>`; else $('consentState').innerHTML=`<span class="warn">${stateText.reject}</span>`; }
+  renderConsentState();
+  $('allowBtn').addEventListener('click', ()=>{ writeConsent(true); $('consentNote').textContent=noteText.consentUpdated; const raw=sessionStorage.getItem('demo_survey'); if(raw){ setCookie('demo_survey', raw, 30);} renderConsentState(); updateDebug(); });
+  $('rejectBtn').addEventListener('click', ()=>{ writeConsent(false); $('consentNote').textContent=noteText.consentUpdated; delCookie('demo_survey'); renderConsentState(); updateDebug(); });
+  function readForm(){ const fd=new FormData(document.getElementById('surveyForm')); return {lang:fd.get('lang'),mode:fd.get('mode'),price:fd.get('price'),topic:fd.get('topic'),msg:fd.get('msg'),ts:new Date().toISOString()}; }
+  function writeData(data,isAuto=false){ const c=readConsent(); if(c&&c.analytics===true){ setCookie('demo_survey', JSON.stringify(data), 30); $('saveNote').innerHTML=isAuto?noteText.autosavedCookie:noteText.savedCookie; } else { sessionStorage.setItem('demo_survey', JSON.stringify(data)); $('saveNote').innerHTML=isAuto?noteText.autosavedSession:noteText.savedSession; } updateDebug(); }
+  document.getElementById('surveyForm').addEventListener('submit', e=>{ e.preventDefault(); writeData(readForm(), false); });
+  let tId; function queueAutoSave(){ clearTimeout(tId); tId=setTimeout(()=>writeData(readForm(), true), 300); }
+  document.getElementById('surveyForm').addEventListener('input', queueAutoSave);
+  document.getElementById('surveyForm').addEventListener('change', queueAutoSave);
+  function loadSaved(){ let raw=getCookie('demo_survey'); if(!raw) raw=sessionStorage.getItem('demo_survey'); if(!raw) return false; try{ const d=JSON.parse(raw); const lr=document.querySelector(`input[name="lang"][value="${d.lang}"]`); lr&&(lr.checked=true); const mr=document.querySelector(`input[name="mode"][value="${d.mode}"]`); mr&&(mr.checked=true); $('price').value=d.price||''; $('topic').value=d.topic||'anxiety'; $('msg').value=d.msg||''; $('saveNote').innerHTML=noteText.loaded; return true; }catch{ return false; } }
+  document.getElementById('loadBtn').addEventListener('click', ()=>{ if(!loadSaved()) alert(noteText.nothing); });
+  loadSaved(); updateDebug();
+})();
+// END same as EN
+</script>
+</body>
+</html>
+

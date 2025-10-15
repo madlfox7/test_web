@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Демо Cookie: персонализация, тема и имя</title>
+<style>
+  :root {
+    --bg-dark:#0f172a; --card-dark:#111827; --text-dark:#e5e7eb;
+    --bg-light:#f9fafb; --card-light:#ffffff; --text-light:#111827;
+    --muted-dark:#9ca3af; --muted-light:#6b7280;
+  }
+  * { box-sizing:border-box; transition:background .25s,color .25s; }
+  body { margin:0; font:16px/1.5 system-ui,Segoe UI,Roboto; background:var(--bg-dark); color:var(--text-dark) }
+  body.light { background:var(--bg-light); color:var(--text-light) }
+  .wrap { max-width:920px; margin:auto; padding:32px 16px }
+  h1 { font-size:clamp(22px,2.6vw,32px); margin:0 0 8px }
+  .lead { color:var(--muted-dark); margin:0 0 20px }
+  body.light .lead { color:var(--muted-light) }
+  .grid { display:grid; gap:16px; grid-template-columns:1.3fr 1fr }
+  .card { background:rgba(17,24,39,.8); border:1px solid rgba(148,163,184,.18); border-radius:16px; padding:18px; backdrop-filter:blur(6px) }
+  body.light .card { background:var(--card-light); border-color:rgba(0,0,0,.1) }
+  .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap }
+  .badge { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#111827; border:1px solid rgba(148,163,184,.2); color:#cbd5e1 }
+  body.light .badge { background:#f3f4f6; border-color:rgba(0,0,0,.1); color:#111827 }
+  .btn { border:1px solid rgba(148,163,184,.35); background:#0b1224; color:#e5e7eb; padding:10px 14px; border-radius:10px; cursor:pointer }
+  .btn.primary { background:linear-gradient(180deg,#2563eb,#1d4ed8); border-color:#1d4ed8 }
+  .btn.ghost { background:transparent }
+  .btn.danger { border-color:#ef4444; color:#fecaca }
+  select, input[type=text] {
+    padding:10px 12px; border-radius:10px; border:1px solid rgba(148,163,184,.35); background:#0b1224; color:#e5e7eb
+  }
+  body.light select, body.light input[type=text] { background:#f9fafb; color:#111827 }
+  .ad { display:grid; place-items:center; min-height:220px; border-radius:14px; border:1px dashed rgba(148,163,184,.35); text-align:center; padding:14px }
+  .muted { color:var(--muted-dark) }
+  body.light .muted { color:var(--muted-light) }
+  .kvs { font-size:14px; color:#94a3b8 }
+  body.light .kvs { color:#6b7280 }
+  .hr { height:1px; background:linear-gradient(90deg,transparent,rgba(148,163,184,.35),transparent); margin:14px 0 }
+  .hello { margin:8px 0 12px; font-weight:600 }
+  @media (max-width:900px){ .grid{ grid-template-columns:1fr } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🍪 Демо cookie: персонализация, тема и имя</h1>
+  <p class="lead">Cookie — долгосрочно; без cookie — в рамках вкладки/сеанса. Имя видно сразу, но сохраняется только с согласия.</p>
+
+  <div class="grid">
+    <!-- Управление -->
+    <section class="card">
+      <div class="row" style="justify-content:space-between">
+        <div class="badge">Согласие: <b id="consentState">не задано</b></div>
+        <div class="row">
+          <button class="btn primary" id="btnAllow">Разрешить cookie</button>
+          <button class="btn ghost" id="btnDeny">Запретить</button>
+          <button class="btn danger" id="btnReset">Сбросить демо</button>
+        </div>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row">
+        <label for="name">Имя для приветствия:</label>
+        <input id="name" type="text" placeholder="Введите имя"/>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row">
+        <label for="category">Интересы (реклама):</label>
+        <select id="category">
+          <option value="travel">Путешествия</option>
+          <option value="sport">Спорт</option>
+          <option value="tech">Технологии</option>
+          <option value="mind">Осознанность</option>
+        </select>
+        <button class="btn" id="btnSave">Сохранить выбор</button>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="row">
+        <label for="theme">Тема сайта:</label>
+        <select id="theme">
+          <option value="dark">Тёмная</option>
+          <option value="light">Светлая</option>
+        </select>
+        <button class="btn" id="btnTheme">Применить</button>
+      </div>
+
+      <p class="kvs">
+        Cookie: <code>consent</code>, <code>ad_cat</code>, <code>theme</code>, <code>name</code> (при согласии).<br/>
+        Без cookie: реклама хранится в <code>sessionStorage.ad_cat_ss</code>, имя не сохраняется.
+      </p>
+    </section>
+
+    <!-- Витрина рекламы -->
+    <section class="card">
+      <div class="badge">🪧 Рекламный слот</div>
+      <div class="hello" id="hello" aria-live="polite">Привет!</div>
+      <div class="ad" id="adSlot"></div>
+      <p class="kvs" id="debug"></p>
+    </section>
+  </div>
+</div>
+
+<script>
+/* ---------- cookie helpers ---------- */
+function escapeName(n){ return n.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,'\\$&'); }
+function setCookie(name, value, days){
+  const d = new Date(); d.setTime(d.getTime() + (days*24*60*60*1000));
+  const expires = "expires="+ d.toUTCString();
+  const secure = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${name}=${encodeURIComponent(value)}; ${expires}; path=/; SameSite=Lax${secure}`;
+}
+function getCookie(name){
+  const m = document.cookie.match(new RegExp('(?:^|; )'+escapeName(name)+'=([^;]*)'));
+  return m ? decodeURIComponent(m[1]) : null;
+}
+function delCookie(name){
+  const secure = location.protocol === "https:" ? "; Secure" : "";
+  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; SameSite=Lax${secure}`;
+}
+
+/* ---------- каталог рекламы ---------- */
+const ads = {
+  travel:{emoji:"🏝️",title:"Туры −20%",text:"Стамбул, Тбилиси, Дубай — мечты рядом."},
+  sport:{emoji:"🏃",title:"Кроссовки ProRun",text:"Легче на 30% — быстрее каждый км."},
+  tech:{emoji:"💻",title:"Nova 14",text:"Тонкий, тихий, 18 часов автономности."},
+  mind:{emoji:"🧘",title:"CalmYou",text:"Медитации и дыхание 4–7–8."}
+};
+
+const el = {
+  consent: document.getElementById('consentState'),
+  ad: document.getElementById('adSlot'),
+  dbg: document.getElementById('debug'),
+  cat: document.getElementById('category'),
+  theme: document.getElementById('theme'),
+  name: document.getElementById('name'),
+  hello: document.getElementById('hello')
+};
+
+function getConsent(){ return getCookie('consent'); }
+
+/* ----- реклама: cookie или sessionStorage ----- */
+function getAdCat(){
+  return getConsent()==='1' ? getCookie('ad_cat') : sessionStorage.getItem('ad_cat_ss');
+}
+function setAdCat(v){
+  if (getConsent()==='1') setCookie('ad_cat', v, 365);
+  else sessionStorage.setItem('ad_cat_ss', v);
+}
+function clearAdCat(){
+  delCookie('ad_cat'); sessionStorage.removeItem('ad_cat_ss');
+}
+
+/* ----- имя: отображаем всегда, сохраняем только с consent=1 ----- */
+function updateHelloDisplay(srcVal){
+  const name = (srcVal ?? el.name.value ?? '').trim();
+  el.hello.textContent = name ? `Привет, ${name}!` : 'Привет!';
+}
+function loadName(){
+  const saved = getConsent()==='1' ? getCookie('name') : null;
+  if (saved) el.name.value = saved;
+  updateHelloDisplay(saved ?? el.name.value);
+}
+function maybePersistName(){
+  const v = (el.name.value || '').trim();
+  if (getConsent()==='1') { v ? setCookie('name', v, 365) : delCookie('name'); }
+  updateHelloDisplay(v); // всегда обновляем UI
+}
+
+/* ----- миграция при выдаче согласия ----- */
+function migrateSessionToCookiesOnConsent(){
+  if (getConsent()!=='1') return;
+  // ad category: переносим, если cookie ещё нет
+  const ssCat = sessionStorage.getItem('ad_cat_ss');
+  if (ssCat && !getCookie('ad_cat')) setCookie('ad_cat', ssCat, 365);
+  // theme: сохранить текущий выбор из селекта
+  const t = el.theme.value;
+  if (t) setCookie('theme', t, 365);
+  // name: если поле заполнено — сохранить
+  const n = (el.name.value || '').trim();
+  if (n) setCookie('name', n, 365);
+}
+
+/* ----- основной рендер ----- */
+function render(){
+  const consent = getConsent();
+  const cat = getAdCat();
+  const theme = getCookie('theme');
+
+  // Тема: сохраняется только при consent=1
+  const effectiveTheme = (consent==='1' && theme==='light') ? 'light' : 'dark';
+  document.body.classList.toggle('light', effectiveTheme==='light');
+  el.theme.value = effectiveTheme;
+
+  // Состояние согласия
+  el.consent.textContent = consent==='1' ? 'разрешено' : (consent==='0' ? 'запрещено' : 'не задано');
+
+  // Реклама
+  if (cat && ads[cat]){
+    const a = ads[cat];
+    el.ad.innerHTML = `<div><div style="font-size:42px">${a.emoji}</div><h3>${a.title}</h3><p class="muted">${a.text}</p>
+      <p class="kvs">Источник предпочтения: <code>${consent==='1' ? 'cookie: ad_cat' : 'sessionStorage: ad_cat_ss'}</code></p></div>`;
+    el.cat.value = cat;
+  } else {
+    el.ad.innerHTML = `<div><div class="muted">Нет персонализации</div><h3>Вы здесь впервые?</h3><p class="muted">Общий баннер без выбранной категории.</p></div>`;
+    // сброс селекта к первому пункту, если ничего не выбрано
+    el.cat.value = el.cat.querySelector('option')?.value || 'travel';
+  }
+
+  // Имя
+  loadName();
+
+  // Debug
+  el.dbg.textContent = "Cookies: " + (document.cookie || "(пусто)") +
+    " | sessionStorage.ad_cat_ss: " + (sessionStorage.getItem('ad_cat_ss') ?? "(пусто)");
+}
+
+/* ----- обработчики ----- */
+document.getElementById('btnAllow').onclick = ()=>{
+  setCookie('consent','1',365);
+  migrateSessionToCookiesOnConsent(); // перенесём выборы из сессии
+  render();
+};
+document.getElementById('btnDeny').onclick  = ()=>{
+  setCookie('consent','0',365);
+  clearAdCat(); delCookie('theme'); delCookie('name');
+  render();
+};
+document.getElementById('btnSave').onclick  = ()=>{ setAdCat(el.cat.value); render(); };
+document.getElementById('btnTheme').onclick = ()=>{
+  const v = el.theme.value;
+  if (getConsent()==='1') setCookie('theme', v, 365);
+  document.body.classList.toggle('light', v==='light'); // мгновенно
+  // синхронизация: на следующий render состояние зафиксируется
+};
+el.name.addEventListener('input', maybePersistName);
+
+document.getElementById('btnReset').onclick = ()=>{
+  ['consent','ad_cat','theme','name'].forEach(delCookie);
+  sessionStorage.removeItem('ad_cat_ss');
+  el.name.value = '';
+  render();
+};
+
+render();
+</script>
+</body>
+</html>
