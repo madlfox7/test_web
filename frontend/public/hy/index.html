@@ -72,6 +72,9 @@
     section{padding:clamp(48px,8vw,96px) 0;border-top:1px solid var(--line)}
     .section-title{font-size:28px;margin:0 0 12px}
     .section-sub{color:var(--muted);margin:0 0 28px}
+  /* Callout CTA under Approach */
+  .cta-callout{display:flex;gap:12px;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin:8px 0 24px}
+  .cta-callout__text{color:var(--fg)}
 
     /* Universal responsive grids */
     .grid-3,.testimonials,.pricing{
@@ -113,6 +116,7 @@
       .container{padding:0 8px}
       .btn, input, textarea, select { width:100%; box-sizing:border-box; }
       .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
+      .cta-callout{flex-direction:column;align-items:stretch}
     }
     @media (max-width:360px){
       .pill{font-size:13px;padding:6px 10px}
@@ -212,6 +216,12 @@
   <section id="approach" class="container" data-route="/approach">
     <h2 class="section-title">Մեր մոտեցումը</h2>
     <p class="section-sub">Ջերմ, կառուցվածքային և գործնական։ Ծրագիր՝ ձեր նպատակներին ու տեմպին համապատասխան։</p>
+    <div class="cta-callout" role="region" aria-label="Մասնագետի ընտրություն">
+      <div class="cta-callout__text">
+        Ցանկանու՞մ եք անմիջապես ուսումնասիրել մասնագետներին։ <strong>Ընտրեք մասնագետների լայն ցանկից Հայաստանում։</strong>
+      </div>
+      <a class="btn primary" href="/hy/specialists.html">Ընտրել մասնագետ</a>
+    </div>
     <div class="grid-3">
       <article class="feature">
         <h3>1) Լսել և քարտեզել</h3>
@@ -421,6 +431,7 @@
     // Լեզվի փոխանակիչ՝ /hy/ /ru/ /en/ + պահել ընթացիկ բաժինը
     const langSel = document.getElementById('langSwitch');
     function goLang(lang){
+      try { localStorage.setItem('PsyAid_lang', lang); } catch(_) {}
       const base = lang==='hy'?'/hy/':lang==='ru'?'/ru/':lang==='en'?'/en/':'/';
       const hash = location.hash || '#/';
       location.href = base + hash;

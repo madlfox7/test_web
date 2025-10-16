@@ -14,7 +14,7 @@
   <style>html[data-hide]{visibility:hidden}</style>
   <link rel="stylesheet" href="index.css" />
 
-  <!-- lang is choosen => instant redirect-->
+  <!-- lang is chosen => instant redirect or save on click -->
   <script>
     (function () 
     {
@@ -39,6 +39,7 @@ if (!isLangPath && !sessionStorage.getItem('lang_auto_once'))
   location.replace('/' + guess + '/' + hash);
   return;
 }
+        // If no redirect happened, bind click handlers to remember choice
         document.documentElement.removeAttribute('data-hide');
       } catch (e) 
       {
@@ -62,6 +63,17 @@ if (!isLangPath && !sessionStorage.getItem('lang_auto_once'))
 
  
   <script src="./index.js"></script>
+  <script>
+    // Save language if user clicks a link here
+    (function(){
+      try{
+        document.querySelectorAll('[data-lang]')
+          .forEach(a=>a.addEventListener('click', function(){
+            try{ localStorage.setItem('PsyAid_lang', this.getAttribute('data-lang')); }catch(_){ }
+          }));
+      }catch(_){ }
+    })();
+  </script>
 
 
   <div role="note" aria-label="Safety disclaimer" class="disclaimer">
