@@ -38,6 +38,8 @@
     .controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
     .langswitch a{margin-right:8px;text-decoration:none}
     .top-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+  .quick-links{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 16px}
+  .quick-links a{text-decoration:underline;font-weight:600}
     @media (max-width:980px){
       .navlinks{display:none}
       .menu-btn{display:inline-flex}
@@ -83,6 +85,10 @@
       <h1 style="margin:0">PsyAid — Специалисты</h1>
     </div>
     <p class="muted" style="margin:4px 0 12px">Фильтруйте по городу, языку или ищите по имени/специализации.</p>
+    <div class="quick-links" aria-label="Полезные ссылки">
+      <a href="/ru/#/approach">Узнать о нашем подходе →</a>
+      <a href="/ru/#/pricing">Сравнить планы →</a>
+    </div>
 
     <div class="controls">
       <input id="q" placeholder="Поиск имени или специализации…"/>

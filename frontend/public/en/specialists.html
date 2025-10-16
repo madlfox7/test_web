@@ -39,6 +39,8 @@
     .controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
     .langswitch a{margin-right:8px;text-decoration:none}
     .top-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+  .quick-links{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0 16px}
+  .quick-links a{text-decoration:underline;font-weight:600}
     @media (max-width:980px){
       .navlinks{display:none}
       .menu-btn{display:inline-flex}
@@ -84,6 +86,10 @@
       <h1 style="margin:0">PsyAid — Specialists</h1>
     </div>
     <p class="muted" style="margin:4px 0 12px">Filter by city, language or search by name/specialty.</p>
+    <div class="quick-links" aria-label="Helpful links">
+      <a href="/en/#/approach">Learn about our approach →</a>
+      <a href="/en/#/pricing">Compare plans →</a>
+    </div>
 
     <div class="controls">
       <input id="q" placeholder="Search name or specialty…"/>

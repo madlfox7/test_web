@@ -83,6 +83,23 @@
     }
     .feature{padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
     .feature h3{margin:8px 0}
+    /* Выравнивание CTA в услугах + эстетика */
+    #services .feature{display:flex;flex-direction:column}
+    #services .feature .inline-cta{
+      margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;flex-wrap:wrap;font-size:.95rem;
+      border-top:1px dashed var(--line);
+    }
+    #services .inline-cta .or{display:none}
+    #services .inline-cta a{
+      display:flex;align-items:center;justify-content:center;gap:6px;
+      width:100%;text-align:center;
+      padding:10px 12px;border:1px solid var(--line);border-radius:999px;
+      background:#fff;color:var(--brand);text-decoration:none;font-weight:600
+    }
+    #services .inline-cta a:hover{background:#f8fafc;border-color:color-mix(in srgb, var(--brand) 25%, var(--line))}
+    #services .inline-cta a:focus-visible{outline:3px solid color-mix(in srgb, var(--brand) 70%, white);outline-offset:2px}
+    #services .inline-cta a:first-of-type::before{content:'🔎'}
+    #services .inline-cta a:last-of-type::before{content:'📞'}
     .cta{display:flex;gap:14px;flex-wrap:wrap}
     .quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
     .quote p{margin:0 0 10px}
@@ -200,16 +217,31 @@
         <div class="pill" aria-hidden="true">КПТ • SFBT</div>
         <h3>Индивидуальная терапия</h3>
         <p>Сессии при тревожности, стрессе, депрессии, сниженной самооценке и жизненных переменах — с использованием КПТ и решения-ориентированных методов.</p>
+        <div class="inline-cta">
+          <a href="/ru/specialists.html?q=individual">Посмотреть специалистов</a>
+          <span class="or">или</span>
+          <a href="#/contact">Записаться на вводный звонок</a>
+        </div>
       </article>
       <article class="feature">
         <div class="pill" aria-hidden="true">Пары</div>
         <h3>Консультирование отношений</h3>
         <p>Улучшаем коммуникацию, восстанавливаем доверие и развиваем здоровые навыки ведения споров в безопасной совместной атмосфере.</p>
+        <div class="inline-cta">
+          <a href="/ru/specialists.html?q=couples">Посмотреть специалистов</a>
+          <span class="or">или</span>
+          <a href="#/contact">Записаться на вводный звонок</a>
+        </div>
       </article>
       <article class="feature">
         <div class="pill" aria-hidden="true">Подростки</div>
         <h3>Поддержка студентов и подростков</h3>
         <p>Учебный стресс, тревожность перед экзаменами, вопросы идентичности — практичные стратегии баланса и устойчивости.</p>
+        <div class="inline-cta">
+          <a href="/ru/specialists.html?q=student">Посмотреть специалистов</a>
+          <span class="or">или</span>
+          <a href="#/contact">Записаться на вводный звонок</a>
+        </div>
       </article>
     </div>
   </section>
