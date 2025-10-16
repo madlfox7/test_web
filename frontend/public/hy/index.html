@@ -11,6 +11,7 @@
   <meta name="description" content="PsyAid-ը բարեհամբույր և գաղտնի հոգեբանական օգնություն է Հայաստանում։ Ամրագրեք անվճար 15-րոպեանոց նախնական զանգ և սկսեք ձեզ զգալ ավելի լավ՝ քայլ առ քայլ։" />
   <meta name="theme-color" content="#6c7cff" />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <meta name="google-site-verification" content="SLoSipyPeQO0Y1LOBJTYzKxoSSi-JAJuskbKoRsjWJg" />
 
   <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://example.com/hy/" />
@@ -127,11 +128,19 @@
     label{font-weight:600}
     input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit}
     .helptext{color:var(--muted);font-size:.95rem}
-  /* Մեկ տողի նուրբ նշում (գների հատվածում) */
-  .note-line{color:var(--muted);margin:6px 0 10px;display:flex;align-items:center;gap:8px;font-size:.98rem}
-  .note-line::before{content:'\1F4AC';opacity:.9}
-  .note-line a{color:var(--brand);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
-  @media (max-width:480px){.note-line{font-size:.95rem}}
+  /* Նուրբ տեղեկատվական նշում՝ բրենդային փայլով, բջջայինում հարմար */
+  .note-line{
+    display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;
+    margin:8px 0 12px; padding:10px 12px; border-radius:12px;
+    background:color-mix(in srgb, var(--brand) 8%, white);
+    border:1px solid color-mix(in srgb, var(--brand) 18%, var(--line));
+    color:color-mix(in srgb, var(--fg) 72%, var(--muted));
+    font-size:.98rem;
+  }
+  .note-line::before{content:'\2139\FE0F'; /* ℹ️ */ font-size:1.05em; line-height:1; opacity:.95; margin-top:1px}
+  .note-line a{color:var(--brand);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;word-break:break-word;overflow-wrap:anywhere}
+  @media (max-width:600px){.note-line{font-size:.95rem;gap:8px;padding:10px 10px;border-radius:10px}}
+  @media (max-width:360px){.note-line::before{display:none}}
 
     footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted)}
 
@@ -343,6 +352,8 @@
   <section id="contact" class="container" data-route="/contact">
     <h2 class="section-title">Ամրագրեք անվճար նախնական զանգ</h2>
     <p class="section-sub">Ավելի հարմար է՝ էլ. փոստով կամ հեռախոսով՞ <a href="mailto:hello@PsyAid.example">hello@PsyAid.example</a> · <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    <p class="note-line">Վստահ չե՞ք, թե որ ծառայությունն է ավելի հարմար ձեզ. Տեսեք մեր <a href="#/approach">Մոտեցումը</a> կամ դիտեք <a href="/hy/specialists.html">Մասնագետներին</a>՝ առաջ ամրագրելը։</p>
+    <p class="note-line">Պատրա՞ստ եք սկսել։ <a href="#/contact">Ամրագրեք նախնական զանգ</a> կամ <a href="#/services">Դիտեք ծառայությունները</a>։</p>
     <div class="contact">
       <form id="contactForm" aria-label="Կապի ձև">
         <div>
@@ -398,6 +409,26 @@
       <summary><strong>Կա՞ նվազեցված արժեք</strong></summary>
       <p>Այո։ Խոսեք դրա մասին նախնական զանգի ընթացքում՝ ունենք սահմանափակ թվով արտոնյալ տեղեր։</p>
     </details>
+    <form id="faqAskForm" class="feature" aria-label="Տալ հարց">
+      <h3 style="margin:0 0 8px">Չեք գտել պատասխանը՞</h3>
+      <p class="helptext" style="margin:0 0 10px">Գրեք մեզ ձեր հարցը — կպատասխանենք 1–2 աշխատանքային օրվա ընթացքում։</p>
+      <div style="display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <div>
+          <label for="faqName">Անուն</label>
+          <input id="faqName" name="name" autocomplete="name" />
+        </div>
+        <div>
+          <label for="faqEmail">Էլ. փոստ</label>
+          <input id="faqEmail" name="email" type="email" autocomplete="email" required />
+        </div>
+      </div>
+      <div>
+        <label for="faqQuestion">Ձեր հարցը</label>
+        <textarea id="faqQuestion" name="question" rows="3" required placeholder="Գրեք ձեր հարցը…"></textarea>
+      </div>
+      <div class="helptext">Նախընտրում եք էլ. փոստը՞ <a href="mailto:hello@PsyAid.example">hello@PsyAid.example</a></div>
+      <button class="btn primary" type="submit">Ուղարկել</button>
+    </form>
   </section>
 
   <footer>
@@ -492,6 +523,22 @@
       location.href = base + hash;
     }
     langSel && langSel.addEventListener('change', e => goLang(e.target.value));
+    // ՀՏՀ. արագ հարցի ֆորմա -> mailto
+    (function(){
+      const f=document.getElementById('faqAskForm');
+      if(!f) return;
+      f.addEventListener('submit',function(e){
+        e.preventDefault();
+        const d=new FormData(f);
+        const name=(d.get('name')||'').toString().trim();
+        const email=(d.get('email')||'').toString().trim();
+        const q=(d.get('question')||'').toString().trim();
+        const subject=encodeURIComponent('FAQ հարց կայքից');
+        const body=encodeURIComponent(`Անուն: ${name}\nEmail: ${email}\n\nՀարց:\n${q}`);
+        window.location.href=`mailto:hello@PsyAid.example?subject=${subject}&body=${body}`;
+        try{f.reset();}catch(_){ }
+      });
+    })();
   </script>
 
   <!-- Գլոբալ անվտանգության հիշեցում (ֆիքսված, փակվող «×») -->

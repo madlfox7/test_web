@@ -8,6 +8,7 @@
   <meta name="description" content="PsyAid — доброжелательная и конфиденциальная психологическая помощь в Армении. Запишитесь на бесплатный 15-минутный вводный звонок и начните чувствовать себя лучше — шаг за шагом." />
   <meta name="theme-color" content="#6c7cff" />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+  <meta name="google-site-verification" content="SLoSipyPeQO0Y1LOBJTYzKxoSSi-JAJuskbKoRsjWJg" />
 
   <!-- Canonical + hreflang -->
   <link rel="canonical" href="https://example.com/ru/" />
@@ -117,11 +118,19 @@
     label{font-weight:600}
     input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit}
     .helptext{color:var(--muted);font-size:.95rem}
-  /* Однострочные примечания (под ценами) */
-  .note-line{color:var(--muted);margin:6px 0 10px;display:flex;align-items:center;gap:8px;font-size:.98rem}
-  .note-line::before{content:'\1F4AC';opacity:.9}
-  .note-line a{color:var(--brand);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
-  @media (max-width:480px){.note-line{font-size:.95rem}}
+  /* Нотисы: брендовый мягкий фон, комфортно на мобильных */
+  .note-line{
+    display:flex;align-items:flex-start;gap:10px;flex-wrap:wrap;
+    margin:8px 0 12px; padding:10px 12px; border-radius:12px;
+    background:color-mix(in srgb, var(--brand) 8%, white);
+    border:1px solid color-mix(in srgb, var(--brand) 18%, var(--line));
+    color:color-mix(in srgb, var(--fg) 72%, var(--muted));
+    font-size:.98rem;
+  }
+  .note-line::before{content:'\2139\FE0F'; /* ℹ️ */ font-size:1.05em; line-height:1; opacity:.95; margin-top:1px}
+  .note-line a{color:var(--brand);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px;word-break:break-word;overflow-wrap:anywhere}
+  @media (max-width:600px){.note-line{font-size:.95rem;gap:8px;padding:10px 10px;border-radius:10px}}
+  @media (max-width:360px){.note-line::before{display:none}}
 
     footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted)}
 
@@ -333,6 +342,8 @@
   <section id="contact" class="container" data-route="/contact">
     <h2 class="section-title">Запишитесь на бесплатный вводный звонок</h2>
     <p class="section-sub">Удобнее по почте или телефону? <a href="mailto:hello@PsyAid.example">hello@PsyAid.example</a> · <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+    <p class="note-line">Не уверены, какая услуга подходит? Посмотрите наш <a href="#/approach">Подход</a> или просмотрите <a href="/ru/specialists.html">Специалистов</a> перед записью.</p>
+    <p class="note-line">Готовы начать? <a href="#/contact">Запишитесь на вводный звонок</a> или <a href="#/services">Ознакомьтесь с услугами</a>.</p>
     <div class="contact">
       <form id="contactForm" aria-label="Форма связи">
         <div>
@@ -388,6 +399,44 @@
       <summary><strong>Есть ли сниженная стоимость?</strong></summary>
       <p>Да. Сообщите об этом на вводном звонке — у нас есть ограниченное число льготных мест.</p>
     </details>
+    <form id="faqAskForm" class="feature" aria-label="Задать вопрос">
+      <h3 style="margin:0 0 8px">Не нашли ответ?</h3>
+      <p class="helptext" style="margin:0 0 10px">Напишите нам вопрос — ответим в течение 1–2 рабочих дней.</p>
+      <div style="display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+        <div>
+          <label for="faqName">Ваше имя</label>
+          <input id="faqName" name="name" autocomplete="name" />
+        </div>
+        <div>
+          <label for="faqEmail">Email</label>
+          <input id="faqEmail" name="email" type="email" autocomplete="email" required />
+        </div>
+      </div>
+      <div>
+        <label for="faqQuestion">Ваш вопрос</label>
+        <textarea id="faqQuestion" name="question" rows="3" required placeholder="Задайте вопрос…"></textarea>
+      </div>
+      <div class="helptext">Предпочитаете почту? <a href="mailto:hello@PsyAid.example">hello@PsyAid.example</a></div>
+      <button class="btn primary" type="submit">Отправить</button>
+    </form>
+    <script>
+      // FAQ: быстрая форма вопроса -> mailto
+      (function(){
+        const f=document.getElementById('faqAskForm');
+        if(!f) return;
+        f.addEventListener('submit',function(e){
+          e.preventDefault();
+          const d=new FormData(f);
+          const name=(d.get('name')||'').toString().trim();
+          const email=(d.get('email')||'').toString().trim();
+          const q=(d.get('question')||'').toString().trim();
+          const subject=encodeURIComponent('FAQ: вопрос с сайта');
+          const body=encodeURIComponent(`Имя: ${name}\nEmail: ${email}\n\nВопрос:\n${q}`);
+          window.location.href=`mailto:hello@PsyAid.example?subject=${subject}&body=${body}`;
+          try{f.reset();}catch(_){ }
+        });
+      })();
+    </script>
   </section>
 
   <footer>
