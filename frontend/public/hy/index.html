@@ -96,23 +96,25 @@
     }
     .feature{padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
     .feature h3{margin:8px 0}
-    /* CTA-ների հավասարեցում և նուրբ ձևավորում */
+    /* Սեղմ պարբերություններ կետ-մարկերով (ինչպես EN) */
+    #services{ --bullet-indent: 18px; }
+    .feature.bulleted p{position:relative;padding-left:var(--bullet-indent);margin:6px 0}
+    .feature.bulleted p::before{content:'•';position:absolute;left:0;top:.35em;color:var(--brand);font-weight:700;line-height:1}
+    /* CTA-ների հավասարեցում (դես्कթոփ՝ ընդհանուր վահանակ) */
     #services .feature{display:flex;flex-direction:column}
-    #services .feature .inline-cta{
-      margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;flex-wrap:wrap;font-size:.95rem;
-      border-top:1px dashed var(--line);
-    }
+    /* Դեսկթոփ՝ թաքցնել քարտային CTA-ները */
+    #services .feature .inline-cta{display:none;margin-top:auto;padding-top:10px;flex-direction:column;gap:8px;align-items:flex-start;flex-wrap:wrap;font-size:.95rem;border-top:1px dashed var(--line)}
+    /* Ընդհանուր CTA վահանակը ցանցի ներքևում */
+    #services .shared-cta{display:flex;justify-content:center;gap:10px;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line)}
     #services .inline-cta .or{display:none}
     #services .inline-cta a{
-      display:flex;align-items:center;justify-content:center;gap:6px;
-      width:100%;text-align:center;
-      padding:10px 12px;border:1px solid var(--line);border-radius:999px;
-      background:#fff;color:var(--brand);text-decoration:none;font-weight:600
-    }
-    #services .inline-cta a:hover{background:#f8fafc;border-color:color-mix(in srgb, var(--brand) 25%, var(--line))}
-    #services .inline-cta a:focus-visible{outline:3px solid color-mix(in srgb, var(--brand) 70%, white);outline-offset:2px}
-    #services .inline-cta a:first-of-type::before{content:'🔎'}
-    #services .inline-cta a:last-of-type::before{content:'📞'}
+      display:flex;align-items:center;justify-content:center;gap:6px;width:100%;text-align:center;padding:10px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--brand);text-decoration:none;font-weight:600}
+    #services .shared-cta a{
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;text-align:center;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--brand);text-decoration:none;font-weight:600}
+    #services .inline-cta a:hover, #services .shared-cta a:hover{background:#f8fafc;border-color:color-mix(in srgb, var(--brand) 25%, var(--line))}
+    #services .inline-cta a:focus-visible, #services .shared-cta a:focus-visible{outline:3px solid color-mix(in srgb, var(--brand) 70%, white);outline-offset:2px}
+    #services .inline-cta a:first-of-type::before, #services .shared-cta a:first-of-type::before{content:'🔎'}
+    #services .inline-cta a:last-of-type::before, #services .shared-cta a:last-of-type::before{content:'📞'}
     .cta{display:flex;gap:14px;flex-wrap:wrap}
     .quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
     .quote p{margin:0 0 10px}
@@ -162,6 +164,9 @@
       .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
       .cta-callout{grid-template-columns:1fr}
       .cta-actions{flex-wrap:wrap}
+      /* Մոբայլ՝ ցույց տալ քարտային CTA-ները, թաքցնել ընդհանուր վահանակը */
+      #services .feature .inline-cta{display:flex}
+      #services .shared-cta{display:none}
     }
     @media (max-width:360px){
       .pill{font-size:13px;padding:6px 10px}
@@ -240,36 +245,44 @@
     <h2 class="section-title">Ինչպես ենք օգնում</h2>
     <p class="section-sub">Կարճաժամկետ աջակցություն կամ երկարաժամկետ թերապիա՝ առցանց կամ առկա։</p>
     <div class="grid-3">
-      <article class="feature">
+      <article class="feature bulleted">
         <div class="pill" aria-hidden="true">ԿՎԹ • ԼԿԹ</div>
         <h3>Անհատական թերապիա</h3>
-        <p>Սեանսներ տագնապի, սթրեսի, ընկճվածության, ինքնագնահատականի և կյանքի փոփոխությունների դեպքում՝ ԿՎԹ-ի և լուծումակենտրոն մեթոդներով։</p>
+        <p>Սեանսներ տագնապի, սթրեսի, ընկճվածության, ցածր ինքնագնահատականի և կյանքի փոփոխությունների դեպքում։</p>
+        <p>ԿՎԹ և լուծումակենտրոն մոտեցումներ՝ ապահով տարածք, գործնական գործիքներ և աջակցություն՝ քայլ առ քայլ։</p>
         <div class="inline-cta">
           <a href="/hy/specialists.html?q=individual">Դիտել մասնագետներին</a>
           <span class="or">կամ</span>
           <a href="#/contact">Ամրագրել նախնական զանգ</a>
         </div>
       </article>
-      <article class="feature">
+      <article class="feature bulleted">
         <div class="pill" aria-hidden="true">Զուգեր</div>
         <h3>Հարաբերութենական խորհրդատվություն</h3>
-        <p>Բարելավում ենք հաղորդակցությունը, վերականգնում վստահությունը և զարգացնում առողջ վեճերի հմտություններն անվտանգ միջավայրում։</p>
+        <p>Բարելավել հաղորդակցությունը, վերականգնել վստահությունը և զարգացնել առողջ հակասությունների հմտություններ՝ անվտանգ ընդհանուր միջավայրում։</p>
+        <p>Զույգերի կամ ընտանիքների համար, ովքեր ցանկանում են ավելի բաց խոսել, ավելի լավ հասկանալ և կրկին զգալ մտերմությունը։</p>
         <div class="inline-cta">
           <a href="/hy/specialists.html?q=couples">Դիտել մասնագետներին</a>
           <span class="or">կամ</span>
           <a href="#/contact">Ամրագրել նախնական զանգ</a>
         </div>
       </article>
-      <article class="feature">
+      <article class="feature bulleted">
         <div class="pill" aria-hidden="true">Ուսանողներ</div>
         <h3>Աջակցություն աշակերտներին և ուսանողներին</h3>
-        <p>Ուսումնական սթրես, քննային տագնապ, ինքնության հարցեր — գործնական ռազմավարություններ հավասարակշռության և կայունության համար։</p>
+        <p>Ուսումնական սթրես և քննային տագնապ — նվազեցնել ծանրաբեռնվածությունը պարզ, կրկնվող գործիքներով։</p>
+        <p>Ինքնության հարցեր և սոցիալական ճնշում — զարգացնել հավասարակշռություն, վստահություն և կայունություն։</p>
         <div class="inline-cta">
           <a href="/hy/specialists.html?q=student">Դիտել մասնագետներին</a>
           <span class="or">կամ</span>
           <a href="#/contact">Ամրագրել նախնական զանգ</a>
         </div>
       </article>
+    </div>
+    <!-- Ընդհանուր CTA վահանակ դեսկթոփի համար (թաքնված բջջայինում) -->
+    <div class="shared-cta" aria-label="Արագ գործողություններ ծառայությունների համար">
+      <a class="btn" href="/hy/specialists.html">Դիտել մասնագետներին</a>
+      <a class="btn primary" href="#/contact">Ամրագրել նախնական զանգ</a>
     </div>
   </section>
 
