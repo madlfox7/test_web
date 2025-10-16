@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Replace https://example.com real domain-->
+  <!-- Replace https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev real domain-->
   <url>
-    <loc>https://example.com/</loc>
+    <loc>https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/</loc>
+t<lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://example.com/en/</loc>
+    <loc>https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/en/</loc>
+t<lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://example.com/ru/</loc>
+    <loc>https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/ru/</loc>
+t<lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://example.com/hy/</loc>
+    <loc>https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/hy/</loc>
+t<lastmod>2025-10-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://example.com/en/specialists</loc>
+    <loc>https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/en/specialists</loc>
+t<lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://example.com/ru/specialists</loc>
+    <loc>https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/ru/specialists</loc>
+t<lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://example.com/hy/specialists</loc>
+    <loc>https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/hy/specialists</loc>
+t<lastmod>2025-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -4,5 +4,5 @@ Allow: /
 # backend
 Disallow: /api/
 
-Sitemap: https://example.com/sitemap.xml 
+Sitemap: https://reimagined-cod-r56v5pvj69gcxxr-80.app.github.dev/sitemap.xml 
 #replace wehn have real url, domain name
