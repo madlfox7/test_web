@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>PsyAid — Մասնագետներ</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%A7%A0%3C/text%3E%3C/svg%3E">
-  <meta name="description" content="Դիտարկեք հոգեբաններին, հոգեթերապևտներին, խորհրդատուներին  ըստ մասնագիտության, քաղաքի և լեզվի։ Ամրագրեք անվճար նախնական զանգ։"/>
+  <meta name="description" content="Դիտարկեք հոգեբաններին, հոգեթերապևտներին, խորհրդատուներին  ըստ մասնագիտության, քաղաքի և լեզվի։ Ամրագրեք անվճար նախնական զրույց։"/>
   <link rel="canonical" href="https://example.com/hy/specialists"/>
 
   <!-- hreflang -->
@@ -250,7 +250,7 @@
         bar.setAttribute('role','note');
         bar.setAttribute('aria-label','Անվտանգության հայտարարություն');
         bar.style.cssText='position:fixed;bottom:0;left:0;right:0;background:#fff1f2;color:#b91c1c;text-align:center;font-size:14px;padding:8px 36px 8px 12px;border-top:1px solid #fecaca;z-index:1000';
-        bar.innerHTML='⚠️ Այս ծառայությունը <strong>նախատեսված չէ արտակարգ իրավիճակների համար</strong>։ Արտակարգ դեպքերում զանգահարեք <strong>112</strong> (կամ 911) կամ դիմեք տեղական ծառայություններին (ոստիկանություն՝ 102, շտապօգնություն՝ 103)։'+
+        bar.innerHTML='⚠️ Այս ծառայությունը <strong>նախատեսված չէ արտակարգ իրավիճակների համար</strong>։ Արտակարգ դեպքերում զրույցահարեք <strong>112</strong> (կամ 911) կամ դիմեք տեղական ծառայություններին (ոստիկանություն՝ 102, շտապօգնություն՝ 103)։'+
                      '<button type="button" aria-label="Փակել" style="position:absolute;right:8px;top:6px;background:transparent;border:none;color:#b91c1c;font-size:18px;line-height:1;cursor:pointer">×</button>';
         bar.querySelector('button').addEventListener('click',function(){sessionStorage.setItem('psyaid_disclaimer_dismissed','1');bar.remove();});
         document.body.appendChild(bar);

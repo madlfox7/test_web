@@ -40,7 +40,7 @@
         services: 'Ծառայություններ',
         specialists: 'Մասնագետներ',
         or: 'Կամ',
-        contact: 'ամրագրեք նախնական զանգ',
+        contact: 'ամրագրեք նախնական զրույց',
         specialistsHref: '/hy/specialists.html',
         chooseTitle: 'Օգնե՞նք ընտրել մասնագետի',
         chooseSub: 'Գրեք մի քանի բառ, և մենք կֆիլտրենք ցուցակը․',
