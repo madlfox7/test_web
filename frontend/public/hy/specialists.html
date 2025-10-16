@@ -4,7 +4,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>PsyAid — Մասնագետներ</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%A7%A0%3C/text%3E%3C/svg%3E">
   <meta name="description" content="Դիտարկեք հոգեբաններին ըստ մասնագիտության, քաղաքի և լեզվի։ Ամրագրեք անվճար նախնական զանգ։"/>
   <link rel="canonical" href="https://example.com/hy/specialists"/>
 
@@ -68,15 +68,15 @@
         <a href="/hy/#/pricing">Գներ</a>
         <a href="/hy/specialists.html" aria-current="page">Մասնագետներ</a>
         <a href="/hy/#/contact">Կապ</a>
-        <a href="/cookies.html" target="_blank" rel="noopener noreferrer">Դեմո</a>
+        <a href="/cookies.html" target="_blank" rel="noopener noreferrer">TEST</a>
       </nav>
       <div class="navactions">
         <select id="langSwitch" aria-label="Լեզու" class="btn" style="padding:10px 14px;">
-          <option value="ru">Ռուսերեն</option>
-          <option value="en">Անգլերեն</option>
-          <option value="hy" selected>Հայերեն</option>
+          <option value="ru">RU</option>
+          <option value="en">EN</option>
+          <option value="hy" selected>HY</option>
         </select>
-        <a class="btn ghost" href="/hy/#/faq">ՀՏՀ</a>
+        <a class="btn ghost" href="/hy/#/faq">Հարցեր</a>
         <a class="btn primary" href="/hy/#/contact">Ամրագրել</a>
         <button class="btn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks" aria-label="Բացել մենյուն">☰</button>
       </div>
@@ -87,10 +87,10 @@
     <div class="top-actions">
       <h1 style="margin:0">PsyAid — Մասնագետներ</h1>
     </div>
-    <p class="muted" style="margin:4px 0 12px">Ֆիլտրեք ըստ քաղաքի, լեզվի կամ որոնեք անունով/մասնագիտացմամբ։</p>
+    <p class="muted" style="margin:4px 0 12px">Ֆիլտրեք ըստ քաղաքի, լեզվի կամ որոնեք անուն-ազգանունով/մասնագիտացմամբ։</p>
     <div class="quick-links" aria-label="Օգտակար հղումներ">
       <a href="/hy/#/approach">Ծանոթացեք մեր մոտեցմանը →</a>
-      <a href="/hy/#/pricing">Համեմատել փաթեթները →</a>
+      <a href="/hy/#/pricing">Համեմատեք փաթեթները →</a>
     </div>
 
     <div class="controls">
@@ -197,7 +197,7 @@
         return p >= min && p <= max;
       });
     }
-    // Հետին ಭಾಗի բացակայության դեպքում՝ փորձի ֆիլտր հաճախորդի կողմում
+    // Հետին բացակայության դեպքում՝ փորձի ֆիլտր հաճախորդի կողմում
     const er = document.getElementById('experience')?.value || '';
     if (er) {
       let emin = 0, emax = Infinity;

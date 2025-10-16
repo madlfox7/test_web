@@ -35,16 +35,16 @@
         done: 'Фильтры применены.'
       },
       hy: {
-        title: 'Օգնա՞կ է պետք',
+        title: 'Օգնությու՞ն է պետք',
         sub: 'Արագ հղումներ՝ սկսելու համար․',
         services: 'Ծառայություններ',
         specialists: 'Մասնագետներ',
         or: 'Կամ',
         contact: 'ամրագրեք նախնական զանգ',
         specialistsHref: '/hy/specialists.html',
-        chooseTitle: 'Օգնե՞լ ընտրել մասնագետ',
+        chooseTitle: 'Օգնե՞նք ընտրել մասնագետի',
         chooseSub: 'Գրեք մի քանի բառ, և մենք կֆիլտրենք ցուցակը․',
-        placeholder: 'օր․՝ անհանգստություն, Երևան, հայերեն, կին…',
+        placeholder: 'օր․՝ տագնապ, Երևան, հայերեն, կին…',
         go: 'Որոնել',
         done: 'Ֆիլտրերը կիրառվեցին։'
       }
@@ -126,7 +126,7 @@
       chips.style.cssText = 'display:flex;gap:6px;flex-wrap:wrap'
       const examples = (
         lang==='ru' ? ['тревога','Ереван','русскоязычный специалист'] :
-        lang==='hy' ? ['անհանգստություն','Երևան','հայերեն'] :
+        lang==='hy' ? ['տագնապ','Երևան','հայերեն'] :
                       ['anxiety','Yerevan','Armenian']
       );
       examples.forEach(ex=>{
