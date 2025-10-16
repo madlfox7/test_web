@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# backend
+Disallow: /api/
+
+Sitemap: https://example.com/sitemap.xml 
+#replace wehn have real url, domain name
