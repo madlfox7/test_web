@@ -5,7 +5,7 @@ SHELL := /bin/bash
 PORT ?= 3000
 NODE_DIR := frontend/tools/node-static
 
-.PHONY: help node-install node-start node-dev node-clean up down restart restart-soft logs seo-set-domain seo-restore
+.PHONY: help node-install node-start node-dev node-clean up down restart restart-soft logs seo-set-domain seo-restore seo-clean-backups
 
 help:
 	@echo "Targets:"
@@ -20,6 +20,7 @@ help:
 	@echo "  logs             - docker compose logs -f"
 	@echo "  seo-set-domain   - set your domain in robots.txt and sitemap.xml (use DOMAIN=... or enter interactively)"
 	@echo "  seo-restore      - restore robots.txt and sitemap.xml from latest backups (.bak.<timestamp>)"
+	@echo "  seo-clean-backups- remove older SEO backups, keep latest N (KEEP=N, default 2)"
 
 node-install:
 	@cd $(NODE_DIR) && if [ -f package-lock.json ]; then npm ci; else npm install; fi
@@ -45,6 +46,10 @@ restart:
 	@echo "[reset] Full reset: down -v, prune, up --build"
 	@echo "[reset] Restoring SEO files from backups (if present)"
 	$(MAKE) seo-restore || true
+	@if [ "$$CLEAN_SEO_BACKUPS" = "1" ]; then \
+	  echo "[reset] Cleaning old SEO backups (KEEP=$${KEEP:-2})"; \
+	  $(MAKE) seo-clean-backups KEEP=$${KEEP:-2}; \
+	fi
 	docker compose down -v
 	# Optional cleanup of dangling images/cache
 	docker system prune -f
@@ -115,4 +120,26 @@ seo-restore:
 	  cp "$$f" "$$curbk" 2>/dev/null || true
 	  cp "$$latest" "$$f"
 	  echo "Restored: $$f from $$latest (current saved: $$curbk)"
+	done
+
+# Remove older backup files for SEO artifacts, keeping the latest N per file.
+# Usage: make seo-clean-backups [KEEP=2]
+seo-clean-backups:
+	@KEEP=$${KEEP:-2}
+	TARGETS=("frontend/public/robots.txt" "frontend/public/sitemap.xml")
+	for base in $${TARGETS[@]}; do
+	  for kind in bak curr.bak; do
+	    # List sorted by mtime (newest first)
+	    files=$$(ls -1t "$$base.$$kind."* 2>/dev/null || true)
+	    [ -z "$$files" ] && continue
+	    idx=0
+	    for f in $$files; do
+	      idx=$$((idx+1))
+	      if [ $$idx -le $$KEEP ]; then
+	        echo "Keeping: $$f"
+	      else
+	        rm -f "$$f" && echo "Removed: $$f"
+	      fi
+	    done
+	  done
 	done
