@@ -110,7 +110,7 @@ seo-set-domain:
 	        sed -i -E "s#<lastmod>[^<]+</lastmod>#<lastmod>$$TODAY</lastmod>#g" "$$f"
 	      else
 	        # If no lastmod present, insert after each <loc> line
-	        sed -i -E "/<loc>[^<]+<\\/loc>/a \\t<lastmod>$$TODAY<\\/lastmod>" "$$f"
+	        sed -i -E "/<loc>[^<]+<\\/loc>/a \\ \ \ \ \ <lastmod>$$TODAY<\\/lastmod>" "$$f"
 	      fi
 	      ;;
 	  esac
