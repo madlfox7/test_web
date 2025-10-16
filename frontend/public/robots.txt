@@ -4,5 +4,5 @@ Allow: /
 # backend
 Disallow: /api/
 
-Sitemap: https://yourdomain.tld/sitemap.xml
+Sitemap: https://example.org/sitemap.xml
 #replace wehn have real url, domain name

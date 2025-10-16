@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>PsyAid — Մասնագետներ</title>
+  <title>PsyAid —Մեր մասնագետները</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
-  <meta name="description" content="Դիտարկեք հոգեբաններին ըստ մասնագիտության, քաղաքի և լեզվի։ Ամրագրեք անվճար նախնական զանգ։"/>
+  <meta name="description" content="Որոնում ըստ մասնագիտության, քաղաքի և լեզվի։ Ամրագրեք անվճար նախնական զանգ։"/>
   <link rel="canonical" href="https://example.com/hy/specialists"/>
 
   <!-- hreflang -->
@@ -64,11 +64,11 @@
       </a>
       <nav class="navlinks" id="navlinks">
         <a href="/hy/#/services">Ծառայություններ</a>
-        <a href="/hy/#/approach">Մոտեցում</a>
-        <a href="/hy/#/pricing">Գներ</a>
+        <a href="/hy/#/approach">Սկզբունքներ</a>
+        <a href="/hy/#/pricing">Փաթեթներ</a>
         <a href="/hy/specialists.html" aria-current="page">Մասնագետներ</a>
         <a href="/hy/#/contact">Կապ</a>
-        <a href="/cookies.html" target="_blank" rel="noopener noreferrer">Դեմո</a>
+        <a href="/cookies.html" target="_blank" rel="noopener noreferrer">DEMO</a>
       </nav>
       <div class="navactions">
         <select id="langSwitch" aria-label="Լեզու" class="btn" style="padding:10px 14px;">
@@ -87,14 +87,14 @@
     <div class="top-actions">
       <h1 style="margin:0">PsyAid — Մասնագետներ</h1>
     </div>
-    <p class="muted" style="margin:4px 0 12px">Ֆիլտրեք ըստ քաղաքի, լեզվի կամ որոնեք անունով/մասնագիտացմամբ։</p>
+    <p class="muted" style="margin:4px 0 12px">Ֆիլտրեք ըստ քաղաքի, լեզվի կամ անուն-ազգանունով/մասնագիտացմամբ։</p>
     <div class="quick-links" aria-label="Օգտակար հղումներ">
-      <a href="/hy/#/approach">Ծանոթացեք մեր մոտեցմանը →</a>
-      <a href="/hy/#/pricing">Համեմատել փաթեթները →</a>
+      <a href="/hy/#/approach">Ծանոթացեք մեր սկզբունքներին →</a>
+      <a href="/hy/#/pricing">Համեմատեք փաթեթները →</a>
     </div>
 
     <div class="controls">
-      <input id="q" placeholder="Որոնել անուն կամ մասնագիտացում…"/>
+      <input id="q" placeholder="Որոնել անունով կամ մասնագիտացմամբ…"/>
       <select id="city">
         <option value="">Ցանկացած քաղաք</option>
         <option value="Yerevan">Երևան</option>
@@ -131,7 +131,6 @@
         <option value="0-15000">0-15,000 ֏</option>
         <option value="15000-25000">15,000-25,000 ֏</option>
         <option value="25000-40000">25,000-40,000 ֏</option>
-        <option value="40000+">40,000+ ֏</option>
       </select>
       <button id="apply">Կիրառել</button>
     </div>
@@ -216,7 +215,7 @@
         return e >= emin && e <= emax;
       });
     }
-    if(arr.length===0){list.innerHTML='<p class="muted">Արդյունքներ չկան։</p>';return;}
+    if(arr.length===0){list.innerHTML='<p class="muted">Արդյունքներ չեն գտնվել։</p>';return;}
     list.innerHTML=arr.map(x=>{
       const displayLangs=(x.languages||'').split(',').map(s=>s.trim()).filter(Boolean).map(c=>L[c]||c).join(', ');
       return `<article class="card">
