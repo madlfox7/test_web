@@ -121,6 +121,11 @@
     label{font-weight:600}
     input,textarea,select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font:inherit}
     .helptext{color:var(--muted);font-size:.95rem}
+  /* Subtle one-line notes (used under Pricing) */
+  .note-line{color:var(--muted);margin:6px 0 10px;display:flex;align-items:center;gap:8px;font-size:.98rem}
+  .note-line::before{content:'\1F4AC';/* 💬 */opacity:.9}
+  .note-line a{color:var(--brand);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
+  @media (max-width:480px){.note-line{font-size:.95rem}}
 
     footer{border-top:1px solid var(--line);padding:32px 0;color:var(--muted)}
 
@@ -289,6 +294,7 @@
 
   <section id="pricing" class="container" data-route="/pricing">
     <h2 class="section-title">Simple pricing</h2>
+    <p class="note-line">Prices vary slightly by specialist, experience, and method. See exact rates on the <a href="/en/specialists.html">Specialists</a> page.</p>
     <p class="section-sub">Transparent terms. Reduced-fee options may be available — ask on the intro call.</p>
     <div class="pricing">
       <div class="plan">
