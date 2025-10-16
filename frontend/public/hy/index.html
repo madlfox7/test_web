@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Armenian:wght@400;600;700&display=swap" rel="stylesheet">
 
   <title>PsyAid — Խնամքով, ապացույցների վրա հիմնված հոգեբանական աջակցություն</title>
   <meta name="description" content="PsyAid-ը բարեհամբույր և գաղտնի հոգեբանական օգնություն է Հայաստանում։ Ամրագրեք անվճար 15-րոպեանոց նախնական զանգ և սկսեք ձեզ զգալ ավելի լավ՝ քայլ առ քայլ։" />
@@ -38,7 +41,7 @@
     html{scroll-behavior:smooth}
     html,body{margin:0}
     body{
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
+      font-family:'Noto Sans Armenian', system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji";
       color:var(--fg);background:var(--bg);line-height:1.6;
       font-size:clamp(15px,1.4vw,18px);
       padding-bottom: calc(max(0px, env(safe-area-inset-bottom)) + 52px);
@@ -48,17 +51,24 @@
     .visually-hidden{position:absolute!important;clip:rect(1px,1px,1px,1px);padding:0;border:0;height:1px;width:1px;overflow:hidden}
 
     .container{max-width:var(--w);margin:0 auto;padding:0 20px}
-    header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:var(--shadow)}
-    .navlinks{display:flex;gap:24px}
+  .navlinks{display:flex;gap:24px}
     .navlinks a{color:var(--muted)}
     .navactions{display:flex;gap:10px}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:clamp(10px,1.3vw,12px) clamp(14px,1.8vw,18px);border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff;font-size:clamp(14px,1.6vw,16px)}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;box-shadow:var(--shadow)}
-    .btn.ghost{background:transparent}
-    .menu-btn{display:none}
+  .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;box-shadow:var(--shadow)}
+  .btn.ghost{background:transparent}
+  .menu-btn{display:none}
+
+  /* HY header nav — mirror specialists page sizing */
+  header .navactions .btn{padding:10px 16px;font-size:clamp(14px,1.6vw,16px)}
+  header select.btn{padding:10px 14px !important}
+  /* HY header nav — mirror specialists page font stack + brand tint */
+  header{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji"}
+  header .brand{color:#111}
 
     .hero{padding:clamp(48px,8vw,96px) 0;background:radial-gradient(1000px 400px at 80% -10%,rgba(108,124,255,.15),transparent),radial-gradient(800px 300px at -10% 10%,rgba(147,160,255,.18),transparent)}
     .hero-grid{display:grid;gap:40px;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);align-items:start}
@@ -73,8 +83,8 @@
     .section-title{font-size:28px;margin:0 0 12px}
     .section-sub{color:var(--muted);margin:0 0 28px}
   /* Callout CTA under Approach */
-  .cta-callout{display:flex;gap:12px;align-items:center;justify-content:space-between;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin:8px 0 24px}
-  .cta-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .cta-callout{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin:8px 0 24px}
+  .cta-actions{display:flex;gap:8px;flex-wrap:nowrap;white-space:nowrap}
   .cta-callout__text{color:var(--fg)}
 
     /* Universal responsive grids */
@@ -134,7 +144,8 @@
       .container{padding:0 8px}
       .btn, input, textarea, select { width:100%; box-sizing:border-box; }
       .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
-      .cta-callout{flex-direction:column;align-items:stretch}
+      .cta-callout{grid-template-columns:1fr}
+      .cta-actions{flex-wrap:wrap}
     }
     @media (max-width:360px){
       .pill{font-size:13px;padding:6px 10px}
@@ -166,16 +177,16 @@
         <span>PsyAid</span>
       </a>
       <nav class="navlinks" id="navlinks">
-        <a href="#/services">Ծառայություններ</a>
-        <a href="#/approach">Մեր մոտեցումը</a>
-        <a href="#/pricing">Գնացուցակ</a>
-        <a href="/hy/specialists.html">Մասնագետներ</a>
-        <a href="#/contact">Կապ</a>
+  <a href="#/services">Ծառայություններ</a>
+  <a href="#/approach">Մոտեցում</a>
+  <a href="#/pricing">Գներ</a>
+  <a href="/hy/specialists.html">Մասնագետներ</a>
+  <a href="#/contact">Կապ</a>
   <a href="/cookies.html" target="_blank" rel="noopener noreferrer">Դեմո</a>
       </nav>
       <div class="navactions">
         <label class="visually-hidden" for="langSwitch">Լեզու</label>
-        <select id="langSwitch" aria-label="Լեզվի ընտրություն" class="btn" style="padding:10px 14px;">
+  <select id="langSwitch" aria-label="Լեզվի ընտրություն" class="btn" style="padding:10px 14px;">
           <option value="hy" selected>HY</option>
           <option value="ru">RU</option>
           <option value="en">EN</option>

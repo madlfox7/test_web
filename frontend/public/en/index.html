@@ -73,8 +73,8 @@
     .section-title{font-size:28px;margin:0 0 12px}
     .section-sub{color:var(--muted);margin:0 0 28px}
   /* Callout CTA under Approach */
-  .cta-callout{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin:8px 0 24px}
-  .cta-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .cta-callout{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:12px 14px;margin:8px 0 24px}
+  .cta-actions{display:flex;gap:8px;flex-wrap:nowrap;white-space:nowrap}
   .cta-callout__text{color:var(--fg)}
 
     .grid-3,.testimonials,.pricing{
@@ -133,7 +133,8 @@
       .container{padding:0 8px}
       .btn, input, textarea, select { width:100%; box-sizing:border-box; }
       .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
-      .cta-callout{flex-direction:column;align-items:stretch}
+      .cta-callout{grid-template-columns:1fr}
+      .cta-actions{flex-wrap:wrap}
     }
     @media (max-width:360px){
       .pill{font-size:13px;padding:6px 10px}
