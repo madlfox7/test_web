@@ -60,6 +60,11 @@
     .btn.ghost{background:transparent}
     .menu-btn{display:none}
 
+  /* Nav hover + active (current page) */
+  .navlinks a{color:var(--muted);padding:6px 10px;border-radius:10px;transition:color .15s ease, background-color .15s ease}
+  .navlinks a:hover{color:var(--fg);background:color-mix(in srgb, var(--brand) 12%, white)}
+  .navlinks a[aria-current], .navlinks a[aria-current="page"]{color:var(--brand);background:color-mix(in srgb, var(--brand) 18%, white);font-weight:700}
+
     .hero{padding:clamp(48px,8vw,96px) 0;background:radial-gradient(1000px 400px at 80% -10%,rgba(108,124,255,.15),transparent),radial-gradient(800px 300px at -10% 10%,rgba(147,160,255,.18),transparent)}
     .hero-grid{display:grid;gap:40px;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);align-items:start}
     .headline{font-size:clamp(26px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
