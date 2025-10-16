@@ -53,9 +53,8 @@
     .nav{display:flex;align-items:center;justify-content:space-between;height:64px;position:relative}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand .logo{display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;box-shadow:var(--shadow)}
-    .navlinks{display:flex;gap:24px}
-    .navlinks a{color:var(--muted)}
-    .navactions{display:flex;gap:10px}
+  .navlinks{display:flex;gap:24px}
+  .navactions{display:flex;gap:10px}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:clamp(10px,1.3vw,12px) clamp(14px,1.8vw,18px);border-radius:999px;font-weight:600;border:1px solid var(--line);background:#fff;font-size:clamp(14px,1.6vw,16px)}
     .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;border:none;box-shadow:var(--shadow)}
     .btn.ghost{background:transparent}
@@ -100,11 +99,16 @@
     #services .shared-cta{display:flex;justify-content:center;gap:10px;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line)}
     #services .inline-cta .or{display:none}
     /* Make inline links look like light chips */
-    #services .inline-cta a,
-    #services .shared-cta a{
+    #services .inline-cta a{
       display:flex;align-items:center;justify-content:center;gap:6px;
       width:100%;text-align:center;
       padding:10px 12px;border:1px solid var(--line);border-radius:999px;
+      background:#fff;color:var(--brand);text-decoration:none;font-weight:600
+    }
+    #services .shared-cta a{
+      display:inline-flex;align-items:center;justify-content:center;gap:6px;
+      width:auto;text-align:center;
+      padding:10px 14px;border:1px solid var(--line);border-radius:999px;
       background:#fff;color:var(--brand);text-decoration:none;font-weight:600
     }
     #services .inline-cta a:hover,

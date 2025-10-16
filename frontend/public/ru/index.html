@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>PsyAid — Заботливая, доказательная психологическая поддержка</title>
-  <meta name="description" content="PsyAid — доброжелательная и конфиденциальная психологическая помощь в Армении. Запишитесь на бесплатный 15-минутный вводный звонок и начните чувствовать себя лучше — шаг за шагом." />
+  <title>PsyAid — Заботливая, эффективная психологическая поддержка</title>
+  <meta name="description" content="PsyAid — доступная, эффективная, конфиденциальная психологическая помощь в Армении. Запишитесь на бесплатный 15-минутный вводный звонок, найдите своего специалиста и начните чувствовать себя лучше — шаг за шагом." />
   <meta name="theme-color" content="#6c7cff" />
   <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
   <meta name="google-site-verification" content="SLoSipyPeQO0Y1LOBJTYzKxoSSi-JAJuskbKoRsjWJg" />
@@ -19,15 +19,15 @@
 
   <!-- Icons & social -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🧠</text></svg>">
-  <meta property="og:title" content="PsyAid — Заботливая, доказательная психологическая поддержка" />
-  <meta property="og:description" content="Бесплатный 15-минутный вводный звонок. Конфиденциальная, тёплая и практичная помощь вашему ментальному здоровью." />
+  <meta property="og:title" content="PsyAid — Заботливая, доказательная психологическая поддержка и терапия по доступным ценам" />
+  <meta property="og:description" content="Бесплатный 15-минутный вводный звонок для подбора специалиста. Конфиденциальная, доступная и практичная помощь вашему ментальному здоровью." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://example.com/ru/" />
   <meta property="og:image" content="https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid" />
   <meta property="og:locale" content="ru_RU" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="PsyAid — Заботливая, доказательная психологическая поддержка" />
-  <meta name="twitter:description" content="Запишитесь на бесплатный 15-минутный вводный звонок. Конфиденциально, заботливо и по-деловому." />
+  <meta name="twitter:title" content="PsyAid — доступная и эффективная психологическая поддержка" />
+  <meta name="twitter:description" content="Запишитесь на бесплатный 15-минутный вводный звонок для подбора специалиста и метода терапии. Конфиденциальная, доступная и практичная помощь вашему ментальному здоровью." />
   <meta name="twitter:image" content="https://dummyimage.com/1200x630/f3f4f6/111&text=PsyAid" />
 
   <style>
@@ -65,7 +65,29 @@
 
     .hero{padding:clamp(48px,8vw,96px) 0;background:radial-gradient(1000px 400px at 80% -10%,rgba(108,124,255,.15),transparent),radial-gradient(800px 300px at -10% 10%,rgba(147,160,255,.18),transparent)}
     .hero-grid{display:grid;gap:40px;grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr);align-items:start}
-    .headline{font-size:clamp(26px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+  .headline{font-size:clamp(26px,4vw,44px);line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+  /* RU hero: lighten long copy without changing wording */
+    .hero-text{ --headline-w: 28ch; }
+    .hero .headline{max-width:var(--headline-w);text-wrap:balance}
+  .hero .sub{max-width:62ch;margin:8px 0 12px}
+  .hero .sub:last-of-type{margin-bottom:18px}
+  .hero .sub strong{color:var(--brand)}
+  .hero .sub + .sub{border-top:1px dashed color-mix(in srgb, var(--brand) 22%, var(--line));padding-top:10px}
+  /* Hero CTA pill button */
+  .pill-btn{display:flex;align-items:center;justify-content:center;gap:8px;margin:8px auto 6px;background:linear-gradient(135deg,#3b82f6,#ef4444);color:#fff;cursor:pointer;font:inherit;font-size:1.05em;line-height:1;padding:10px 14px;border-radius:999px;vertical-align:middle;box-shadow:var(--shadow);text-decoration:none;border:none;width:min(100%, var(--headline-w))}
+  .pill-btn:hover{background:linear-gradient(135deg,#ef4444,#3b82f6);filter:brightness(1.05)}
+  .pill-btn:focus-visible{outline:3px solid color-mix(in srgb, var(--brand) 70%, white); outline-offset:2px}
+  /* Align hero CTA ("Записаться") with pill and headline width */
+  #heroText .cta{justify-content:center}
+  #heroText .cta .btn{width:min(100%, var(--headline-w))}
+  /* Show/hide hero details when toggled */
+  .hero-text.show-details .headline{display:none}
+  .hero-text:not(.show-details) .sub{display:none}
+  .hero-text.show-details .sub{display:block}
+  .hero-text.show-details .sub:first-of-type{border-top:1px solid color-mix(in srgb, var(--brand) 18%, var(--line)); padding-top:10px}
+  /* Conditional line break visibility */
+  .br-lg{display:none}
+  @media (min-width: 720px){ .br-lg{display:inline} }
     .sub{font-size:clamp(15px,2vw,20px);color:var(--muted);margin:0 0 24px}
     .pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:#eef2ff;color:#3730a3;font-weight:600;font-size:14px;margin-bottom:14px}
     .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
@@ -86,23 +108,22 @@
     }
     .feature{padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
     .feature h3{margin:8px 0}
-    /* Выравнивание CTA в услугах + эстетика */
+    /* Компактные абзацы с точкой-маркером (локально в карточках услуг) */
+    #services{ --bullet-indent: 18px; }
+    .feature.bulleted p{position:relative;padding-left:var(--bullet-indent);margin:6px 0}
+    .feature.bulleted p::before{content:'•';position:absolute;left:0;top:.35em;color:var(--brand);font-weight:700;line-height:1}
+    /* Выравнивание CTA в услугах + респронс */
     #services .feature{display:flex;flex-direction:column}
-    #services .feature .inline-cta{
-      margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:8px;align-items:flex-start;flex-wrap:wrap;font-size:.95rem;
-      border-top:1px dashed var(--line);
-    }
+    /* По умолчанию (десктоп): скрыть карточные CTA, показать общую панель ниже */
+    #services .feature .inline-cta{display:none;margin-top:auto;padding-top:10px;flex-direction:column;gap:8px;align-items:flex-start;flex-wrap:wrap;font-size:.95rem;border-top:1px dashed var(--line)}
+    #services .shared-cta{display:flex;justify-content:center;gap:10px;margin-top:8px;padding-top:10px;border-top:1px dashed var(--line)}
     #services .inline-cta .or{display:none}
-    #services .inline-cta a{
-      display:flex;align-items:center;justify-content:center;gap:6px;
-      width:100%;text-align:center;
-      padding:10px 12px;border:1px solid var(--line);border-radius:999px;
-      background:#fff;color:var(--brand);text-decoration:none;font-weight:600
-    }
-    #services .inline-cta a:hover{background:#f8fafc;border-color:color-mix(in srgb, var(--brand) 25%, var(--line))}
-    #services .inline-cta a:focus-visible{outline:3px solid color-mix(in srgb, var(--brand) 70%, white);outline-offset:2px}
-    #services .inline-cta a:first-of-type::before{content:'🔎'}
-    #services .inline-cta a:last-of-type::before{content:'📞'}
+    #services .inline-cta a{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;text-align:center;padding:10px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--brand);text-decoration:none;font-weight:600}
+    #services .shared-cta a{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:auto;text-align:center;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--brand);text-decoration:none;font-weight:600}
+    #services .inline-cta a:hover, #services .shared-cta a:hover{background:#f8fafc;border-color:color-mix(in srgb, var(--brand) 25%, var(--line))}
+    #services .inline-cta a:focus-visible, #services .shared-cta a:focus-visible{outline:3px solid color-mix(in srgb, var(--brand) 70%, white);outline-offset:2px}
+    #services .inline-cta a:first-of-type::before, #services .shared-cta a:first-of-type::before{content:'🔎'}
+    #services .inline-cta a:last-of-type::before, #services .shared-cta a:last-of-type::before{content:'📞'}
     .cta{display:flex;gap:14px;flex-wrap:wrap}
     .quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px}
     .quote p{margin:0 0 10px}
@@ -152,6 +173,9 @@
       .nav{flex-direction:column;align-items:flex-start;height:auto;gap:10px;padding:10px 0}
       .cta-callout{grid-template-columns:1fr}
       .cta-actions{flex-wrap:wrap}
+      /* Мобайл: показывать CTA в карточках, скрыть общую панель */
+      #services .feature .inline-cta{display:flex}
+      #services .shared-cta{display:none}
     }
     @media (max-width:360px){
       .pill{font-size:13px;padding:6px 10px}
@@ -188,7 +212,7 @@
         <a href="#/pricing">Цены</a>
         <a href="/ru/specialists.html">Специалисты</a>
         <a href="#/contact">Контакты</a>
-  <a href="/cookies.html" target="_blank" rel="noopener noreferrer">Демо</a>
+  <a href="/cookies.html" target="_blank" rel="noopener noreferrer">Тест</a>
       </nav>
       <div class="navactions">
         <label class="visually-hidden" for="langSwitch">Язык</label>
@@ -206,60 +230,68 @@
 
   <main id="home" class="hero" data-route="/">
     <div class="container hero-grid">
-      <div>
+      <div id="heroText" class="hero-text">
         <div class="pill">Доброжелательно • Конфиденциально • На основе доказательств</div>
-        <h1 class="headline">Чувствуйте себя лучше — с одного заботливого шага.</h1>
-        <p class="sub">PsyAid предлагает заботливые консультации по вопросам стресса, тревожности, выгорания, отношений и жизненных изменений. Начните с бесплатного 15-минутного вводного звонка.</p>
+  <h1 class="headline">Стресс, тревога, потеря мотивации, или кажется, что живёшь в матрице?</h1>
+  <a id="heroCta" class="pill-btn" href="#" aria-expanded="false" aria-controls="heroText" aria-label="Показать описание" title="Показать описание">💊 Поговорим об этом?</a>
+        <p class="sub"><strong>PsyAid</strong> — онлайн‑платформа психологической поддержки. Мы помогаем справляться с выгоранием, тревожностью, внутренней пустотой и сложными жизненными периодами. Начните с бесплатного 15‑минутного вводного звонка и сделайте первый шаг к спокойствию и осознанности.</p>
         <div class="cta">
-          <a class="btn primary" href="#/contact">Бесплатный вводный звонок</a>
-          <a class="btn" href="#/services">Посмотреть услуги</a>
+          <a class="btn primary" href="#/contact">Записаться</a>
         </div>
         <p class="helptext">Направление не требуется • Онлайн или очно • Русский / Армянский / Английский</p>
       </div>
 
       <aside class="card hero-card" aria-label="Быстрая информация">
-        <div class="check"><span>✅</span><div><strong>Конфиденциальность</strong><br/>Ваши данные защищены. Безопасные встречи и бережное обращение с информацией.</div></div>
-        <div class="check"><span>🧭</span><div><strong>Понятный план</strong><br/>Формулируем цели вместе и регулярно отслеживаем прогресс.</div></div>
-        <div class="check"><span>🧪</span><div><strong>Доказательные методы</strong><br/>КПТ, решения-ориентированный подход и практики осознанности.</div></div>
-        <div class="check"><span>🌱</span><div><strong>Тепло и по-человечески</strong><br/>Мы встречаем вас там, где вы есть — без оценок, только поддержка.</div></div>
+        <div class="check"><span>✅</span><div><strong>Конфиденциальность</strong><br/>Всё, что вы рассказываете, остаётся между нами.</div></div>
+        <div class="check"><span>🧭</span><div><strong>Гибкий План роста</strong><br/>Мы задаем импульс, вы выбираете направление.</div></div>
+        <div class="check"><span>🧪</span><div><strong>Проверенные наукой подходы</strong><br/>КПТ, решения-ориентированный метод и осознанность в действии.</div></div>
+        <div class="check"><span>🌱</span><div><strong>Тепло и по-человечески</strong><br/>Никаких ярлыков, только поддержка.</div></div>
       </aside>
     </div>
   </main>
 
   <section id="services" class="container" data-route="/services">
-    <h2 class="section-title">Как мы помогаем</h2>
-    <p class="section-sub">Краткосрочная поддержка или длительная терапия — онлайн или очно.</p>
+    <h2 class="section-title">Как мы помогаем?</h2>
+    <p class="section-sub">Краткосрочная поддержка или длительная терапия — онлайн или очно, так, как удобно вам.</p>
     <div class="grid-3">
-      <article class="feature">
+      <article class="feature bulleted">
         <div class="pill" aria-hidden="true">КПТ • SFBT</div>
         <h3>Индивидуальная терапия</h3>
-        <p>Сессии при тревожности, стрессе, депрессии, сниженной самооценке и жизненных переменах — с использованием КПТ и решения-ориентированных методов.</p>
+        <p>Сессии при тревожности, стрессе, депрессии, низкой самооценке и жизненных переменах.</p>
+        <p>Используем КПТ и решения‑ориентированные подходы: безопасное пространство, практичные инструменты и поддержка шага за шагом.</p>
         <div class="inline-cta">
           <a href="/ru/specialists.html?q=individual">Посмотреть специалистов</a>
           <span class="or">или</span>
           <a href="#/contact">Записаться на вводный звонок</a>
         </div>
       </article>
-      <article class="feature">
+      <article class="feature bulleted">
         <div class="pill" aria-hidden="true">Пары</div>
         <h3>Консультирование отношений</h3>
-        <p>Улучшаем коммуникацию, восстанавливаем доверие и развиваем здоровые навыки ведения споров в безопасной совместной атмосфере.</p>
+        <p>Улучшение общения, восстановление доверия и здоровые навыки разрешения конфликтов в безопасной общей среде.</p>
+        <p>Для пар или семей, которые хотят говорить открытее, лучше понимать друг друга и вновь чувствовать близость.</p>
         <div class="inline-cta">
           <a href="/ru/specialists.html?q=couples">Посмотреть специалистов</a>
           <span class="or">или</span>
           <a href="#/contact">Записаться на вводный звонок</a>
         </div>
       </article>
-      <article class="feature">
+      <article class="feature bulleted">
         <div class="pill" aria-hidden="true">Подростки</div>
         <h3>Поддержка студентов и подростков</h3>
-        <p>Учебный стресс, тревожность перед экзаменами, вопросы идентичности — практичные стратегии баланса и устойчивости.</p>
+        <p>Учебный стресс и тревожность перед экзаменами — меньше перегруза за счёт простых, повторяемых техник.</p>
+        <p>Вопросы идентичности и социальное давление — развиваем баланс, уверенность и устойчивость.</p>
         <div class="inline-cta">
           <a href="/ru/specialists.html?q=student">Посмотреть специалистов</a>
           <span class="or">или</span>
           <a href="#/contact">Записаться на вводный звонок</a>
         </div>
       </article>
+    </div>
+    <!-- Общая панель действий для десктопа (скрыта на мобильных) -->
+    <div class="shared-cta" aria-label="Быстрые действия по услугам">
+      <a class="btn" href="/ru/specialists.html">Посмотреть специалистов</a>
+      <a class="btn primary" href="#/contact">Записаться на звонок</a>
     </div>
   </section>
 
@@ -532,6 +564,20 @@
       location.href = base + hash;
     }
     langSel && langSel.addEventListener('change', e => goLang(e.target.value));
+    // Hero CTA toggles hero details (show/hide PsyAid description)
+    (function(){
+      const hero = document.getElementById('heroText');
+      const btn = document.getElementById('heroCta');
+      if(!hero || !btn) return;
+      btn.addEventListener('click', function(e){
+        try{ e.preventDefault(); }catch(_){ }
+        const on = hero.classList.toggle('show-details');
+        btn.setAttribute('aria-expanded', String(on));
+        const label = on ? 'Показать заголовок' : 'Показать описание';
+        btn.setAttribute('aria-label', label);
+        btn.title = label;
+      });
+    })();
   </script>
 
   <!-- Глобальный дисклеймер безопасности (фиксированная плашка снизу, можно закрыть) -->
